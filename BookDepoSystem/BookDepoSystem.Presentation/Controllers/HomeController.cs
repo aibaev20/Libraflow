@@ -1,42 +1,42 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Common.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookDepoSystem.Presentation.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IEmailService _emailService;
-    private readonly ILogger<HomeController> _logger;
+    private readonly IEmailService emailService;
+    private readonly ILogger<HomeController> logger;
 
     public HomeController(
         IEmailService emailService,
         ILogger<HomeController> logger)
     {
-        _emailService = emailService;
-        _logger = logger;
+        this.emailService = emailService;
+        this.logger = logger;
     }
 
     [HttpGet("/")]
     public async Task<IActionResult> Index(string emailSender = "SendGrid")
     {
-        var emailSent = await _emailService.SendEmailAsync(
+        var emailSent = await this.emailService.SendEmailAsync(
             new EmailModel
             {
                 Subject = "Welcome to BookDepoSystem!",
                 Email = "AIBaev20@codingburgas.bg",
-                Message = $"You have received email with strategy {emailSender}."
+                Message = $"You have received email with strategy {emailSender}.",
             },
             emailSender);
-        
-        return Ok(emailSent);
+
+        return this.Ok(emailSent);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
     }
 }

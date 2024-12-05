@@ -2,7 +2,6 @@
 using BookDepoSystem.Services.Common.Models;
 using Essentials.Results;
 
-
 namespace BookDepoSystem.Services.Common.Contracts;
 
 public interface IEmailSender

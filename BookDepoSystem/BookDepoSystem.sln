@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
 		..\README.md = ..\README.md
+		..\BookDepoSystem.ruleset = ..\BookDepoSystem.ruleset
+		..\stylecop.json = ..\stylecop.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDepoSystem.Presentation", "BookDepoSystem.Presentation\BookDepoSystem.Presentation.csproj", "{5E0E4309-3EA3-4B54-89ED-E18F8D853FF4}"

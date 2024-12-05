@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <CodeAnalysisRuleSet>../../BookDepoSystem.ruleset</CodeAnalysisRuleSet>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
@@ -11,8 +13,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Essentials" Version="0.0.10" />
-      <PackageReference Include="SendGrid" Version="9.29.3" />
+        <PackageReference Include="Essentials" Version="0.0.10" />
+        <PackageReference Include="SendGrid" Version="9.29.3" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

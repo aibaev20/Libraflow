@@ -13,7 +13,7 @@ internal static class DependencyInjection
                 options.SignIn.RequireConfirmedAccount = true;
             })
             .AddEntityFrameworkStores<EntityContext>();
-        
+
         return services;
     }
 }

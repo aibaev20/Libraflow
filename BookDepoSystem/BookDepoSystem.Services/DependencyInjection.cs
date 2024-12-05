@@ -3,7 +3,6 @@ using BookDepoSystem.Services.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-
 namespace BookDepoSystem.Services;
 
 public static class DependencyInjection
@@ -14,7 +13,7 @@ public static class DependencyInjection
     {
         services.AddCommonServices(configuration);
         services.AddIdentityServices();
-        
+
         return services;
     }
 }
