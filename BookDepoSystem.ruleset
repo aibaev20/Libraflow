@@ -2,6 +2,8 @@
 <RuleSet Name="Rule set" Description="Rule set" ToolsVersion="14.0">
     <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
         <Rule Id="AD0001" Action="None" />
+        <Rule Id="CS0108" Action="None"/>
+        <Rule Id="CS0114" Action="None"/>
         <Rule Id="CS0436" Action="None" />
         <Rule Id="CS1998" Action="None" />
         <Rule Id="CS8034" Action="None" />
@@ -9,6 +11,7 @@
         <Rule Id="SA1005" Action="None" />
         <Rule Id="SA1120" Action="None" />
         <Rule Id="SA1200" Action="None" />
+        <Rule Id="SA1201" Action="None"/>
         <Rule Id="SA1300" Action="None" />
         <Rule Id="SA1512" Action="None" />
         <Rule Id="SA1515" Action="None" />
