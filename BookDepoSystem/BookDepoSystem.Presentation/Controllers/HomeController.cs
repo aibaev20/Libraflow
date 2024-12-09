@@ -22,6 +22,7 @@ public class HomeController : Controller
     [HttpGet("/")]
     public async Task<IActionResult> Index(string emailSender = "SendGrid")
     {
+        /*
         var emailSent = await this.emailService.SendEmailAsync(
             new EmailModel
             {
@@ -32,11 +33,19 @@ public class HomeController : Controller
             emailSender);
 
         return this.Ok(emailSent);
+        */
+
+        return this.View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
+    }
+
+    public IActionResult Privacy()
+    {
+        return this.View(this.Privacy());
     }
 }
