@@ -14,5 +14,20 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
+    
+    <ItemGroup>
+      <EmbeddedResource Update="T.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>T.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Update="T.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>T.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using BookDepoSystem.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookDepoSystem.Services.Identity;
@@ -10,7 +11,8 @@ internal static class DependencyInjection
     {
         services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedEmail = false;
             })
             .AddEntityFrameworkStores<EntityContext>();
 

@@ -2,6 +2,8 @@ using System.Diagnostics;
 using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Common.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookDepoSystem.Presentation.Controllers;
@@ -20,6 +22,7 @@ public class HomeController : Controller
     }
 
     [HttpGet("/")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Index(string emailSender = "SendGrid")
     {
         /*
