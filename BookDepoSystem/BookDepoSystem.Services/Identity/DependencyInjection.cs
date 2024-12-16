@@ -1,5 +1,8 @@
 ﻿using BookDepoSystem.Data;
+using BookDepoSystem.Services.Identity.Contracts;
+using BookDepoSystem.Services.Identity.Internals;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BookDepoSystem.Services.Identity;
@@ -14,7 +17,10 @@ internal static class DependencyInjection
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedEmail = false;
             })
-            .AddEntityFrameworkStores<EntityContext>();
+            .AddEntityFrameworkStores<EntityContext>()
+            .AddDefaultTokenProviders();
+
+        services.AddScoped<ICurrentUser, CurrentUser>();
 
         return services;
     }

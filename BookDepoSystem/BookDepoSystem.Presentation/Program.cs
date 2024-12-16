@@ -10,9 +10,9 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // default scheme
     .AddCookie(
-        CookieAuthenticationDefaults.AuthenticationScheme,
+        CookieAuthenticationDefaults.AuthenticationScheme, // cookie configurations
         options =>
         {
             options.LoginPath = "/login";

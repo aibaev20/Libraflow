@@ -19,6 +19,7 @@
         <div class="container">
             <!-- Outer Row -->
             <div class="row justify-content-center">
+                <!-- grid system in Bootstrap has 12 parts -->
                 <div class="col-xl-7 col-lg-7 col-md-9">
                     <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card-body p-0">
@@ -35,7 +36,8 @@
                 </div>
             </div>
         </div>
-        <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial"/>
+    <!-- Without submitting form to show the mistakes in filling the form-->
         @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

@@ -35,7 +35,7 @@ namespace BookDepoSystem.Common {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BookDepoSystem.Common.T", typeof(T).Assembly);
@@ -62,7 +62,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Потвърждаване на парола.
         /// </summary>
-        internal static string ConfirmPasswordPlaceholderText {
+        public static string ConfirmPasswordPlaceholderText {
             get {
                 return ResourceManager.GetString("ConfirmPasswordPlaceholderText", resourceCulture);
             }
@@ -105,11 +105,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вашата заявка беше успешна. Моля проверете имейл адреса си за линк за промяна на парола..
+        /// </summary>
+        public static string ForgotPasswordSuccessMessage {
+            get {
+                return ResourceManager.GetString("ForgotPasswordSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Забравена парола.
         /// </summary>
         public static string ForgotPasswordTitle {
             get {
                 return ResourceManager.GetString("ForgotPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имейлът или паролата не съвпадат.
+        /// </summary>
+        public static string InvalidLoginErrorMessage {
+            get {
+                return ResourceManager.GetString("InvalidLoginErrorMessage", resourceCulture);
             }
         }
         
@@ -141,6 +159,33 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изход.
+        /// </summary>
+        public static string LogoutButtonText {
+            get {
+                return ResourceManager.GetString("LogoutButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте, че искате да излезете от Вашия профил?.
+        /// </summary>
+        public static string LogoutModalMessage {
+            get {
+                return ResourceManager.GetString("LogoutModalMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изход от системата.
+        /// </summary>
+        public static string LogoutModalTitle {
+            get {
+                return ResourceManager.GetString("LogoutModalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърдената парола не съвпада.
         /// </summary>
         internal static string PasswordIsDifferentThanConfirmedErrorMessage {
@@ -168,6 +213,51 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Паролата трябва да съдържа малка буква.
+        /// </summary>
+        internal static string PasswordRequiresLowerErrorMessage {
+            get {
+                return ResourceManager.GetString("PasswordRequiresLowerErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паролата трябва да съдържа символ.
+        /// </summary>
+        internal static string PasswordRequiresNonAlphanumericErrorMessage {
+            get {
+                return ResourceManager.GetString("PasswordRequiresNonAlphanumericErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паролата трябва да съдържа голяма буква.
+        /// </summary>
+        internal static string PasswordRequiresUpperErrorMessage {
+            get {
+                return ResourceManager.GetString("PasswordRequiresUpperErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паролата трябва да е поне 6 символа.
+        /// </summary>
+        internal static string PasswordTooShortErrorMessage {
+            get {
+                return ResourceManager.GetString("PasswordTooShortErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата..
+        /// </summary>
+        public static string RegisterSuccessMessage {
+            get {
+                return ResourceManager.GetString("RegisterSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запомни ме.
         /// </summary>
         public static string RememberMeLabel {
@@ -177,11 +267,38 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Смени паролата.
+        /// </summary>
+        public static string ResetPasswordButtonText {
+            get {
+                return ResourceManager.GetString("ResetPasswordButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смяна на парола.
+        /// </summary>
+        public static string ResetPasswordTitle {
+            get {
+                return ResourceManager.GetString("ResetPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпрати заявка за промяна на парола.
         /// </summary>
         public static string SendResetRequestButtonText {
             get {
                 return ResourceManager.GetString("SendResetRequestButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Профилът Ви е временно заключен.
+        /// </summary>
+        public static string UserLockedOutErrorMessage {
+            get {
+                return ResourceManager.GetString("UserLockedOutErrorMessage", resourceCulture);
             }
         }
     }

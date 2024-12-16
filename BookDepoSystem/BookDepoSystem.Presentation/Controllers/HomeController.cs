@@ -22,7 +22,9 @@ public class HomeController : Controller
     }
 
     [HttpGet("/")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    // scheme cookies
+    // to see Index first must be logged in
     public async Task<IActionResult> Index(string emailSender = "SendGrid")
     {
         /*
