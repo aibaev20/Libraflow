@@ -368,7 +368,9 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Account Setting</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <form asp-action="Logout" asp-controller="Authentication">
+             <button class="btn btn-primary" type="submit"> @T.LogoutButtonText </button>
+          </form>
         </li>
       </div>
     </ul>

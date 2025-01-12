@@ -10,7 +10,7 @@
     <h1 class="h4 text-gray-900 mb-4">@T.LoginTitle</h1>
 </div>
 
-@if (TempData.ContainsKey("MessageText"))
+@if (!string.IsNullOrWhiteSpace(globalError))
 {
     <span class="d-block text-small alert alert-danger">
         @globalError

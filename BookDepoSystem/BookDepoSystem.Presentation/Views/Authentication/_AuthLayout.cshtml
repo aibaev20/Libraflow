@@ -16,19 +16,18 @@
     </head>
 
     <body class="bg-black-gradient">
-        <div class="container">
-            <!-- Outer Row -->
-            <div class="row justify-content-center">
-                <!-- grid system in Bootstrap has 12 parts -->
-                <div class="col-xl-7 col-lg-7 col-md-9">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="p-5">
-                                        @RenderBody()
-                                    </div>
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <!-- grid system in Bootstrap has 12 parts -->
+            <div class="col-xl-7 col-lg-7 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="p-5">
+                                    @RenderBody()
                                 </div>
                             </div>
                         </div>
@@ -36,8 +35,20 @@
                 </div>
             </div>
         </div>
-    <partial name="_ValidationScriptsPartial"/>
-    <!-- Without submitting form to show the mistakes in filling the form-->
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="lib/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <!-- <script src="~/js/sb-admin-2.min.js"></script> -->
+    <!-- Without resubmitting form to show the mistakes in filling the form-->
+        <partial name="_ValidationScriptsPartial"/>
         @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

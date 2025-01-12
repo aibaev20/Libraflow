@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using BookDepoSystem.Data;
 using BookDepoSystem.Presentation;
 using BookDepoSystem.Services;
+using BookDepoSystem.Services.Identity.Constants;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,26 @@ builder.Services
         {
             options.LoginPath = "/login";
             options.LogoutPath = "/logout";
+            options.AccessDeniedPath = "/access-denied";
         });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(DefaultPolicies.AdminPolicy, policyBuilder =>
+    {
+        policyBuilder.RequireAuthenticatedUser();
+        policyBuilder.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
+        policyBuilder.RequireRole(DefaultRoles.Admin);
+    });
+    options.AddPolicy(DefaultPolicies.UserPolicy, policyBuilder =>
+    {
+        policyBuilder.RequireAuthenticatedUser();
+        policyBuilder.AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme);
+        policyBuilder.RequireRole(DefaultRoles.User);
+    });
+});
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);

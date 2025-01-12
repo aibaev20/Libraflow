@@ -96,7 +96,4 @@
     <data name="ForgotPasswordSuccessMessage" xml:space="preserve">
         <value>Вашата заявка беше успешна. Моля проверете имейл адреса си за линк за промяна на парола.</value>
     </data>
-    <data name="RegisterSuccessMessage" xml:space="preserve">
-        <value>Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата.</value>
-    </data>
 </root>

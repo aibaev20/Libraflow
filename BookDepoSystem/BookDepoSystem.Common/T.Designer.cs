@@ -50,7 +50,7 @@ namespace BookDepoSystem.Common {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -71,7 +71,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Имейлът е в невалиден формат.
         /// </summary>
-        internal static string EmailIsInvalidErrorMessage {
+        public static string EmailIsInvalidErrorMessage {
             get {
                 return ResourceManager.GetString("EmailIsInvalidErrorMessage", resourceCulture);
             }
@@ -80,7 +80,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Имейлът е задължително поле.
         /// </summary>
-        internal static string EmailIsRequiredErrorMessage {
+        public static string EmailIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("EmailIsRequiredErrorMessage", resourceCulture);
             }
@@ -188,7 +188,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Потвърдената парола не съвпада.
         /// </summary>
-        internal static string PasswordIsDifferentThanConfirmedErrorMessage {
+        public static string PasswordIsDifferentThanConfirmedErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordIsDifferentThanConfirmedErrorMessage", resourceCulture);
             }
@@ -197,7 +197,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Паролата е задължително поле.
         /// </summary>
-        internal static string PasswordIsRequiredErrorMessage {
+        public static string PasswordIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordIsRequiredErrorMessage", resourceCulture);
             }
@@ -215,7 +215,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Паролата трябва да съдържа малка буква.
         /// </summary>
-        internal static string PasswordRequiresLowerErrorMessage {
+        public static string PasswordRequiresLowerErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordRequiresLowerErrorMessage", resourceCulture);
             }
@@ -224,7 +224,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Паролата трябва да съдържа символ.
         /// </summary>
-        internal static string PasswordRequiresNonAlphanumericErrorMessage {
+        public static string PasswordRequiresNonAlphanumericErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordRequiresNonAlphanumericErrorMessage", resourceCulture);
             }
@@ -233,7 +233,7 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Паролата трябва да съдържа голяма буква.
         /// </summary>
-        internal static string PasswordRequiresUpperErrorMessage {
+        public static string PasswordRequiresUpperErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordRequiresUpperErrorMessage", resourceCulture);
             }
@@ -242,18 +242,9 @@ namespace BookDepoSystem.Common {
         /// <summary>
         ///   Looks up a localized string similar to Паролата трябва да е поне 6 символа.
         /// </summary>
-        internal static string PasswordTooShortErrorMessage {
+        public static string PasswordTooShortErrorMessage {
             get {
                 return ResourceManager.GetString("PasswordTooShortErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата..
-        /// </summary>
-        public static string RegisterSuccessMessage {
-            get {
-                return ResourceManager.GetString("RegisterSuccessMessage", resourceCulture);
             }
         }
         

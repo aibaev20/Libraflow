@@ -42,6 +42,7 @@ public class AuthenticationController : Controller
     [HttpGet("/login")]
     // the login functions on /login
     [AllowAnonymous]
+    // who is not logged can enter /login
     public IActionResult Login()
     {
         if (this.IsUserAuthenticated())
@@ -56,7 +57,7 @@ public class AuthenticationController : Controller
 
     // overload on the login
     [HttpPost("/login")]
-    [ValidateAntiForgeryToken] // using this to not allow intercepting
+    [ValidateAntiForgeryToken] // using this to not allow intercepting (bad requests)
     [AllowAnonymous]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
@@ -68,6 +69,8 @@ public class AuthenticationController : Controller
         if (this.ModelState.IsValid)
         {
             var user = await this.userManager.FindByEmailAsync(model.Email!);
+
+            // user doesn't exist or user exist but his password does not match
             if (user == null || !(await this.userManager.CheckPasswordAsync(user, model.Password!)))
             {
                 this.ModelState.AddModelError(string.Empty, Common.T.InvalidLoginErrorMessage);
@@ -113,15 +116,20 @@ public class AuthenticationController : Controller
 
         if (this.ModelState.IsValid)
         {
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+            };
+
             var result = await this.userManager.CreateAsync(
-                new ApplicationUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                },
+                user,
                 model.Password!);
+
             if (result.Succeeded)
             {
+                await this.userManager.AddToRoleAsync(user, DefaultRoles.User);
+
                 this.TempData["MessageText"] = T.RegisterSuccessMessage;
                 this.TempData["MessageVariant"] = "success";
                 return this.RedirectToAction(nameof(this.Login));
@@ -146,7 +154,7 @@ public class AuthenticationController : Controller
     }
 
     [HttpPost("/forgot-password")]
-    [ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken] // using this to not allow intercepting (bad requests)
     [AllowAnonymous]
     public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
     {
@@ -235,6 +243,12 @@ public class AuthenticationController : Controller
         }
 
         return this.View(model);
+    }
+
+    [HttpGet("/access-denied")]
+    public IActionResult AccessDenied()
+    {
+        return this.View();
     }
 
     [HttpPost("/logout")]

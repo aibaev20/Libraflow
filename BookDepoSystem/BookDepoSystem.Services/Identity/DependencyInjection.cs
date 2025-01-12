@@ -1,7 +1,6 @@
 ﻿using BookDepoSystem.Data;
 using BookDepoSystem.Services.Identity.Contracts;
 using BookDepoSystem.Services.Identity.Internals;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +13,7 @@ internal static class DependencyInjection
     {
         services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
+                // these must be true because of the Email API service
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedEmail = false;
             })
