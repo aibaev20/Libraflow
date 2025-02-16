@@ -96,4 +96,13 @@
     <data name="ForgotPasswordSuccessMessage" xml:space="preserve">
         <value>Вашата заявка беше успешна. Моля проверете имейл адреса си за линк за промяна на парола.</value>
     </data>
+    <data name="AccessDeniedTitle" xml:space="preserve">
+        <value>Достъпът отказан</value>
+    </data>
+    <data name="AccessDeniedMessage" xml:space="preserve">
+        <value>Изглежда, че нямате права за достъп до страницата</value>
+    </data>
+    <data name="BackToIndex" xml:space="preserve">
+        <value>Назад към началната страница</value>
+    </data>
 </root>

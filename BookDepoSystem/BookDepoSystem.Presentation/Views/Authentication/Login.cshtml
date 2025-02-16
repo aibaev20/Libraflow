@@ -6,48 +6,51 @@
     Layout = "_AuthLayout";
     var globalError = this.ViewContext.ModelState.GetFirstGlobalError();
 }
-<div class="text-center">
-    <h1 class="h4 text-gray-900 mb-4">@T.LoginTitle</h1>
-</div>
+
+<h3 class="card-title text-center">@T.LoginTitle</h3>
 
 @if (!string.IsNullOrWhiteSpace(globalError))
 {
-    <span class="d-block text-small alert alert-danger">
+    <span class="d-block alert alert-danger">
         @globalError
     </span>
 }
 
+@if (TempData.ContainsKey("MessageText"))
+{
+    <span class="d-block alert alert-@TempData["MessageVariant"]">
+        @TempData["MessageText"]
+    </span>
+}
+
 <form class="user" asp-action="Login" method="post">
+    <!-- Email Input -->
     <div class="form-group">
         <input asp-for="Email"
                class="form-control"
                aria-describedby="emailHelp"
                placeholder="@T.EmailPlaceholderText">
-        <span class="text-danger text-small" asp-validation-for="Email"></span>
-        <!-- using asp-validation-for to show validation -->
+        <span class="text-danger" asp-validation-for="Email"></span>
     </div>
-    
+    <!-- Password Input -->
     <div class="form-group">
         <input asp-for="Password"
                type="password"
                class="form-control"
                placeholder="@T.PasswordPlaceholderText">
-        <span class="text-danger text-small" asp-validation-for="Password"></span>
+        <span class="text-danger" asp-validation-for="Password"></span>
     </div>
+    <!-- Remember Me Checkbox -->
     <div class="form-group">
-        <div class="custom-control custom-checkbox small">
-            <input 
-                type="checkbox"
-                class="custom-control-input"
-                asp-for="RememberMe">
-            <label class="custom-control-label" asp-for="RememberMe">@T.RememberMeLabel</label>
-        </div>
+        <input type="checkbox" class="form-check-input" id="rememberMe">
+        <label class="form-check-label" for="rememberMe">@T.RememberMeLabel</label>
     </div>
-    <button type="submit" class="btn btn-primary btn-user btn-block">
-        @T.LoginButtonText
-    </button>
+    <!-- Submit Button -->
+    <div class="form-group d-grid">
+        <button type="submit" class="btn btn-primary btn-block">@T.LoginButtonText</button>
+    </div>
+    <!-- Forgot Password Link -->
+    <div class="form-group text-center">
+        <a href="@Url.Action("ForgotPassword")" class="text-decoration-none">@T.ForgotPasswordLinkText</a>
+    </div>
 </form>
-<hr>
-<div class="text-center">
-    <a class="small" href="@Url.Action("ForgotPassword")">@T.ForgotPasswordLinkText</a>
-</div>

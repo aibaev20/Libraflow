@@ -5,7 +5,10 @@ using BookDepoSystem.Common;
 using BookDepoSystem.Data;
 using BookDepoSystem.Presentation.Extensions;
 using BookDepoSystem.Presentation.Models;
+using BookDepoSystem.Services.Common.Constants;
 using BookDepoSystem.Services.Common.Contracts;
+using BookDepoSystem.Services.Common.Models;
+using BookDepoSystem.Services.Identity.Constants;
 using BookDepoSystem.Services.Identity.Extensions;
 using Essentials.Extensions;
 using Microsoft.AspNetCore.Authentication;
@@ -91,55 +94,6 @@ public class AuthenticationController : Controller
         // this way we can submit the form
     }
 
-    /*
-    [HttpGet("/register")]
-    [AllowAnonymous]
-    public IActionResult Register()
-    {
-        if (this.IsUserAuthenticated())
-        {
-            return this.RedirectToDefault();
-        }
-
-        var model = new RegisterViewModel();
-        return this.View(model);
-    }
-    [HttpPost("/register")]
-    [ValidateAntiForgeryToken]
-    [AllowAnonymous]
-    public async Task<IActionResult> Register(RegisterViewModel model)
-    {
-        if (this.IsUserAuthenticated())
-        {
-            return this.RedirectToDefault();
-        }
-
-        if (this.ModelState.IsValid)
-        {
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email,
-            };
-
-            var result = await this.userManager.CreateAsync(
-                user,
-                model.Password!);
-
-            if (result.Succeeded)
-            {
-                await this.userManager.AddToRoleAsync(user, DefaultRoles.User);
-
-                this.TempData["MessageText"] = T.RegisterSuccessMessage;
-                this.TempData["MessageVariant"] = "success";
-                return this.RedirectToAction(nameof(this.Login));
-            }
-            this.ModelState.AssignIdentityErrors(result.Errors);
-        }
-        return this.View(model);
-    }
-    */
-
     [HttpGet("/forgot-password")]
     [AllowAnonymous]
     public IActionResult ForgotPassword()
@@ -172,6 +126,7 @@ public class AuthenticationController : Controller
                 var resetPasswordEncodedToken = UrlEncoder.Default.Encode(resetPasswordToken);
                 var resetPasswordUrl = this.HttpContext
                     .GetAbsoluteRoute($"/reset-password?email={user.Email}&token={resetPasswordEncodedToken}");
+
                 var result = await this.emailService.SendResetPasswordEmailAsync(
                     user.Email!,
                     resetPasswordUrl);

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace BookDepoSystem.Services.Common.Internals.EmailSenders;
+namespace BookDepoSystem.Services.Common.Internals;
 
 internal class SendGridSender : IEmailSender
 {

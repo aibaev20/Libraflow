@@ -1,13 +1,9 @@
 ﻿@{
     Layout = "_AuthLayout";
 }
-<div class="container-fluid">
-    
-    <div class="text-center">
-        <!-- Make resource keys -->
-        <div class="error mx-auto py-5" data-text="403"></div>
-        <p class="lead text-gray-800 mb-5">Access Denied</p>
-        <p class="text-gray-500 mb-0">It looks like you have no rights to access the page</p>
-        <a asp-action="Login" asp-controller="Authentication">Back to login</a>
-    </div>
+
+<h3 class="card-title text-center">@T.AccessDeniedTitle</h3>
+<p class="text-center">@T.AccessDeniedMessage</p>
+<div class="text-center">
+    <a href="@Url.Action("Index", "Home")" class="text-decoration-none">@T.BackToIndex</a>
 </div>

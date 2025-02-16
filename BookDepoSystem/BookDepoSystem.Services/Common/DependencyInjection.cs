@@ -1,6 +1,5 @@
 ﻿using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Common.Internals;
-using BookDepoSystem.Services.Common.Internals.EmailSenders;
 using BookDepoSystem.Services.Common.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

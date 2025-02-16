@@ -60,6 +60,33 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изглежда, че нямате права за достъп до страницата.
+        /// </summary>
+        public static string AccessDeniedMessage {
+            get {
+                return ResourceManager.GetString("AccessDeniedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Достъпът отказан.
+        /// </summary>
+        public static string AccessDeniedTitle {
+            get {
+                return ResourceManager.GetString("AccessDeniedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Назад към началната страница.
+        /// </summary>
+        public static string BackToIndex {
+            get {
+                return ResourceManager.GetString("BackToIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърждаване на парола.
         /// </summary>
         public static string ConfirmPasswordPlaceholderText {

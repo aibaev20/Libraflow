@@ -14,37 +14,13 @@ public static class EmailServiceExtensions
         string token)
     {
         Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
-        Console.WriteLine(token);
 
         return await emailService.SendEmailAsync(
             new EmailModel
             {
                 Email = email,
                 Subject = BookDepoSystem.Common.T.ResetPasswordTitle,
-                Message = string.Format($"Hello", token),
+                Message = string.Format($"{BookDepoSystem.Common.Emails.ResetPassword} ", token),
             },
             EmailSenderStrategies.SendGrid);
     }
