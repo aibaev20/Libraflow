@@ -105,4 +105,16 @@
     <data name="BackToIndex" xml:space="preserve">
         <value>Назад към началната страница</value>
     </data>
+    <data name="CurrentPasswordPlaceholderText" xml:space="preserve">
+        <value>Настояща парола</value>
+    </data>
+    <data name="NewPasswordPlaceholderText" xml:space="preserve">
+        <value>Нова парола</value>
+    </data>
+    <data name="ConfirmNewPasswordPlaceholderText" xml:space="preserve">
+        <value>Потвърдете новата парола</value>
+    </data>
+    <data name="ChangePasswordSuccessMessage" xml:space="preserve">
+        <value>Паролата е променена успешно</value>
+    </data>
 </root>

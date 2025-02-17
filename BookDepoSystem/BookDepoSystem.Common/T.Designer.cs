@@ -87,11 +87,38 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Паролата е променена успешно.
+        /// </summary>
+        public static string ChangePasswordSuccessMessage {
+            get {
+                return ResourceManager.GetString("ChangePasswordSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърдете новата парола.
+        /// </summary>
+        public static string ConfirmNewPasswordPlaceholderText {
+            get {
+                return ResourceManager.GetString("ConfirmNewPasswordPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърждаване на парола.
         /// </summary>
         public static string ConfirmPasswordPlaceholderText {
             get {
                 return ResourceManager.GetString("ConfirmPasswordPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настояща парола.
+        /// </summary>
+        public static string CurrentPasswordPlaceholderText {
+            get {
+                return ResourceManager.GetString("CurrentPasswordPlaceholderText", resourceCulture);
             }
         }
         
@@ -209,6 +236,15 @@ namespace BookDepoSystem.Common {
         public static string LogoutModalTitle {
             get {
                 return ResourceManager.GetString("LogoutModalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нова парола.
+        /// </summary>
+        public static string NewPasswordPlaceholderText {
+            get {
+                return ResourceManager.GetString("NewPasswordPlaceholderText", resourceCulture);
             }
         }
         

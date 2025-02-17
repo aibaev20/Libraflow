@@ -28,6 +28,7 @@ public class AuthenticationController : Controller
     private readonly IEmailService emailService;
     private readonly UrlEncoder urlEncoder;
     private readonly ILogger<AuthenticationController> logger;
+
     public AuthenticationController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
@@ -195,6 +196,48 @@ public class AuthenticationController : Controller
             }
 
             this.ModelState.AssignIdentityErrors(result.Errors);
+        }
+
+        return this.View(model);
+    }
+
+    [HttpGet("/change-password")]
+    public IActionResult ChangePassword()
+    {
+        return this.View();
+    }
+
+    [HttpPost("/change-password")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+    {
+        if (!this.ModelState.IsValid)
+        {
+            return this.View(model);
+        }
+
+        var user = await this.userManager.GetUserAsync(this.User);
+
+        if (user == null)
+        {
+            return this.RedirectToDefault();
+        }
+
+        if (this.ModelState.IsValid)
+        {
+            var result = await this.userManager.ChangePasswordAsync(user, model.CurrentPassword!, model.NewPassword!);
+
+            if (result.Succeeded)
+            {
+                // Re-sign in the user to refresh the authentication cookie
+                await this.signInManager.RefreshSignInAsync(user);
+                this.TempData["MessageText"] = T.ChangePasswordSuccessMessage;
+                this.TempData["MessageVariant"] = "success";
+                return this.View();
+            }
+
+            this.TempData["MessageText"] = "Невярна парола";
+            this.TempData["MessageVariant"] = "danger";
+            return this.View();
         }
 
         return this.View(model);
