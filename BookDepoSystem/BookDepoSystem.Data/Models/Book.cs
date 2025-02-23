@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookDepoSystem.Data.Models;
 
 public class Book
 {
     [Key]
-    public int BookID { get; set; }
+    public Guid BookId { get; set; }
     [Required]
     [MaxLength(255)]
     public string? Title { get; set; }
@@ -15,8 +17,13 @@ public class Book
     [MaxLength(50)]
     public string? Genre { get; set; }
     public string? Information { get; set; }
-    public DateTime? PublishedDate { get; set; }
+    public DateTime PublishedDate { get; set; }
     [Required]
     [Range(0, int.MaxValue)]
     public int QuantityAvailable { get; set; }
+
+    public Guid? AdminId { get; set; } // The admin who created this book
+
+    [ForeignKey("AdminId")]
+    public ApplicationUser? CreatedByAdmin { get; set; }
 }

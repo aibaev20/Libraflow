@@ -1,0 +1,35 @@
+﻿@model BookDepoSystem.Presentation.Models.BookViewModel
+
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<h2 class="m-3">@T.DeleteBookTitle</h2>
+
+<div class="m-3">
+    <dl class="dl-horizontal">
+        <dt class="mb-2">@T.BookTitleText:</dt>
+        <dd class="mb-2">@Model.Title</dd>
+
+        <dt class="mb-2">@T.BookAuthorText:</dt>
+        <dd class="mb-2">@Model.Author</dd>
+
+        <dt class="mb-2">@T.BookGenreText:</dt>
+        <dd class="mb-2">@Model.Genre</dd>
+
+        <dt class="mb-2">@T.BookInformationText:</dt>
+        <dd class="mb-2">@Model.Information</dd>
+
+        <dt class="mb-2">@T.BookPublishedDateText:</dt>
+        <dd class="mb-2">@Model.PublishedDate.ToShortDateString()</dd>
+
+        <dt class="mb-2">@T.BookQuantityAvailableText:</dt>
+        <dd class="mb-2">@Model.QuantityAvailable</dd>
+    </dl>
+</div>
+
+<form asp-action="DeleteConfirmed" method="post" class="m-3">
+    <input type="hidden" asp-for="BookId" />
+    <button type="submit" class="btn btn-danger">@T.DeleteBookButtonText</button>
+    <a asp-action="Books" class="btn btn-secondary">@T.CancelText</a>
+</form>

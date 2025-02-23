@@ -1,5 +1,6 @@
 ﻿using BookDepoSystem.Services.Common;
 using BookDepoSystem.Services.Identity;
+using BookDepoSystem.Services.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
     {
         services.AddCommonServices(configuration);
         services.AddIdentityServices();
+        services.AddServices();
 
         return services;
     }

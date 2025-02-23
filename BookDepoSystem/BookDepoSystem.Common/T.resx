@@ -117,4 +117,88 @@
     <data name="ChangePasswordSuccessMessage" xml:space="preserve">
         <value>Паролата е променена успешно</value>
     </data>
+    <data name="ChangePasswordErrorMessage" xml:space="preserve">
+        <value>Настоящата парола е невярна</value>
+    </data>
+    <data name="TitleIsRequiredErrorMessage" xml:space="preserve">
+        <value>Заглавието е задължително поле</value>
+    </data>
+    <data name="AuthorIsRequiredErrorMessage" xml:space="preserve">
+        <value>Авторът е задължително поле</value>
+    </data>
+    <data name="GenreIsRequiredErrorMessage" xml:space="preserve">
+        <value>Жанрът е задължително поле</value>
+    </data>
+    <data name="InformationIsRequiredErrorMessage" xml:space="preserve">
+        <value>Информацията е задължително поле</value>
+    </data>
+    <data name="PublishedDateIsRequiredErrorMessage" xml:space="preserve">
+        <value>Датата на публикуване е невалидна</value>
+    </data>
+    <data name="QuantityAvailableIsRequiredErrorMessage" xml:space="preserve">
+        <value>Количеството трябва да е положително число</value>
+    </data>
+    <data name="BookTitleText" xml:space="preserve">
+        <value>Заглавие</value>
+    </data>
+    <data name="BookAuthorText" xml:space="preserve">
+        <value>Автор</value>
+    </data>
+    <data name="BookGenreText" xml:space="preserve">
+        <value>Жанр</value>
+    </data>
+    <data name="BookInformationText" xml:space="preserve">
+        <value>Инфо</value>
+    </data>
+    <data name="BookQuantityAvailableText" xml:space="preserve">
+        <value>Количество</value>
+    </data>
+    <data name="BookPublishedDateText" xml:space="preserve">
+        <value>Дата на публикуване</value>
+    </data>
+    <data name="BookOperationsText" xml:space="preserve">
+        <value>Операции</value>
+    </data>
+    <data name="BookTableTitle" xml:space="preserve">
+        <value>Книжен инвентар</value>
+    </data>
+    <data name="AddNewBookButtonText" xml:space="preserve">
+        <value>Добави нова книга</value>
+    </data>
+    <data name="EditBookButtonText" xml:space="preserve">
+        <value>Редактирай</value>
+    </data>
+    <data name="DeleteBookButtonText" xml:space="preserve">
+        <value>Изтрий</value>
+    </data>
+    <data name="PreviousPageText" xml:space="preserve">
+        <value>Предишна</value>
+    </data>
+    <data name="NextPageText" xml:space="preserve">
+        <value>Следваща</value>
+    </data>
+    <data name="CurrentPageText" xml:space="preserve">
+        <value>Страница</value>
+    </data>
+    <data name="CreateBookButtonText" xml:space="preserve">
+        <value>Създай</value>
+    </data>
+    <data name="BackButtonText" xml:space="preserve">
+        <value>Назад</value>
+    </data>
+    <data name="CreateBookTitle" xml:space="preserve">
+        <value>Нова книга</value>
+    </data>
+    <data name="SaveText" xml:space="preserve">
+        <value>Запази</value>
+    </data>
+    <data name="CancelText" xml:space="preserve">
+        <value>Откажи</value>
+    </data>
+    <data name="EditBookTitle" xml:space="preserve">
+        <value>Промяна на книга</value>
+    </data>
+    <data name="DeleteBookTitle" xml:space="preserve">
+        <value>Изтриване на книга</value>
+    </data>
 </root>

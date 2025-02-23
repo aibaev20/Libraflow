@@ -7,10 +7,9 @@ namespace BookDepoSystem.Data;
 
 public class EntityContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
 {
-    public DbSet<Admin> Admins { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<Renter> Renters { get; set; }
     public DbSet<Book> Books { get; set; }
-    public DbSet<Loan> Loans { get; set; }
+    public DbSet<Rent> Rents { get; set; }
     public EntityContext(DbContextOptions<EntityContext> options)
         : base(options)
     {

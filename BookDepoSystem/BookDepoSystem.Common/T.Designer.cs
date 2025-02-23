@@ -78,11 +78,128 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добави нова книга.
+        /// </summary>
+        public static string AddNewBookButtonText {
+            get {
+                return ResourceManager.GetString("AddNewBookButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Авторът е задължително поле.
+        /// </summary>
+        public static string AuthorIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("AuthorIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Назад.
+        /// </summary>
+        public static string BackButtonText {
+            get {
+                return ResourceManager.GetString("BackButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Назад към началната страница.
         /// </summary>
         public static string BackToIndex {
             get {
                 return ResourceManager.GetString("BackToIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автор.
+        /// </summary>
+        public static string BookAuthorText {
+            get {
+                return ResourceManager.GetString("BookAuthorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Жанр.
+        /// </summary>
+        public static string BookGenreText {
+            get {
+                return ResourceManager.GetString("BookGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Инфо.
+        /// </summary>
+        public static string BookInformationText {
+            get {
+                return ResourceManager.GetString("BookInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Операции.
+        /// </summary>
+        public static string BookOperationsText {
+            get {
+                return ResourceManager.GetString("BookOperationsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата на публикуване.
+        /// </summary>
+        public static string BookPublishedDateText {
+            get {
+                return ResourceManager.GetString("BookPublishedDateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Количество.
+        /// </summary>
+        public static string BookQuantityAvailableText {
+            get {
+                return ResourceManager.GetString("BookQuantityAvailableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книжен инвентар.
+        /// </summary>
+        public static string BookTableTitle {
+            get {
+                return ResourceManager.GetString("BookTableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заглавие.
+        /// </summary>
+        public static string BookTitleText {
+            get {
+                return ResourceManager.GetString("BookTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Откажи.
+        /// </summary>
+        public static string CancelText {
+            get {
+                return ResourceManager.GetString("CancelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настоящата парола е невярна.
+        /// </summary>
+        public static string ChangePasswordErrorMessage {
+            get {
+                return ResourceManager.GetString("ChangePasswordErrorMessage", resourceCulture);
             }
         }
         
@@ -114,11 +231,74 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Създай.
+        /// </summary>
+        public static string CreateBookButtonText {
+            get {
+                return ResourceManager.GetString("CreateBookButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нова книга.
+        /// </summary>
+        public static string CreateBookTitle {
+            get {
+                return ResourceManager.GetString("CreateBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Страница.
+        /// </summary>
+        public static string CurrentPageText {
+            get {
+                return ResourceManager.GetString("CurrentPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настояща парола.
         /// </summary>
         public static string CurrentPasswordPlaceholderText {
             get {
                 return ResourceManager.GetString("CurrentPasswordPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтрий.
+        /// </summary>
+        public static string DeleteBookButtonText {
+            get {
+                return ResourceManager.GetString("DeleteBookButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтриване на книга.
+        /// </summary>
+        public static string DeleteBookTitle {
+            get {
+                return ResourceManager.GetString("DeleteBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактирай.
+        /// </summary>
+        public static string EditBookButtonText {
+            get {
+                return ResourceManager.GetString("EditBookButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Промяна на книга.
+        /// </summary>
+        public static string EditBookTitle {
+            get {
+                return ResourceManager.GetString("EditBookTitle", resourceCulture);
             }
         }
         
@@ -173,6 +353,24 @@ namespace BookDepoSystem.Common {
         public static string ForgotPasswordTitle {
             get {
                 return ResourceManager.GetString("ForgotPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Жанрът е задължително поле.
+        /// </summary>
+        public static string GenreIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("GenreIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информацията е задължително поле.
+        /// </summary>
+        public static string InformationIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("InformationIsRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -249,6 +447,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Следваща.
+        /// </summary>
+        public static string NextPageText {
+            get {
+                return ResourceManager.GetString("NextPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърдената парола не съвпада.
         /// </summary>
         public static string PasswordIsDifferentThanConfirmedErrorMessage {
@@ -312,6 +519,33 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Предишна.
+        /// </summary>
+        public static string PreviousPageText {
+            get {
+                return ResourceManager.GetString("PreviousPageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Датата на публикуване е невалидна.
+        /// </summary>
+        public static string PublishedDateIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("PublishedDateIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Количеството трябва да е положително число.
+        /// </summary>
+        public static string QuantityAvailableIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("QuantityAvailableIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запомни ме.
         /// </summary>
         public static string RememberMeLabel {
@@ -339,11 +573,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Запази.
+        /// </summary>
+        public static string SaveText {
+            get {
+                return ResourceManager.GetString("SaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпрати заявка за промяна на парола.
         /// </summary>
         public static string SendResetRequestButtonText {
             get {
                 return ResourceManager.GetString("SendResetRequestButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заглавието е задължително поле.
+        /// </summary>
+        public static string TitleIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("TitleIsRequiredErrorMessage", resourceCulture);
             }
         }
         

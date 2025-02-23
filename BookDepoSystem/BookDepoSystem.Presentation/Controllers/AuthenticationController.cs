@@ -235,18 +235,12 @@ public class AuthenticationController : Controller
                 return this.View();
             }
 
-            this.TempData["MessageText"] = "Невярна парола";
+            this.TempData["MessageText"] = T.ChangePasswordErrorMessage;
             this.TempData["MessageVariant"] = "danger";
             return this.View();
         }
 
         return this.View(model);
-    }
-
-    [HttpGet("/access-denied")]
-    public IActionResult AccessDenied()
-    {
-        return this.View();
     }
 
     [HttpPost("/logout")]

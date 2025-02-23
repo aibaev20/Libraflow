@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookDepoSystem.Data.Migrations
 {
     [DbContext(typeof(EntityContext))]
-    [Migration("20241205221959_Initial")]
+    [Migration("20250219190325_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -119,39 +119,14 @@ namespace BookDepoSystem.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("BookDepoSystem.Data.Models.Admin", b =>
-                {
-                    b.Property<int>("AdminID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminID"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("AdminID");
-
-                    b.ToTable("Admins");
-                });
-
             modelBuilder.Entity("BookDepoSystem.Data.Models.Book", b =>
                 {
-                    b.Property<int>("BookID")
+                    b.Property<Guid>("BookId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookID"));
+                    b.Property<Guid?>("AdminId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -165,7 +140,7 @@ namespace BookDepoSystem.Data.Migrations
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("PublishedDate")
+                    b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("QuantityAvailable")
@@ -176,24 +151,25 @@ namespace BookDepoSystem.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("BookID");
+                    b.HasKey("BookId");
+
+                    b.HasIndex("AdminId");
 
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookDepoSystem.Data.Models.Loan", b =>
+            modelBuilder.Entity("BookDepoSystem.Data.Models.Rent", b =>
                 {
-                    b.Property<int>("LoanID")
+                    b.Property<Guid>("RentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanID"));
+                    b.Property<Guid?>("AdminId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("AdminID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("BookID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("BookId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -201,8 +177,12 @@ namespace BookDepoSystem.Data.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LoanDate")
+                    b.Property<DateTime>("RentDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("RenterId")
+                        .IsRequired()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -215,44 +195,44 @@ namespace BookDepoSystem.Data.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserID")
-                        .HasColumnType("int");
+                    b.HasKey("RentId");
 
-                    b.HasKey("LoanID");
+                    b.HasIndex("AdminId");
 
-                    b.HasIndex("AdminID");
+                    b.HasIndex("BookId");
 
-                    b.HasIndex("BookID");
+                    b.HasIndex("RenterId");
 
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Loans");
+                    b.ToTable("Rents");
                 });
 
-            modelBuilder.Entity("BookDepoSystem.Data.Models.User", b =>
+            modelBuilder.Entity("BookDepoSystem.Data.Models.Renter", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<Guid>("RenterId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
-
-                    b.Property<int?>("AdminID")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("AdminId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("UserID");
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-                    b.HasIndex("AdminID");
+                    b.HasKey("RenterId");
 
-                    b.ToTable("Users");
+                    b.HasIndex("AdminId");
+
+                    b.ToTable("Renters");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -358,32 +338,45 @@ namespace BookDepoSystem.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BookDepoSystem.Data.Models.Loan", b =>
+            modelBuilder.Entity("BookDepoSystem.Data.Models.Book", b =>
                 {
-                    b.HasOne("BookDepoSystem.Data.Models.Admin", "Admin")
+                    b.HasOne("BookDepoSystem.Data.ApplicationUser", "CreatedByAdmin")
                         .WithMany()
-                        .HasForeignKey("AdminID");
+                        .HasForeignKey("AdminId");
+
+                    b.Navigation("CreatedByAdmin");
+                });
+
+            modelBuilder.Entity("BookDepoSystem.Data.Models.Rent", b =>
+                {
+                    b.HasOne("BookDepoSystem.Data.ApplicationUser", "CreatedByAdmin")
+                        .WithMany()
+                        .HasForeignKey("AdminId");
 
                     b.HasOne("BookDepoSystem.Data.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookID");
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("BookDepoSystem.Data.Models.User", "User")
+                    b.HasOne("BookDepoSystem.Data.Models.Renter", "Renter")
                         .WithMany()
-                        .HasForeignKey("UserID");
-
-                    b.Navigation("Admin");
+                        .HasForeignKey("RenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Book");
 
-                    b.Navigation("User");
+                    b.Navigation("CreatedByAdmin");
+
+                    b.Navigation("Renter");
                 });
 
-            modelBuilder.Entity("BookDepoSystem.Data.Models.User", b =>
+            modelBuilder.Entity("BookDepoSystem.Data.Models.Renter", b =>
                 {
-                    b.HasOne("BookDepoSystem.Data.Models.Admin", "CreatedByAdmin")
+                    b.HasOne("BookDepoSystem.Data.ApplicationUser", "CreatedByAdmin")
                         .WithMany()
-                        .HasForeignKey("AdminID");
+                        .HasForeignKey("AdminId");
 
                     b.Navigation("CreatedByAdmin");
                 });
