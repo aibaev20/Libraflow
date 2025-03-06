@@ -82,6 +82,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\dist\jquery.min.map" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery\LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="Views\Rent\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Rent\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Rent\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Rent\Rents.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

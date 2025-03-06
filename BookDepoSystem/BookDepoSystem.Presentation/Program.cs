@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using BookDepoSystem.Data;
 using BookDepoSystem.Presentation;
 using BookDepoSystem.Services;
+using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
+using BookDepoSystem.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +41,9 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
+
+builder.Services.AddScoped<IRentService, RentService>();
+builder.Services.AddHostedService<RentStatusBackgroundService>();
 
 builder.Services.AddMvc();
 

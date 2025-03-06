@@ -70,13 +70,13 @@ public class BookController : Controller
         return this.View(viewModel);
     }
 
-    [HttpGet("/create")]
+    [HttpGet("/books/create")]
     public IActionResult Create()
     {
         return this.View();
     }
 
-    [HttpPost("/create")]
+    [HttpPost("/books/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Create(BookViewModel model)
     {
@@ -92,8 +92,8 @@ public class BookController : Controller
                 Author = model.Author,
                 Genre = model.Genre,
                 Information = model.Information,
-                PublishedDate = model.PublishedDate,
-                QuantityAvailable = model.QuantityAvailable,
+                PublishedDate = model.PublishedDate!.Value,
+                QuantityAvailable = model.QuantityAvailable!.Value,
             };
 
             await this.bookService.AddBook(newBook);
@@ -145,8 +145,8 @@ public class BookController : Controller
         existingBook.Author = model.Author;
         existingBook.Genre = model.Genre;
         existingBook.Information = model.Information;
-        existingBook.PublishedDate = model.PublishedDate;
-        existingBook.QuantityAvailable = model.QuantityAvailable;
+        existingBook.PublishedDate = model.PublishedDate!.Value;
+        existingBook.QuantityAvailable = model.QuantityAvailable!.Value;
 
         var result = await this.bookService.UpdateBook(existingBook);
         if (!result)

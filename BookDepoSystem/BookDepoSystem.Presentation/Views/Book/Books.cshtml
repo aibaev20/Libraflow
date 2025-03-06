@@ -31,7 +31,7 @@
             <th>@T.BookInformationText</th>
             <th>@T.BookPublishedDateText</th>
             <th>@T.BookQuantityAvailableText</th>
-            <th>@T.BookOperationsText</th>
+            <th>@T.OperationsText</th>
         </tr>
     </thead>
     <tbody>
@@ -46,8 +46,8 @@
                 <td>@book.QuantityAvailable</td>
                 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" class="btn btn-warning mb-2">@T.EditBookButtonText</a>
-                    <a asp-action="Delete" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" class="btn btn-danger">@T.DeleteBookButtonText</a>
+                    <a asp-action="Edit" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" class="btn btn-warning mb-2">@T.EditButtonText</a>
+                    <a asp-action="Delete" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" class="btn btn-danger">@T.DeleteButtonText</a>
                 </td>
             </tr>
         }

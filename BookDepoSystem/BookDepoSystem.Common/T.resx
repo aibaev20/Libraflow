@@ -156,7 +156,7 @@
     <data name="BookPublishedDateText" xml:space="preserve">
         <value>Дата на публикуване</value>
     </data>
-    <data name="BookOperationsText" xml:space="preserve">
+    <data name="OperationsText" xml:space="preserve">
         <value>Операции</value>
     </data>
     <data name="BookTableTitle" xml:space="preserve">
@@ -165,10 +165,10 @@
     <data name="AddNewBookButtonText" xml:space="preserve">
         <value>Добави нова книга</value>
     </data>
-    <data name="EditBookButtonText" xml:space="preserve">
+    <data name="EditButtonText" xml:space="preserve">
         <value>Редактирай</value>
     </data>
-    <data name="DeleteBookButtonText" xml:space="preserve">
+    <data name="DeleteButtonText" xml:space="preserve">
         <value>Изтрий</value>
     </data>
     <data name="PreviousPageText" xml:space="preserve">
@@ -180,7 +180,7 @@
     <data name="CurrentPageText" xml:space="preserve">
         <value>Страница</value>
     </data>
-    <data name="CreateBookButtonText" xml:space="preserve">
+    <data name="CreateButtonText" xml:space="preserve">
         <value>Създай</value>
     </data>
     <data name="BackButtonText" xml:space="preserve">
@@ -200,5 +200,50 @@
     </data>
     <data name="DeleteBookTitle" xml:space="preserve">
         <value>Изтриване на книга</value>
+    </data>
+    <data name="BookManagementNavItem" xml:space="preserve">
+        <value>Управление на книги</value>
+    </data>
+    <data name="RentDateIsIncorrectErrorMessage" xml:space="preserve">
+        <value>Датата на наемане е невалидна</value>
+    </data>
+    <data name="DueDateIsIncorrectErrorMessage" xml:space="preserve">
+        <value>Крайната дата на наема е невалидна</value>
+    </data>
+    <data name="StatusIsRequiredErrorMessage" xml:space="preserve">
+        <value>Статусът е задължително поле</value>
+    </data>
+    <data name="BookTitleIsRequiredErrorMessage" xml:space="preserve">
+        <value>Заглавието на книгата е задължително поле</value>
+    </data>
+    <data name="RenterNameIsRequiredErrorMessage" xml:space="preserve">
+        <value>Името на наемателят е задължително поле</value>
+    </data>
+    <data name="RenterEmailIsRequiredErrorMessage" xml:space="preserve">
+        <value>Имейлът на наемателят е задължително поле</value>
+    </data>
+    <data name="RenterPhoneNumberIsRequiredErrorMessage" xml:space="preserve">
+        <value>Телефонният номер на наемателят е задължително поле</value>
+    </data>
+    <data name="AddNewRenterButtonText" xml:space="preserve">
+        <value>Добави нов наемател</value>
+    </data>
+    <data name="RenterTableTitle" xml:space="preserve">
+        <value>Наематели</value>
+    </data>
+    <data name="RenterNameText" xml:space="preserve">
+        <value>Име</value>
+    </data>
+    <data name="RenterEmailText" xml:space="preserve">
+        <value>Имейл</value>
+    </data>
+    <data name="RenterPhoneNumberText" xml:space="preserve">
+        <value>Телефонен номер</value>
+    </data>
+    <data name="CreateRenterTitle" xml:space="preserve">
+        <value>Нов наемател</value>
+    </data>
+    <data name="RenterManagementNavItem" xml:space="preserve">
+        <value>Наематели</value>
     </data>
 </root>

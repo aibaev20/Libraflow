@@ -4,7 +4,7 @@
     <div class="logo-header" data-background-color="dark">
       <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">
         <img
-          src="img/kaiadmin/logo_light.svg"
+          src="~/img/kaiadmin/logo_light.svg"
           alt="navbar brand"
           class="navbar-brand"
           height="20"
@@ -54,7 +54,22 @@
           </span>
           <h4 class="text-section">Components</h4>
         </li>
-        <li class="nav-item">
+
+      <li class="nav-item">
+        <a asp-controller="Book" asp-action="Books">
+          <i class="fas fa-table"></i>
+          <p>@T.BookManagementNavItem</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a asp-controller="Renter" asp-action="Renters">
+          <i class="fas fa-table"></i>
+          <p>@T.RenterManagementNavItem</p>
+        </a>
+      </li>
+      
+      <li class="nav-item">
           <a data-bs-toggle="collapse" href="#base">
             <i class="fas fa-layer-group"></i>
             <p>Base</p>

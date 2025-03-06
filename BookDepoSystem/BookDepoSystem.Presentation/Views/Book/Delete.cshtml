@@ -21,15 +21,15 @@
         <dd class="mb-2">@Model.Information</dd>
 
         <dt class="mb-2">@T.BookPublishedDateText:</dt>
-        <dd class="mb-2">@Model.PublishedDate.ToShortDateString()</dd>
+        <dd class="mb-2">@Model.PublishedDate!.Value.ToShortDateString()</dd>
 
         <dt class="mb-2">@T.BookQuantityAvailableText:</dt>
-        <dd class="mb-2">@Model.QuantityAvailable</dd>
+        <dd class="mb-2">@Model.QuantityAvailable!.Value</dd>
     </dl>
 </div>
 
 <form asp-action="DeleteConfirmed" method="post" class="m-3">
     <input type="hidden" asp-for="BookId" />
-    <button type="submit" class="btn btn-danger">@T.DeleteBookButtonText</button>
+    <button type="submit" class="btn btn-danger">@T.DeleteButtonText</button>
     <a asp-action="Books" class="btn btn-secondary">@T.CancelText</a>
 </form>
