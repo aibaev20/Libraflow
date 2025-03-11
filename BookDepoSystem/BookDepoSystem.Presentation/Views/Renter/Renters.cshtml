@@ -14,10 +14,10 @@
     </div>
     
     <form method="get" class="d-flex align-items-center">
-        <input type="text" name="search" class="form-control" placeholder="Search" value="@ViewData["Search"]" />
+        <input type="text" name="search" class="form-control" placeholder="..." value="@ViewData["Search"]" />
         <input type="hidden" name="pageSize" value="@ViewData["PageSize"]" />
-        <button type="submit" class="btn btn-primary ms-2">Search</button>
-        <a asp-action="Renters" class="btn btn-secondary ms-2">Clear</a>
+        <button type="submit" class="btn btn-primary ms-2">Търси</button>
+        <a asp-action="Renters" class="btn btn-secondary ms-2">Отмени</a>
     </form>
 
 </div>

@@ -63,6 +63,7 @@ public class RenterController : Controller
     }
 
     [HttpGet("/renters/create")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public IActionResult Create()
     {
         return this.View();

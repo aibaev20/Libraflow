@@ -35,21 +35,8 @@ public class HomeController : Controller
     [Authorize(DefaultPolicies.AdminPolicy)]
     // scheme cookies
     // to see Index first must be logged in
-    public async Task<IActionResult> Index(string emailSender = "SendGrid")
+    public async Task<IActionResult> Index()
     {
-        /*
-        var emailSent = await this.emailService.SendEmailAsync(
-            new EmailModel
-            {
-                Subject = "Welcome to BookDepoSystem!",
-                Email = "AIBaev20@codingburgas.bg",
-                Message = $"You have received email with strategy {emailSender}.",
-            },
-            emailSender);
-
-        return this.Ok(emailSent);
-        */
-
         return this.View();
     }
 

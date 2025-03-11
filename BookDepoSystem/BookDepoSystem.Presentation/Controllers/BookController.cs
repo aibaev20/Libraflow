@@ -29,14 +29,6 @@ public class BookController : Controller
         this.userManager = userManager;
     }
 
-    /*[HttpGet("/books")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Books()
-    {
-        var books = await this.bookService.GetAllBooks();
-        return this.View(books);
-    }*/
-
     [HttpGet("/books")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Books(string search = "", int page = 1, int pageSize = 5)
@@ -71,6 +63,7 @@ public class BookController : Controller
     }
 
     [HttpGet("/books/create")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public IActionResult Create()
     {
         return this.View();
@@ -104,6 +97,7 @@ public class BookController : Controller
     }
 
     [HttpGet("/edit")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Edit(Guid id)
     {
         var book = await this.bookService.GetBookById(id);
@@ -127,6 +121,7 @@ public class BookController : Controller
     }
 
     [HttpPost("/edit")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Edit(BookViewModel model)
     {
         if (!this.ModelState.IsValid)
@@ -158,6 +153,7 @@ public class BookController : Controller
     }
 
     [HttpGet("/delete")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Delete(Guid id)
     {
         var book = await this.bookService.GetBookById(id);
@@ -181,6 +177,7 @@ public class BookController : Controller
     }
 
     [HttpPost("/delete")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> DeleteConfirmed(BookViewModel model)
     {
         var book = await this.bookService.GetBookById(model.BookId);
