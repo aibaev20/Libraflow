@@ -84,6 +84,7 @@ public class BookController : Controller
                 Title = model.Title,
                 Author = model.Author,
                 Genre = model.Genre,
+                Location = model.Location,
                 Information = model.Information,
                 PublishedDate = model.PublishedDate!.Value,
                 QuantityAvailable = model.QuantityAvailable!.Value,
@@ -112,6 +113,7 @@ public class BookController : Controller
             Title = book.Title,
             Author = book.Author,
             Genre = book.Genre,
+            Location = book.Location,
             Information = book.Information,
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
@@ -139,6 +141,7 @@ public class BookController : Controller
         existingBook.Title = model.Title;
         existingBook.Author = model.Author;
         existingBook.Genre = model.Genre;
+        existingBook.Location = model.Location;
         existingBook.Information = model.Information;
         existingBook.PublishedDate = model.PublishedDate!.Value;
         existingBook.QuantityAvailable = model.QuantityAvailable!.Value;
@@ -168,6 +171,7 @@ public class BookController : Controller
             Title = book.Title,
             Author = book.Author,
             Genre = book.Genre,
+            Location = book.Location,
             Information = book.Information,
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
@@ -188,5 +192,30 @@ public class BookController : Controller
 
         await this.bookService.DeleteBook(book);
         return this.RedirectToAction(nameof(this.Books));
+    }
+
+    [HttpGet("/details")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> Details(Guid id)
+    {
+        var book = await this.bookService.GetBookById(id);
+        if (book == null)
+        {
+            return this.NotFound();
+        }
+
+        var model = new BookViewModel()
+        {
+            BookId = book.BookId,
+            Title = book.Title,
+            Author = book.Author,
+            Genre = book.Genre,
+            Location = book.Location,
+            Information = book.Information,
+            PublishedDate = book.PublishedDate,
+            QuantityAvailable = book.QuantityAvailable,
+        };
+
+        return this.View(model);
     }
 }

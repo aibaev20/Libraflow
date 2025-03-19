@@ -17,6 +17,8 @@ public class Book
     [MaxLength(50)]
     public string? Genre { get; set; }
     public string? Information { get; set; }
+    [MaxLength(20)]
+    public string? Location { get; set; }
     public DateTime PublishedDate { get; set; }
     [Required]
     [Range(0, int.MaxValue)]

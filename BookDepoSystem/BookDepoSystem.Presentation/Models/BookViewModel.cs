@@ -34,6 +34,12 @@ public class BookViewModel
 
     [Required(
         ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "LocationIsRequiredErrorMessage")]
+    [MaxLength(1000)]
+    public string? Location { get; set; } = string.Empty;
+
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
         ErrorMessageResourceName = "PublishedDateIsRequiredErrorMessage")]
     public DateTime? PublishedDate { get; set; }
 
