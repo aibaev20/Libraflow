@@ -137,6 +137,10 @@ namespace BookDepoSystem.Data.Migrations
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Location")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("datetime2");
 

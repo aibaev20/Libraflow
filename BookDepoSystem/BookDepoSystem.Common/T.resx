@@ -246,4 +246,10 @@
     <data name="RenterManagementNavItem" xml:space="preserve">
         <value>Наематели</value>
     </data>
+    <data name="BookLocationText" xml:space="preserve">
+        <value>Място</value>
+    </data>
+    <data name="LocationIsRequiredErrorMessage" xml:space="preserve">
+        <value>Мястото на книгата е задължително поле</value>
+    </data>
 </root>

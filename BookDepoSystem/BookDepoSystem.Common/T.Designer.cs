@@ -150,6 +150,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Място.
+        /// </summary>
+        public static string BookLocationText {
+            get {
+                return ResourceManager.GetString("BookLocationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Управление на книги.
         /// </summary>
         public static string BookManagementNavItem {
@@ -425,6 +434,15 @@ namespace BookDepoSystem.Common {
         public static string IRememberedMyPasswordLinkText {
             get {
                 return ResourceManager.GetString("IRememberedMyPasswordLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мястото на книгата е задължително поле.
+        /// </summary>
+        public static string LocationIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("LocationIsRequiredErrorMessage", resourceCulture);
             }
         }
         
