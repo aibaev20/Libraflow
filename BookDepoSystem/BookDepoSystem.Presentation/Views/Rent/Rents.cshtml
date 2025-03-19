@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RentViewModel>
+
+<h2 class="m-3">Наеми</h2>
+
+<div class="d-flex justify-content-between align-items-center m-3">
+    <div>
+        <a asp-action="Create" class="btn btn-primary">Добави нов наем</a>
+    </div>
+
+    <form method="get" class="d-flex align-items-center">
+        <input type="text" name="search" class="form-control" placeholder="..." value="@ViewData["Search"]" />
+        <input type="hidden" name="pageSize" value="@ViewData["PageSize"]" />
+        <button type="submit" class="btn btn-primary ms-2">Търси</button>
+        <a asp-action="Rents" class="btn btn-secondary ms-2">Отмени</a>
+    </form>
+
+</div>
+
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>Rent Date</th>
+        <th>Due Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Book</th>
+        <th>Renter</th>
+        <th>Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var rent in Model)
+    {
+        <tr>
+            @*<td>@rent.RentDate</td>
+            <td>@rent.DueDate</td>
+            <td>@(rent.ReturnDate == DateTime.MinValue ? "Not Returned" : rent.ReturnDate!.Value.ToString("dd.MM.yyyy HH:mm"))</td>*@
+            <td>@(rent.RentDate.ToString("dd-MM-yyyy HH:mm"))</td>
+            <td>@(rent.DueDate.ToString("dd-MM-yyyy HH:mm"))</td>
+            <td>@(rent.ReturnDate == DateTime.MinValue ? "Not Returned" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
+            <td>@rent.Status</td>
+            <td>@rent.BookTitle</td>
+            <td>@rent.RenterName</td>
+            <td>
+                @if (rent.Status != "Completed")
+                {
+                <a asp-action="Return" asp-route-rentId="@rent.RentId" class="btn btn-primary">Update Return Date</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
