@@ -23,7 +23,7 @@ public class Book
     [Required]
     [Range(0, int.MaxValue)]
     public int QuantityAvailable { get; set; }
-
+    public string? CoverImage { get; set; }
     public Guid? AdminId { get; set; } // The admin who created this book
 
     [ForeignKey("AdminId")]

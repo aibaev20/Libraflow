@@ -47,4 +47,6 @@ public class BookViewModel
         ErrorMessageResourceType = typeof(Common.T),
         ErrorMessageResourceName = "QuantityAvailableIsRequiredErrorMessage")]
     public int? QuantityAvailable { get; set; }
+    /*public string? CoverImage { get; set; }*/
+    public string? CoverImage { get; set; }
 }

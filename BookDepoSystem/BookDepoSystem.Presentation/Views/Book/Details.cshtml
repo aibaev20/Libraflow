@@ -28,6 +28,11 @@ ViewData["Title"] = "Details of a book";
 
         <dt class="mb-2">@T.BookQuantityAvailableText:</dt>
         <dd class="mb-2">@Model.QuantityAvailable!.Value</dd>
+
+        <div>
+            <p>Current Cover:</p>
+            <img src="~/img/books/@Model.CoverImage" alt="Book Cover" style="max-width: 150px;"/>
+        </div>
     </dl>
 </div>
 

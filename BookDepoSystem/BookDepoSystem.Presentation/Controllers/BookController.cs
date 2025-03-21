@@ -18,15 +18,18 @@ public class BookController : Controller
     private readonly IBookService bookService;
     private readonly ICurrentUser currentUser;
     private readonly UserManager<ApplicationUser> userManager;
+    private readonly IWebHostEnvironment webHostEnvironment;
 
     public BookController(
         IBookService bookService,
         ICurrentUser currentUser,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IWebHostEnvironment webHostEnvironment)
     {
         this.bookService = bookService;
         this.currentUser = currentUser;
         this.userManager = userManager;
+        this.webHostEnvironment = webHostEnvironment;
     }
 
     [HttpGet("/books")]
@@ -71,10 +74,22 @@ public class BookController : Controller
 
     [HttpPost("/books/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Create(BookViewModel model)
+    public async Task<IActionResult> Create(BookViewModel model, IFormFile? coverImageFile)
     {
         if (this.ModelState.IsValid)
         {
+            string? fileName = null;
+            if (coverImageFile != null)
+            {
+                fileName = Guid.NewGuid() + Path.GetExtension(coverImageFile.FileName);
+                string filePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await coverImageFile.CopyToAsync(stream);
+                }
+            }
+
             string? userId = this.userManager.GetUserId(this.User);
 
             var newBook = new Book
@@ -88,6 +103,7 @@ public class BookController : Controller
                 Information = model.Information,
                 PublishedDate = model.PublishedDate!.Value,
                 QuantityAvailable = model.QuantityAvailable!.Value,
+                CoverImage = fileName,
             };
 
             await this.bookService.AddBook(newBook);
@@ -117,6 +133,7 @@ public class BookController : Controller
             Information = book.Information,
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
+            CoverImage = book.CoverImage,
         };
 
         return this.View(model);
@@ -124,7 +141,7 @@ public class BookController : Controller
 
     [HttpPost("/edit")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Edit(BookViewModel model)
+    public async Task<IActionResult> Edit(BookViewModel model, IFormFile? coverImageFile)
     {
         if (!this.ModelState.IsValid)
         {
@@ -136,6 +153,29 @@ public class BookController : Controller
         if (existingBook == null)
         {
             return this.NotFound();
+        }
+
+        if (coverImageFile != null)
+        {
+            // Delete old cover image if it exists
+            if (existingBook.CoverImage != null)
+            {
+                string oldImagePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", existingBook.CoverImage);
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(coverImageFile.FileName);
+            var filePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", fileName);
+
+            await using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await coverImageFile.CopyToAsync(stream);
+            }
+
+            existingBook.CoverImage = fileName;
         }
 
         existingBook.Title = model.Title;
@@ -175,6 +215,7 @@ public class BookController : Controller
             Information = book.Information,
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
+            CoverImage = book.CoverImage,
         };
 
         return this.View(model);
@@ -188,6 +229,16 @@ public class BookController : Controller
         if (book == null)
         {
             return this.NotFound();
+        }
+
+        // Delete the associated image
+        if (book.CoverImage != null)
+        {
+            string filePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", book.CoverImage);
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
         }
 
         await this.bookService.DeleteBook(book);
@@ -214,6 +265,7 @@ public class BookController : Controller
             Information = book.Information,
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
+            CoverImage = book.CoverImage,
         };
 
         return this.View(model);
