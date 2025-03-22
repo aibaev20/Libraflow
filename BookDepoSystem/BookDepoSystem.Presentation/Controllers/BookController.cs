@@ -104,6 +104,11 @@ public class BookController : Controller
                 PublishedDate = model.PublishedDate!.Value,
                 QuantityAvailable = model.QuantityAvailable!.Value,
                 CoverImage = fileName,
+                Isbn = model.Isbn,
+                Sku = model.Sku,
+                Pages = model.Pages,
+                AgeRange = model.AgeRange,
+                CoverType = model.CoverType,
             };
 
             await this.bookService.AddBook(newBook);
@@ -134,6 +139,11 @@ public class BookController : Controller
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
             CoverImage = book.CoverImage,
+            Isbn = book.Isbn,
+            Sku = book.Sku,
+            Pages = book.Pages,
+            AgeRange = book.AgeRange,
+            CoverType = book.CoverType,
         };
 
         return this.View(model);
@@ -185,6 +195,11 @@ public class BookController : Controller
         existingBook.Information = model.Information;
         existingBook.PublishedDate = model.PublishedDate!.Value;
         existingBook.QuantityAvailable = model.QuantityAvailable!.Value;
+        existingBook.Isbn = model.Isbn;
+        existingBook.Sku = model.Sku;
+        existingBook.Pages = model.Pages;
+        existingBook.AgeRange = model.AgeRange;
+        existingBook.CoverType = model.CoverType;
 
         var result = await this.bookService.UpdateBook(existingBook);
         if (!result)
@@ -216,6 +231,11 @@ public class BookController : Controller
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
             CoverImage = book.CoverImage,
+            Isbn = book.Isbn,
+            Sku = book.Sku,
+            Pages = book.Pages,
+            AgeRange = book.AgeRange,
+            CoverType = book.CoverType,
         };
 
         return this.View(model);
@@ -266,6 +286,11 @@ public class BookController : Controller
             PublishedDate = book.PublishedDate,
             QuantityAvailable = book.QuantityAvailable,
             CoverImage = book.CoverImage,
+            Isbn = book.Isbn,
+            Sku = book.Sku,
+            Pages = book.Pages,
+            AgeRange = book.AgeRange,
+            CoverType = book.CoverType,
         };
 
         return this.View(model);

@@ -78,15 +78,6 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Добави нова книга.
-        /// </summary>
-        public static string AddNewBookButtonText {
-            get {
-                return ResourceManager.GetString("AddNewBookButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Добави нов наемател.
         /// </summary>
         public static string AddNewRenterButtonText {
@@ -123,11 +114,47 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възраст.
+        /// </summary>
+        public static string BookAgeRangeText {
+            get {
+                return ResourceManager.GetString("BookAgeRangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автор.
         /// </summary>
         public static string BookAuthorText {
             get {
                 return ResourceManager.GetString("BookAuthorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Корица.
+        /// </summary>
+        public static string BookCoverImageText {
+            get {
+                return ResourceManager.GetString("BookCoverImageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вид корица.
+        /// </summary>
+        public static string BookCoverTypeText {
+            get {
+                return ResourceManager.GetString("BookCoverTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Настояща корица.
+        /// </summary>
+        public static string BookCurrentCoverImageText {
+            get {
+                return ResourceManager.GetString("BookCurrentCoverImageText", resourceCulture);
             }
         }
         
@@ -150,6 +177,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ISBN.
+        /// </summary>
+        public static string BookISBNText {
+            get {
+                return ResourceManager.GetString("BookISBNText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Място.
         /// </summary>
         public static string BookLocationText {
@@ -168,6 +204,24 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нова корица.
+        /// </summary>
+        public static string BookNewCoverImageText {
+            get {
+                return ResourceManager.GetString("BookNewCoverImageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой страници.
+        /// </summary>
+        public static string BookPagesText {
+            get {
+                return ResourceManager.GetString("BookPagesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата на публикуване.
         /// </summary>
         public static string BookPublishedDateText {
@@ -182,6 +236,15 @@ namespace BookDepoSystem.Common {
         public static string BookQuantityAvailableText {
             get {
                 return ResourceManager.GetString("BookQuantityAvailableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SKU.
+        /// </summary>
+        public static string BookSKUText {
+            get {
+                return ResourceManager.GetString("BookSKUText", resourceCulture);
             }
         }
         
@@ -317,6 +380,15 @@ namespace BookDepoSystem.Common {
         public static string DeleteButtonText {
             get {
                 return ResourceManager.GetString("DeleteButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Детайли.
+        /// </summary>
+        public static string DetailsBookTitle {
+            get {
+                return ResourceManager.GetString("DetailsBookTitle", resourceCulture);
             }
         }
         

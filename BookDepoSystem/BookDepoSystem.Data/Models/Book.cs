@@ -24,6 +24,21 @@ public class Book
     [Range(0, int.MaxValue)]
     public int QuantityAvailable { get; set; }
     public string? CoverImage { get; set; }
+
+    public string? CoverType { get; set; }
+
+    [MaxLength(13)]
+    public string? Isbn { get; set; }
+
+    [MaxLength(12)]
+    public string? Sku { get; set; }
+
+    [Required]
+    [Range(0, int.MaxValue)]
+    public int? Pages { get; set; }
+
+    [MaxLength(30)]
+    public string? AgeRange { get; set; }
     public Guid? AdminId { get; set; } // The admin who created this book
 
     [ForeignKey("AdminId")]

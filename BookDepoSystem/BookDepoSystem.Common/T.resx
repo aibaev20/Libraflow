@@ -162,9 +162,6 @@
     <data name="BookTableTitle" xml:space="preserve">
         <value>Книжен инвентар</value>
     </data>
-    <data name="AddNewBookButtonText" xml:space="preserve">
-        <value>Добави нова книга</value>
-    </data>
     <data name="EditButtonText" xml:space="preserve">
         <value>Редактирай</value>
     </data>
@@ -251,5 +248,32 @@
     </data>
     <data name="LocationIsRequiredErrorMessage" xml:space="preserve">
         <value>Мястото на книгата е задължително поле</value>
+    </data>
+    <data name="BookISBNText" xml:space="preserve">
+        <value>ISBN</value>
+    </data>
+    <data name="BookSKUText" xml:space="preserve">
+        <value>SKU</value>
+    </data>
+    <data name="BookPagesText" xml:space="preserve">
+        <value>Брой страници</value>
+    </data>
+    <data name="BookAgeRangeText" xml:space="preserve">
+        <value>Възраст</value>
+    </data>
+    <data name="BookCoverImageText" xml:space="preserve">
+        <value>Корица</value>
+    </data>
+    <data name="BookCoverTypeText" xml:space="preserve">
+        <value>Вид корица</value>
+    </data>
+    <data name="BookNewCoverImageText" xml:space="preserve">
+        <value>Нова корица</value>
+    </data>
+    <data name="BookCurrentCoverImageText" xml:space="preserve">
+        <value>Настояща корица</value>
+    </data>
+    <data name="DetailsBookTitle" xml:space="preserve">
+        <value>Детайли</value>
     </data>
 </root>
