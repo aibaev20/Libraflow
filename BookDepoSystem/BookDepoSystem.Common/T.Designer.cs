@@ -78,15 +78,6 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Добави нов наемател.
-        /// </summary>
-        public static string AddNewRenterButtonText {
-            get {
-                return ResourceManager.GetString("AddNewRenterButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Възрастовият диапазон е задължително поле.
         /// </summary>
         public static string AgeRangeIsRequiredErrorMessage {

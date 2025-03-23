@@ -222,9 +222,6 @@
     <data name="RenterPhoneNumberIsRequiredErrorMessage" xml:space="preserve">
         <value>Телефонният номер на наемателят е задължително поле</value>
     </data>
-    <data name="AddNewRenterButtonText" xml:space="preserve">
-        <value>Добави нов наемател</value>
-    </data>
     <data name="RenterTableTitle" xml:space="preserve">
         <value>Наематели</value>
     </data>
