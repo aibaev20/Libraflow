@@ -49,20 +49,30 @@ public class BookViewModel
     public int? QuantityAvailable { get; set; }
     public string? CoverImage { get; set; }
 
-    [Required(ErrorMessage = "Cover Type is required")]
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "CoverTypeIsRequiredErrorMessage")]
     public string? CoverType { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "ISBN is required")]
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "IsbnIsRequiredErrorMessage")]
     [MaxLength(13)]
     public string? Isbn { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "SKU is required")]
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "SkuIsRequiredErrorMessage")]
     [MaxLength(12)]
     public string? Sku { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Page count is required")]
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "PagesIsRequiredErrorMessage")]
     public int? Pages { get; set; }
 
-    [Required(ErrorMessage = "Age range is required")]
+    [Required(
+        ErrorMessageResourceType = typeof(Common.T),
+        ErrorMessageResourceName = "AgeRangeIsRequiredErrorMessage")]
     public string? AgeRange { get; set; } = string.Empty;
 }

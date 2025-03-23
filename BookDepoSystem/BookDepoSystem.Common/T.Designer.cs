@@ -87,6 +87,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възрастовият диапазон е задължително поле.
+        /// </summary>
+        public static string AgeRangeIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("AgeRangeIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Авторът е задължително поле.
         /// </summary>
         public static string AuthorIsRequiredErrorMessage {
@@ -114,7 +123,7 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Възраст.
+        ///   Looks up a localized string similar to Възрастов диапазон.
         /// </summary>
         public static string BookAgeRangeText {
             get {
@@ -321,6 +330,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Видът на корицата е задължително поле.
+        /// </summary>
+        public static string CoverTypeIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("CoverTypeIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нова книга.
         /// </summary>
         public static string CreateBookTitle {
@@ -510,6 +528,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ISBN е задължително поле.
+        /// </summary>
+        public static string IsbnIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("IsbnIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Мястото на книгата е задължително поле.
         /// </summary>
         public static string LocationIsRequiredErrorMessage {
@@ -587,6 +614,15 @@ namespace BookDepoSystem.Common {
         public static string OperationsText {
             get {
                 return ResourceManager.GetString("OperationsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Броят на страниците е задължително поле.
+        /// </summary>
+        public static string PagesIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("PagesIsRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -803,6 +839,15 @@ namespace BookDepoSystem.Common {
         public static string SendResetRequestButtonText {
             get {
                 return ResourceManager.GetString("SendResetRequestButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SKU е задължително поле.
+        /// </summary>
+        public static string SkuIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("SkuIsRequiredErrorMessage", resourceCulture);
             }
         }
         

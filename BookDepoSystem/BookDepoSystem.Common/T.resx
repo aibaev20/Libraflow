@@ -259,7 +259,7 @@
         <value>Брой страници</value>
     </data>
     <data name="BookAgeRangeText" xml:space="preserve">
-        <value>Възраст</value>
+        <value>Възрастов диапазон</value>
     </data>
     <data name="BookCoverImageText" xml:space="preserve">
         <value>Корица</value>
@@ -275,5 +275,20 @@
     </data>
     <data name="DetailsBookTitle" xml:space="preserve">
         <value>Детайли</value>
+    </data>
+    <data name="CoverTypeIsRequiredErrorMessage" xml:space="preserve">
+        <value>Видът на корицата е задължително поле</value>
+    </data>
+    <data name="IsbnIsRequiredErrorMessage" xml:space="preserve">
+        <value>ISBN е задължително поле</value>
+    </data>
+    <data name="SkuIsRequiredErrorMessage" xml:space="preserve">
+        <value>SKU е задължително поле</value>
+    </data>
+    <data name="PagesIsRequiredErrorMessage" xml:space="preserve">
+        <value>Броят на страниците е задължително поле</value>
+    </data>
+    <data name="AgeRangeIsRequiredErrorMessage" xml:space="preserve">
+        <value>Възрастовият диапазон е задължително поле</value>
     </data>
 </root>
