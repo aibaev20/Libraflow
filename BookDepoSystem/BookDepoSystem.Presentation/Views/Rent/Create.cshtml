@@ -109,11 +109,11 @@
 }
 
 
-<h2>Add Rent</h2>
+<h2 class="form-group">@T.CreateRentTitle</h2>
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="RentDate">Rent Date</label>
+        <label asp-for="RentDate">@T.RentDateText</label>
         @*<div class="input-group" id="rentDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
             <input type="text" class="form-control" name="RentDateString" value="@Model.RentDateString" data-td-target="#rentDatePicker"/>
             <span class="input-group-text" data-td-toggle="datetimepicker">
@@ -139,7 +139,7 @@
     </div>*@
 
     <div class="form-group">
-        <label asp-for="DueDate"></label>
+        <label asp-for="DueDate">@T.DueDateText</label>
         @*<div class="input-group" id="dueDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
             <input type="text" class="form-control" name="DueDateString" value="@Model.DueDateString" data-td-target="#dueDatePicker"/>
             <span class="input-group-text" data-td-toggle="datetimepicker">
@@ -156,13 +156,17 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="BookId">Book</label>
+        <label asp-for="BookId">@T.RentBookText</label>
         <select asp-for="BookId" asp-items="ViewBag.Books" class="form-control"></select>
         <span asp-validation-for="BookId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="RenterId">Renter</label>
+        <label asp-for="RenterId">@T.RentRenterText</label>
         <select asp-for="RenterId" asp-items="ViewBag.Renters" class="form-control"></select>
     </div>
-    <button type="submit" class="btn btn-success">Save</button>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">@T.CreateButtonText</button>
+        <a asp-action="Rents" class="btn btn-secondary">@T.BackButtonText</a>
+    </div>
 </form>

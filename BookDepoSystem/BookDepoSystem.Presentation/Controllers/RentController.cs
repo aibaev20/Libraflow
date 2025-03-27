@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookDepoSystem.Presentation.Controllers;
@@ -172,10 +173,38 @@ public class RentController : Controller
             var book = await this.context.Books.FindAsync(rentViewModel.BookId);
             string? userId = this.userManager.GetUserId(this.User);
 
+            if (rentViewModel.RentDate == DateTime.MinValue)
+            {
+                /*this.ModelState.AddModelError("RentDate", "Rent Date must be valid.");*/
+                this.ModelState.AddModelError(
+                    nameof(rentViewModel.RentDate),
+                    Common.T.RentDateIsInvalidErrorMessage);
+                /*this.ModelState.AddModelError("DueDate", "Due Date must be valid.");*/
+            }
+
+            if (rentViewModel.DueDate == DateTime.MinValue)
+            {
+                /*this.ModelState.AddModelError("DueDate", "Due Date must be valid");*/
+                this.ModelState.AddModelError(
+                    nameof(rentViewModel.DueDate),
+                    Common.T.DueDateIsInvalidErrorMessage);
+            }
+
+            if (rentViewModel.RentDate > rentViewModel.DueDate)
+            {
+                /*this.ModelState.AddModelError("DueDate", "Due Date must be greater than Rent Date.");*/
+                this.ModelState.AddModelError(
+                    nameof(rentViewModel.DueDate),
+                    Common.T.DueDateMustBeGreaterThanRentDate);
+            }
+
             if (book == null || book.QuantityAvailable <= 0)
             {
                 // Add validation error for BookId
-                this.ModelState.AddModelError("BookId", "The selected book is not available for rent.");
+                /*this.ModelState.AddModelError("BookId", "The selected book is not available for rent.");*/
+                this.ModelState.AddModelError(
+                    nameof(rentViewModel.BookId),
+                    Common.T.SelectedBookNotAvailable);
             }
             else
             {
@@ -248,7 +277,7 @@ public class RentController : Controller
             RenterId = rent.RenterId!.Value,
             RenterName = rent.Renter!.Name,
             // Set default ReturnDateString to current date/time
-            ReturnDateString = rent.RentDate.ToString("dd-MM-yyyy HH:mm"),
+            /*ReturnDateString = rent.RentDate.ToString("dd-MM-yyyy HH:mm"),*/
         };
 
         return this.View(rentViewModel);
@@ -329,9 +358,20 @@ public class RentController : Controller
             }
         }*/
 
-        if (rentViewModel.ReturnDate == DateTime.MinValue || rentViewModel.ReturnDate < rentViewModel.RentDate)
+        if (rentViewModel.ReturnDate == DateTime.MinValue)
         {
-            this.ModelState.AddModelError("ReturnDate", "Return date must be after the rent date.");
+            /*this.ModelState.AddModelError("ReturnDate", "Return date is invalid");*/
+            this.ModelState.AddModelError(
+                nameof(rentViewModel.ReturnDate),
+                Common.T.ReturnDateIsInvalidErrorMessage);
+        }
+
+        if (rentViewModel.ReturnDate < rentViewModel.RentDate)
+        {
+            /*this.ModelState.AddModelError("ReturnDate", "Return date must be after the rent date.");*/
+            this.ModelState.AddModelError(
+                nameof(rentViewModel.ReturnDate),
+                Common.T.ReturnDateMustBeGreaterThanRentDate);
         }
 
         if (this.ModelState.IsValid)

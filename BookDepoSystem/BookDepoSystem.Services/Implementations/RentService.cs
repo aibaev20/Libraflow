@@ -54,9 +54,26 @@ public class RentService : IRentService
 
         foreach (var rent in rents)
         {
-            if (DateTime.UtcNow >= rent.DueDate)
+            /*if (DateTime.UtcNow >= rent.DueDate)
             {
                 rent.Status = "Overdue";
+            }
+            else
+            {
+                rent.Status = "Active";
+            }*/
+
+            if (rent.ReturnDate > rent.RentDate)
+            {
+                rent.Status = "Completed";
+            }
+            else if (DateTime.Now >= rent.DueDate)
+            {
+                rent.Status = "Overdue";
+            }
+            else if (DateTime.Now < rent.RentDate)
+            {
+                rent.Status = "Confirmed";
             }
             else
             {
@@ -100,4 +117,25 @@ public class RentService : IRentService
 
         return true;
     }
+
+    /*public async Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize)
+    {
+        var query = this.context.Rents.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(b => b.Status!.Contains(search) ||
+                                     b.Book!.Title!.Contains(search) ||
+                                     b.Renter!.Name!.Contains(search));
+        }
+
+        int totalCount = await query.CountAsync();
+        var rents = await query
+            .OrderBy(b => b.RentDate)
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (rents, totalCount);
+    }*/
 }

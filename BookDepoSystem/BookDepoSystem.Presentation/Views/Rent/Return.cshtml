@@ -26,45 +26,50 @@
     </script>
 }
 
-<h2>Return Book</h2>
+<h2 class="form-group">@T.ReturnRentTitle</h2>
 
-<form asp-controller="Rent" asp-action="Return" method="post">
+<form asp-action="Return" method="post">
     <input type="hidden" asp-for="RentId" />
     <input type="hidden" asp-for="RentDate" />
     <input type="hidden" asp-for="DueDate" />
-    <input type="hidden" asp-for="BookId" />
-    <input type="hidden" asp-for="RenterId" />
+    <input type="hidden" asp-for="BookTitle" />
+    <input type="hidden" asp-for="RenterName" />
 
     <div class="form-group">
-        <label>Book</label>
-        <input type="text" class="form-control" value="@Model.BookTitle" disabled />
+        <label>@T.RentBookText</label>
+        <input class="form-control" value="@Model.BookTitle" disabled />
     </div>
 
     <div class="form-group">
-        <label>Renter</label>
-        <input type="text" class="form-control" value="@Model.RenterName" disabled />
+        <label>@T.RentRenterText</label>
+        <input class="form-control" value="@Model.RenterName" disabled />
     </div>
 
     <div class="form-group">
-        <label asp-for="ReturnDate">Return Date</label>
+        <label asp-for="ReturnDate">@T.ReturnDateText</label>
         <div class="input-group" id="returnDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
             <input type="text" class="form-control" asp-for="ReturnDate" data-td-target="#returnDatePicker"/>
             <span class="input-group-text" data-td-toggle="datetimepicker">
-            <i class="bi bi-calendar"></i>
-        </span>
+                <i class="bi bi-calendar"></i>
+            </span>
         </div>
+        <span asp-validation-for="ReturnDate" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label>Rent Date</label>
-        <input type="datetime-local" class="form-control" @(Model.RentDate.ToString("dd-MM-yyyy HH:mm")) disabled />
+        <label>@T.RentDateText</label>
+        @*<input type="datetime-local" class="form-control" @(Model.RentDate.ToString("dd-MM-yyyy HH:mm")) disabled />*@
+        <input class="form-control" value="@Model.RentDate.ToString("dd-MM-yyyy HH:mm")" disabled />
     </div>
 
     <div class="form-group">
-        <label>Due Date</label>
-        <input type="datetime-local" class="form-control" @(Model.DueDate.ToString("dd-MM-yyyy HH:mm")) disabled />
+        <label>@T.DueDateText</label>
+        <input class="form-control" value="@Model.DueDate.ToString("dd-MM-yyyy HH:mm")" disabled />
     </div>
 
 
-    <button type="submit" class="btn btn-success">Confirm Return</button>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">@T.SaveText</button>
+        <a asp-action="Rents" class="btn btn-secondary">@T.CancelText</a>
+    </div>
 </form>
