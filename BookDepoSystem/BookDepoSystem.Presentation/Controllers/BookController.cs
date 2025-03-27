@@ -118,7 +118,7 @@ public class BookController : Controller
         return this.View(model);
     }
 
-    [HttpGet("/edit")]
+    [HttpGet("/books/edit")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Edit(Guid id)
     {
@@ -149,7 +149,7 @@ public class BookController : Controller
         return this.View(model);
     }
 
-    [HttpPost("/edit")]
+    [HttpPost("/books/edit")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Edit(BookViewModel model, IFormFile? coverImageFile)
     {

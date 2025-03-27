@@ -54,7 +54,8 @@ public class BookService : IBookService
         {
             query = query.Where(b => b.Title!.Contains(search) ||
                                      b.Author!.Contains(search) ||
-                                     b.Genre!.Contains(search));
+                                     b.Genre!.Contains(search) ||
+                                     b.Location!.Contains(search));
         }
 
         int totalCount = await query.CountAsync();

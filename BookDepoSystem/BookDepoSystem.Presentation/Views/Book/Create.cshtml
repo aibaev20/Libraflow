@@ -1,7 +1,7 @@
 ﻿@model BookDepoSystem.Presentation.Models.BookViewModel
 
 @{
-    ViewData["Title"] = "Add New Book";
+    ViewData["Title"] = @T.CreateBookTitle;
 }
 
 <h2 class="form-group">@T.CreateBookTitle</h2>
@@ -110,7 +110,7 @@
 
                 <div class="form-group">
                     <label asp-for="CoverImage" class="control-label">@T.BookCoverImageText</label>
-                    <input asp-for="CoverImage" class="form-control" type="file" name="coverImageFile" />
+                    <input asp-for="CoverImage" class="form-control" type="file" name="coverImageFile" accept="image/jpeg, image/png, image/svg+xml"/>
                     <span asp-validation-for="CoverImage" class="text-danger"></span>
                 </div>
 
