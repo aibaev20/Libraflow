@@ -1,12 +1,14 @@
 ﻿@model BookDepoSystem.Presentation.Models.RenterViewModel
 
 @{
-    ViewData["Title"] = @T.CreateRenterTitle;
+    ViewData["Title"] = @T.EditRenterTitle;
 }
 
-<h2 class="m-3">@T.CreateRenterTitle</h2>
+<h2 class="form-group">@T.EditRenterTitle</h2>
 
-<form asp-action="Create" asp-controller="Renter" method="post">
+<form asp-action="Edit" asp-controller="Renter" method="post">
+    <input type="hidden" asp-for="RenterId" />
+    
     <div class="form-group">
         <label asp-for="Name" class="control-label">@T.RenterNameText</label>
         <input asp-for="Name" class="form-control"/>
@@ -26,7 +28,7 @@
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">@T.CreateButtonText</button>
+        <button type="submit" class="btn btn-success">@T.SaveText</button>
         <a asp-action="Renters" class="btn btn-secondary">@T.BackButtonText</a>
     </div>
 </form>

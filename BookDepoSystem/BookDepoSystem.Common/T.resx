@@ -204,9 +204,6 @@
     <data name="RentDateIsIncorrectErrorMessage" xml:space="preserve">
         <value>Датата на наемане е невалидна</value>
     </data>
-    <data name="DueDateIsIncorrectErrorMessage" xml:space="preserve">
-        <value>Крайната дата на наема е невалидна</value>
-    </data>
     <data name="StatusIsRequiredErrorMessage" xml:space="preserve">
         <value>Статусът е задължително поле</value>
     </data>
@@ -271,7 +268,7 @@
         <value>Настояща корица</value>
     </data>
     <data name="DetailsBookTitle" xml:space="preserve">
-        <value>Детайли</value>
+        <value>Детайли на книга</value>
     </data>
     <data name="CoverTypeIsRequiredErrorMessage" xml:space="preserve">
         <value>Видът на корицата е задължително поле</value>
@@ -287,5 +284,53 @@
     </data>
     <data name="AgeRangeIsRequiredErrorMessage" xml:space="preserve">
         <value>Възрастовият диапазон е задължително поле</value>
+    </data>
+    <data name="RentTableTitle" xml:space="preserve">
+        <value>Наеми</value>
+    </data>
+    <data name="RentDateText" xml:space="preserve">
+        <value>Начална дата</value>
+    </data>
+    <data name="DueDateText" xml:space="preserve">
+        <value>Крайна дата</value>
+    </data>
+    <data name="ReturnDateText" xml:space="preserve">
+        <value>Дата на връщане</value>
+    </data>
+    <data name="RentStatusText" xml:space="preserve">
+        <value>Статус</value>
+    </data>
+    <data name="RentBookText" xml:space="preserve">
+        <value>Книга</value>
+    </data>
+    <data name="RentRenterText" xml:space="preserve">
+        <value>Наемател</value>
+    </data>
+    <data name="CreateRentTitle" xml:space="preserve">
+        <value>Нов наем</value>
+    </data>
+    <data name="ReturnRentTitle" xml:space="preserve">
+        <value>Върни наем</value>
+    </data>
+    <data name="RentDateIsInvalidErrorMessage" xml:space="preserve">
+        <value>Началната дата не е валидна</value>
+    </data>
+    <data name="DueDateIsInvalidErrorMessage" xml:space="preserve">
+        <value>Крайната дата не е валидна</value>
+    </data>
+    <data name="DueDateMustBeGreaterThanRentDate" xml:space="preserve">
+        <value>Крайната дата трябва да е по-голяма от началната дата</value>
+    </data>
+    <data name="SelectedBookNotAvailable" xml:space="preserve">
+        <value>Избраната книга не е налична</value>
+    </data>
+    <data name="ReturnDateIsInvalidErrorMessage" xml:space="preserve">
+        <value>Датата на връщане не е валидна</value>
+    </data>
+    <data name="ReturnDateMustBeGreaterThanRentDate" xml:space="preserve">
+        <value>Датата на връщане трябва да е по-голяма от началната дата</value>
+    </data>
+    <data name="EditRenterTitle" xml:space="preserve">
+        <value>Промяна на наемател</value>
     </data>
 </root>

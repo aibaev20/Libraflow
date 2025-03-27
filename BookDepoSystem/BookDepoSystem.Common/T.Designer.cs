@@ -357,6 +357,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нов наем.
+        /// </summary>
+        public static string CreateRentTitle {
+            get {
+                return ResourceManager.GetString("CreateRentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Страница.
         /// </summary>
         public static string CurrentPageText {
@@ -393,7 +402,7 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Детайли.
+        ///   Looks up a localized string similar to Детайли на книга.
         /// </summary>
         public static string DetailsBookTitle {
             get {
@@ -402,11 +411,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Крайната дата на наема е невалидна.
+        ///   Looks up a localized string similar to Крайната дата не е валидна.
         /// </summary>
-        public static string DueDateIsIncorrectErrorMessage {
+        public static string DueDateIsInvalidErrorMessage {
             get {
-                return ResourceManager.GetString("DueDateIsIncorrectErrorMessage", resourceCulture);
+                return ResourceManager.GetString("DueDateIsInvalidErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Крайната дата трябва да е по-голяма от началната дата.
+        /// </summary>
+        public static string DueDateMustBeGreaterThanRentDate {
+            get {
+                return ResourceManager.GetString("DueDateMustBeGreaterThanRentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Крайна дата.
+        /// </summary>
+        public static string DueDateText {
+            get {
+                return ResourceManager.GetString("DueDateText", resourceCulture);
             }
         }
         
@@ -425,6 +452,15 @@ namespace BookDepoSystem.Common {
         public static string EditButtonText {
             get {
                 return ResourceManager.GetString("EditButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Промяна на наемател.
+        /// </summary>
+        public static string EditRenterTitle {
+            get {
+                return ResourceManager.GetString("EditRenterTitle", resourceCulture);
             }
         }
         
@@ -717,11 +753,38 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Книга.
+        /// </summary>
+        public static string RentBookText {
+            get {
+                return ResourceManager.GetString("RentBookText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Датата на наемане е невалидна.
         /// </summary>
         public static string RentDateIsIncorrectErrorMessage {
             get {
                 return ResourceManager.GetString("RentDateIsIncorrectErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Началната дата не е валидна.
+        /// </summary>
+        public static string RentDateIsInvalidErrorMessage {
+            get {
+                return ResourceManager.GetString("RentDateIsInvalidErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начална дата.
+        /// </summary>
+        public static string RentDateText {
+            get {
+                return ResourceManager.GetString("RentDateText", resourceCulture);
             }
         }
         
@@ -798,6 +861,33 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Наемател.
+        /// </summary>
+        public static string RentRenterText {
+            get {
+                return ResourceManager.GetString("RentRenterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус.
+        /// </summary>
+        public static string RentStatusText {
+            get {
+                return ResourceManager.GetString("RentStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наеми.
+        /// </summary>
+        public static string RentTableTitle {
+            get {
+                return ResourceManager.GetString("RentTableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Смени паролата.
         /// </summary>
         public static string ResetPasswordButtonText {
@@ -816,11 +906,56 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Датата на връщане не е валидна.
+        /// </summary>
+        public static string ReturnDateIsInvalidErrorMessage {
+            get {
+                return ResourceManager.GetString("ReturnDateIsInvalidErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Датата на връщане трябва да е по-голяма от началната дата.
+        /// </summary>
+        public static string ReturnDateMustBeGreaterThanRentDate {
+            get {
+                return ResourceManager.GetString("ReturnDateMustBeGreaterThanRentDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата на връщане.
+        /// </summary>
+        public static string ReturnDateText {
+            get {
+                return ResourceManager.GetString("ReturnDateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Върни наем.
+        /// </summary>
+        public static string ReturnRentTitle {
+            get {
+                return ResourceManager.GetString("ReturnRentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запази.
         /// </summary>
         public static string SaveText {
             get {
                 return ResourceManager.GetString("SaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Избраната книга не е налична.
+        /// </summary>
+        public static string SelectedBookNotAvailable {
+            get {
+                return ResourceManager.GetString("SelectedBookNotAvailable", resourceCulture);
             }
         }
         

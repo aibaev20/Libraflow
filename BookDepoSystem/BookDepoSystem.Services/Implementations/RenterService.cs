@@ -20,6 +20,26 @@ public class RenterService : IRenterService
         await this.context.SaveChangesAsync();
     }
 
+    public async Task<Renter?> GetRenterById(Guid renterId)
+    {
+        return await this.context.Renters.FirstOrDefaultAsync(b => b.RenterId == renterId);
+    }
+
+    public async Task<bool> UpdateRenter(Renter updatedRenter)
+    {
+        Renter? oldRenter = await this.GetRenterById(updatedRenter.RenterId);
+
+        if (oldRenter == null)
+        {
+            return false;
+        }
+
+        this.context.Entry(oldRenter).CurrentValues.SetValues(updatedRenter);
+        await this.context.SaveChangesAsync();
+
+        return true;
+    }
+
     public async Task<(List<Renter> Renters, int TotalCount)> GetRentersPaginated(string search, int pageIndex, int pageSize)
     {
         var query = this.context.Renters.AsQueryable();

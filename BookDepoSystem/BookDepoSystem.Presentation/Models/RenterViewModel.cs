@@ -23,6 +23,6 @@ public class RenterViewModel
     [Required(
         ErrorMessageResourceType = typeof(Common.T),
         ErrorMessageResourceName = "RenterPhoneNumberIsRequiredErrorMessage")]
-    [MaxLength(20)]
+    [MaxLength(10)]
     public string? PhoneNumber { get; set; } = string.Empty;
 }

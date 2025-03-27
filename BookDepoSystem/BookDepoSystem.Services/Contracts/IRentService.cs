@@ -9,4 +9,6 @@ public interface IRentService
     Task AddRentAsync(Rent rent);
     Task UpdateAllRentStatusesAsync();
     Task<bool> UpdateReturnDateAsync(Guid rentId, DateTime returnDate);
+
+    /*Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize);*/
 }

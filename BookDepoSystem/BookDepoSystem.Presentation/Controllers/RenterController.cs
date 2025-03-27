@@ -92,4 +92,54 @@ public class RenterController : Controller
 
         return this.View(model);
     }
+
+    [HttpGet("/renters/edit")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> Edit(Guid id)
+    {
+        var renter = await this.renterService.GetRenterById(id);
+        if (renter == null)
+        {
+            return this.NotFound();
+        }
+
+        var model = new RenterViewModel()
+        {
+            RenterId = renter.RenterId,
+            Name = renter.Name,
+            Email = renter.Email,
+            PhoneNumber = renter.PhoneNumber,
+        };
+
+        return this.View(model);
+    }
+
+    [HttpPost("/renters/edit")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> Edit(RenterViewModel model)
+    {
+        if (!this.ModelState.IsValid)
+        {
+            return this.View(model);
+        }
+
+        var existingRenter = await this.renterService.GetRenterById(model.RenterId);
+
+        if (existingRenter == null)
+        {
+            return this.NotFound();
+        }
+
+        existingRenter.Name = model.Name;
+        existingRenter.Email = model.Email;
+        existingRenter.PhoneNumber = model.PhoneNumber;
+
+        var result = await this.renterService.UpdateRenter(existingRenter);
+        if (!result)
+        {
+            return this.NotFound();
+        }
+
+        return this.RedirectToAction(nameof(this.Renters));
+    }
 }

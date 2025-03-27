@@ -3,7 +3,7 @@
 @*@model BookDepoSystem.Presentation.Models.PaginationViewModel<BookDepoSystem.Data.Models.Book>*@
 
 @{
-    ViewData["Title"] = "Renters List";
+    ViewData["Title"] = @T.RenterTableTitle;
 }
 
 <h2 class="m-3">@T.RenterTableTitle</h2>
@@ -28,16 +28,17 @@
 
 </div>
 
-<table class="table table-hover table-striped">
-    <thead>
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
         <tr>
             <th>@T.RenterNameText</th>
             <th>@T.RenterEmailText</th>
             <th>@T.RenterPhoneNumberText</th>
             <th>@T.OperationsText</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @if (!Model.Items.Any())
         {
             <tr>
@@ -56,15 +57,21 @@
                     <td>@renter.Email</td>
                     <td>@renter.PhoneNumber</td>
                     <td>
-                        <a href="mailto:@renter.Email" data-bs-toggle="tooltip" title="Имейл"  class="btn btn-sm btn-icon text-primary">
-                            <i class="bi bi-envelope"></i>
-                        </a>
+                        <div class="d-flex gap-2">
+                            <a asp-action="Edit" asp-route-id="@renter.RenterId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Промени"  class="btn btn-sm btn-icon text-primary" >
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="mailto:@renter.Email" data-bs-toggle="tooltip" title="Имейл" class="btn btn-sm btn-icon text-dark">
+                                <i class="bi bi-envelope"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             }
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 <!-- Pagination Controls -->
 <div class="d-flex justify-content-between align-items-center m-3">
