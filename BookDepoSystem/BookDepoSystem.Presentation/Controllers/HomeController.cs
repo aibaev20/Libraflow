@@ -102,6 +102,15 @@ public class HomeController : Controller
         return this.View();
     }
 
+    [HttpGet("/ExportMonthlyRentsToPdf")]
+    public async Task<IActionResult> ExportMonthlyRentsToPdf()
+    {
+        var pdfResult = await this.rentService.ExportMonthlyRentsPdfAsync();
+        this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
+        this.Response.Headers["Content-Type"] = "application/pdf";
+        return File(pdfResult.File!, "application/pdf");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BookDepoSystem.Data.Models;
+using BookDepoSystem.Services.Models;
 
 namespace BookDepoSystem.Services.Contracts;
 
@@ -11,4 +12,6 @@ public interface IRentService
     Task<bool> UpdateReturnDateAsync(Guid rentId, DateTime returnDate);
 
     /*Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize);*/
+
+    Task<RentPdfModel> ExportMonthlyRentsPdfAsync();
 }
