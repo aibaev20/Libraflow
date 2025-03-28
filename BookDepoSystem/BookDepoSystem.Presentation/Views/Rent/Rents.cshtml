@@ -43,30 +43,23 @@
         @foreach (var rent in Model)
         {
             <tr>
-                @*<td>@rent.RentDate</td>
-                <td>@rent.DueDate</td>
-                <td>@(rent.ReturnDate == DateTime.MinValue ? "Not Returned" : rent.ReturnDate!.Value.ToString("dd.MM.yyyy HH:mm"))</td>*@
                 <td>@(rent.RentDate.ToString("dd-MM-yyyy HH:mm"))</td>
                 <td>@(rent.DueDate.ToString("dd-MM-yyyy HH:mm"))</td>
                 <td>@(rent.ReturnDate == DateTime.MinValue ? "Невърната" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
                 <td>
-                    @*<span class="badge bg-success" style="font-size: 1rem;">
-                        @rent.Status
-                    </span>*@
-
-                    @if (rent.Status == "Confirmed")
+                    @if (rent.Status == "Потвърден")
                     {
                         <span class="badge bg-secondary" style="font-size: 1rem;">
                             @rent.Status
                         </span>
                     }
-                    else if (rent.Status == "Active")
+                    else if (rent.Status == "Активен")
                     {
                         <span class="badge bg-primary" style="font-size: 1rem;">
                             @rent.Status
                         </span>
                     }
-                    else if (rent.Status == "Overdue")
+                    else if (rent.Status == "Просрочен")
                     {
                         <span class="badge bg-warning" style="font-size: 1rem;">
                             @rent.Status
@@ -79,10 +72,7 @@
                         </span>
                     }
                 </td>
-                @*<td>@rent.Status</td>*@
                 <td>
-                    @*@rent.BookTitle*@
-
                     <a asp-controller="Book" asp-action="Details" asp-route-id="@rent.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" target="_blank" style="color: inherit;">
                         @rent.BookTitle
                     </a>
@@ -91,8 +81,6 @@
                 <td>
                     @if (rent.Status != "Completed")
                     {
-                        @*<a asp-action="Return" asp-route-rentId="@rent.RentId" class="btn btn-primary">Update Return Date</a>*@
-                        
                         <a asp-action="Return" asp-route-rentId="@rent.RentId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Задай дата на връщане"  class="btn btn-sm btn-icon text-primary" >
                             <i class="bi bi-pencil-square"></i>
                         </a>

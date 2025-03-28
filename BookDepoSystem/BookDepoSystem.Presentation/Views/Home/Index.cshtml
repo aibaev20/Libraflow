@@ -1,5 +1,56 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
+}
+
+@section Scripts {
+  <script>
+    $(document).ready(function() {
+      var selectedChart = document.getElementById('monthlyRentsChart').getContext('2d');
+      var monthlyRentData = @Html.Raw(Json.Serialize(ViewBag.MonthlyRentData));
+
+      var labels = monthlyRentData.map(item => {
+        var monthNames = [
+          'Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни',
+          'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември'
+        ];
+        return monthNames[item.month - 1];
+      });
+
+      var data = monthlyRentData.map(item => item.rentCount);
+
+      new Chart(selectedChart, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Брой наеми',
+            data: data,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Брой наеми'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Месец'
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
 }
 
 <div class="page-inner">
@@ -43,7 +94,7 @@
             </div>
             <div class="col col-stats ms-3 ms-sm-0">
               <div class="numbers">
-                <p class="card-category">Просрочени наеми</p>
+                <p class="card-category">Завършени наеми</p>
                 <h4 class="card-title">@ViewBag.CompletedRents / @ViewBag.AllRentsCount</h4>
               </div>
             </div>
@@ -110,6 +161,29 @@
               }
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-head-row">
+            <h4 class="card-title">Месечен брой наеми</h4>
+            <div class="card-tools">
+              <a
+                asp-action="ExportMonthlyRentsToPdf"
+                target="_blank"
+                class="btn btn-label-primary btn-round btn-md">
+                Отчет
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <canvas id="monthlyRentsChart" height="100"></canvas>
         </div>
       </div>
     </div>

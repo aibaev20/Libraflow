@@ -1,8 +1,11 @@
 using System.Diagnostics;
+using System.Globalization;
 using BookDepoSystem.Data;
+using BookDepoSystem.Presentation.Extensions;
 using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Common.Models;
+using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
 using BookDepoSystem.Services.Identity.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -20,19 +23,25 @@ public class HomeController : Controller
     private readonly UserManager<ApplicationUser> userManager;
     private readonly ILogger<HomeController> logger;
     private readonly EntityContext context;
+    private readonly IWebHostEnvironment environment;
+    private readonly IRentService rentService;
 
     public HomeController(
         IEmailService emailService,
         ICurrentUser currentUser,
         UserManager<ApplicationUser> userManager,
         ILogger<HomeController> logger,
-        EntityContext context)
+        EntityContext context,
+        IWebHostEnvironment environment,
+        IRentService rentService)
     {
         this.emailService = emailService;
         this.currentUser = currentUser;
         this.userManager = userManager;
         this.logger = logger;
         this.context = context;
+        this.environment = environment;
+        this.rentService = rentService;
     }
 
     [HttpGet("/")]
@@ -67,9 +76,21 @@ public class HomeController : Controller
             .ToList();
 
         var completedRents = this.context.Rents
-            .Where(r => r.Status == "Overdue")
+            .Where(r => r.Status == "Завършен")
             .Count();
         var allRentsCount = this.context.Rents.Count();
+
+        var monthlyRents = this.context.Rents
+            .GroupBy(r => r.RentDate.Month)
+            .Select(g => new
+            {
+                Month = g.Key,
+                RentCount = g.Count(),
+            })
+            .OrderBy(x => x.Month)
+            .ToList();
+
+        this.ViewBag.MonthlyRentData = monthlyRents;
 
         this.ViewBag.AvailableBooksCount = availableBooksCount;
         this.ViewBag.AllBooksCount = allBooksCount;
