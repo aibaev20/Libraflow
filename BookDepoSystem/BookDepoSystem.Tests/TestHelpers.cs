@@ -2,7 +2,7 @@ using System;
 using BookDepoSystem.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookDepoSystem.Services.Tests;
+namespace BookDepoSystem.Tests;
 
 public static class TestHelpers
 {

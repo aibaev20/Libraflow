@@ -148,7 +148,7 @@
         <value>Жанр</value>
     </data>
     <data name="BookInformationText" xml:space="preserve">
-        <value>Инфо</value>
+        <value>Информация</value>
     </data>
     <data name="BookQuantityAvailableText" xml:space="preserve">
         <value>Количество</value>

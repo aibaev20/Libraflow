@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace BookDepoSystem.Services.Tests;
+namespace BookDepoSystem.Tests;
 
 public class BookTests
 {

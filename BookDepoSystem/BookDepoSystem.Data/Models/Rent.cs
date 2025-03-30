@@ -21,11 +21,6 @@ public class Rent
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
-    /*[ForeignKey("BookID")]
-    public Book? Book { get; set; }
-    [ForeignKey("UserID")]
-    public User? User { get; set; }*/
-
     [Required]
     public Guid? BookId { get; set; }
     [ForeignKey("BookId")]

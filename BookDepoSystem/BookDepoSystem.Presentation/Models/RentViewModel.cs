@@ -11,20 +11,11 @@ public class RentViewModel
 {
     public Guid RentId { get; set; }
 
-    /*[Required(
-        ErrorMessageResourceType = typeof(Common.T),
-        ErrorMessageResourceName = "RentDateIsInvalidErrorMessage")]*/
     public DateTime RentDate { get; set; }
-    // ?
 
-    /*[Required(
-        ErrorMessageResourceType = typeof(Common.T),
-        ErrorMessageResourceName = "DueDateIsInvalidErrorMessage")]*/
     public DateTime DueDate { get; set; }
-    // ?
 
     public DateTime ReturnDate { get; set; }
-    // ?
 
     public string? Status { get; set; }
 

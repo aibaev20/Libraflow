@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDepoSystem.Presentation", "BookDepoSystem.Presentation\BookDepoSystem.Presentation.csproj", "{5E0E4309-3EA3-4B54-89ED-E18F8D853FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDepoSystem.Services.Tests", "BookDepoSystem.Services.Tests\BookDepoSystem.Services.Tests.csproj", "{5FB91142-A8A7-4F43-8B86-7ECAF97D142B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDepoSystem.Tests", "BookDepoSystem.Tests\BookDepoSystem.Tests.csproj", "{5FB91142-A8A7-4F43-8B86-7ECAF97D142B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

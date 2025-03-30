@@ -109,9 +109,25 @@ public class RentService : IRentService
         return true;
     }
 
-    /*public async Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize)
+    public async Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize)
     {
-        var query = this.context.Rents.AsQueryable();
+        var query = this.context.Rents
+            .Include(r => r.Book)
+            .Include(r => r.Renter)
+            .AsQueryable();
+
+        var bookPopularity = this.context.Rents
+            .GroupBy(r => r.BookId)
+            .Select(g => new { BookId = g.Key, RentCount = g.Count() });
+
+        query = query.Join(
+                bookPopularity,
+                rent => rent.BookId,
+                pop => pop.BookId,
+                (rent, pop) => new { Rent = rent, Popularity = pop.RentCount })
+                .OrderByDescending(r => r.Popularity) // First, sort by book popularity
+                .ThenByDescending(r => r.Rent.RentDate) // Then, sort by Rent Date
+                .Select(r => r.Rent); // Extract Rent entity
 
         if (!string.IsNullOrEmpty(search))
         {
@@ -122,13 +138,12 @@ public class RentService : IRentService
 
         int totalCount = await query.CountAsync();
         var rents = await query
-            .OrderBy(b => b.RentDate)
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
 
         return (rents, totalCount);
-    }*/
+    }
 
     /// <summary>
     /// Repo -- https://github.com/QuestPDF/QuestPDF --link.

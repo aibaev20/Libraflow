@@ -31,7 +31,7 @@ public class RentController : Controller
 
     [HttpGet("/rents")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Rents()
+    /*public async Task<IActionResult> Rents()
     {
         var rents = await this.rentService.GetAllRentsAsync();
         var rentViewModels = rents.Select(r => new RentViewModel
@@ -47,6 +47,36 @@ public class RentController : Controller
             RenterName = r.Renter!.Name,
         }).ToList();
         return this.View(rentViewModels);
+    }*/
+    public async Task<IActionResult> Rents(string search = "", int page = 1, int pageSize = 5)
+    {
+        if (page < 1)
+        {
+            return this.RedirectToAction(nameof(this.Rents), new { page = 1, pageSize });
+        }
+
+        var (books, totalCount) = await this.rentService.GetRentsPaginated(search, page, pageSize);
+        int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+        // Redirect to the last available page if requested page is out of range
+
+        if (page > totalPages && totalPages > 0)
+        {
+            return this.RedirectToAction(nameof(this.Rents), new { search, page = totalPages, pageSize });
+        }
+
+        var viewModel = new PaginationViewModel<Rent>
+        {
+            Items = books,
+            PageIndex = page,
+            TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize),
+            TotalCount = totalCount,
+        };
+
+        this.ViewData["Search"] = search; // Retain search term in the view
+        this.ViewData["PageSize"] = pageSize;
+
+        return this.View(viewModel);
     }
 
     [HttpGet("/rents/create")]
@@ -59,132 +89,24 @@ public class RentController : Controller
         return this.View(new RentViewModel());
     }
 
-    /*[HttpPost("/rents/create")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Create(RentViewModel rentViewModel)
-    {
-        if (this.ModelState.IsValid)
-        {
-            var book = await this.context.Books.FindAsync(rentViewModel.BookId);
-            string? userId = this.userManager.GetUserId(this.User);
-
-            if (book == null || book.QuantityAvailable <= 0)
-            {
-                // Add validation error for BookId
-                this.ModelState.AddModelError("BookId", "The selected book is not available for rent.");
-            }
-            else
-            {
-                var rent = new Rent
-                {
-                    RentDate = rentViewModel.RentDate!.Value, // RentDate = rentViewModel.RentDate!.Value
-                    DueDate = rentViewModel.DueDate!.Value, // DueDate = rentViewModel.DueDate!.Value,
-                    BookId = rentViewModel.BookId,
-                    RenterId = rentViewModel.RenterId,
-                    AdminId = Guid.Parse(userId!),
-                };
-                await this.rentService.AddRentAsync(rent);
-                return this.RedirectToAction(nameof(this.Rents));
-            }
-        }
-
-        // Repopulate the dropdowns if validation fails
-        this.ViewBag.Books = new SelectList(this.context.Books, "BookId", "Title");
-        this.ViewBag.Renters = new SelectList(this.context.Renters, "RenterId", "Name");
-        return this.View(rentViewModel);
-    }*/
-
-    /*[HttpPost("/rents/create")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Create(RentViewModel rentViewModel)
-    {
-        if (this.ModelState.IsValid)
-        {
-            var book = await this.context.Books.FindAsync(rentViewModel.BookId);
-            string? userId = this.userManager.GetUserId(this.User);
-
-            if (book == null || book.QuantityAvailable <= 0)
-            {
-                // Add validation error for BookId
-                this.ModelState.AddModelError("BookId", "The selected book is not available for rent.");
-            }
-            else
-            {
-                try
-                {
-                    var rent = new Rent
-                    {
-                        RentDate = DateTime.ParseExact(rentViewModel.RentDateString, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                        DueDate = DateTime.ParseExact(rentViewModel.DueDateString, "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
-                        BookId = rentViewModel.BookId,
-                        RenterId = rentViewModel.RenterId,
-                        AdminId = Guid.Parse(userId!),
-                    };
-
-                    await this.rentService.AddRentAsync(rent);
-                    return this.RedirectToAction(nameof(this.Rents));
-                }
-                catch (FormatException)
-                {
-                    this.ModelState.AddModelError("RentDate", "Invalid rent date format.");
-                    this.ModelState.AddModelError("DueDate", "Invalid due date format.");
-                }
-            }
-        }
-
-        // Repopulate the dropdowns if validation fails
-        this.ViewBag.Books = new SelectList(this.context.Books, "BookId", "Title");
-        this.ViewBag.Renters = new SelectList(this.context.Renters, "RenterId", "Name");
-        return this.View(rentViewModel);
-    }*/
-
     [HttpPost("/rents/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Create(RentViewModel rentViewModel)
     {
-        /*// Parse date strings to DateTime
-        if (!string.IsNullOrEmpty(rentViewModel.RentDateString))
-        {
-            if (DateTime.TryParseExact(rentViewModel.RentDateString, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime rentDate))
-            {
-                rentViewModel.RentDate = rentDate;
-            }
-            else
-            {
-                this.ModelState.AddModelError("RentDate", "Invalid date format.");
-            }
-        }
-
-        if (!string.IsNullOrEmpty(rentViewModel.DueDateString))
-        {
-            if (DateTime.TryParseExact(rentViewModel.DueDateString, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime dueDate))
-            {
-                rentViewModel.DueDate = dueDate;
-            }
-            else
-            {
-                this.ModelState.AddModelError("DueDate", "Invalid date format.");
-            }
-        }*/
-
         if (this.ModelState.IsValid)
         {
-            // Rest of your existing code
             var book = await this.context.Books.FindAsync(rentViewModel.BookId);
             string? userId = this.userManager.GetUserId(this.User);
 
             if (rentViewModel.RentDate == DateTime.MinValue)
             {
-                /*this.ModelState.AddModelError("RentDate", "Rent Date must be valid.");*/
                 this.ModelState.AddModelError(
                     nameof(rentViewModel.RentDate),
                     Common.T.RentDateIsInvalidErrorMessage);
-                /*this.ModelState.AddModelError("DueDate", "Due Date must be valid.");*/
             }
 
             if (rentViewModel.DueDate == DateTime.MinValue)
             {
-                /*this.ModelState.AddModelError("DueDate", "Due Date must be valid");*/
                 this.ModelState.AddModelError(
                     nameof(rentViewModel.DueDate),
                     Common.T.DueDateIsInvalidErrorMessage);
@@ -192,7 +114,6 @@ public class RentController : Controller
 
             if (rentViewModel.RentDate > rentViewModel.DueDate)
             {
-                /*this.ModelState.AddModelError("DueDate", "Due Date must be greater than Rent Date.");*/
                 this.ModelState.AddModelError(
                     nameof(rentViewModel.DueDate),
                     Common.T.DueDateMustBeGreaterThanRentDate);
@@ -200,8 +121,6 @@ public class RentController : Controller
 
             if (book == null || book.QuantityAvailable <= 0)
             {
-                // Add validation error for BookId
-                /*this.ModelState.AddModelError("BookId", "The selected book is not available for rent.");*/
                 this.ModelState.AddModelError(
                     nameof(rentViewModel.BookId),
                     Common.T.SelectedBookNotAvailable);
@@ -221,38 +140,10 @@ public class RentController : Controller
             }
         }
 
-        // Repopulate the dropdowns if validation fails
         this.ViewBag.Books = new SelectList(this.context.Books, "BookId", "Title");
         this.ViewBag.Renters = new SelectList(this.context.Renters, "RenterId", "Name");
         return this.View(rentViewModel);
     }
-
-    /*[HttpGet("/rents/return/{rentId}")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Return(Guid rentId)
-    {
-        var rent = (await this.rentService.GetAllRentsAsync()).FirstOrDefault(r => r.RentId == rentId);
-
-        if (rent == null)
-        {
-            return this.NotFound();
-        }
-
-        var rentViewModel = new RentViewModel
-        {
-            RentId = rent.RentId,
-            RentDate = rent.RentDate,
-            DueDate = rent.DueDate,
-            ReturnDate = rent.ReturnDate,
-            Status = rent.Status,
-            BookId = rent.BookId!.Value,
-            BookTitle = rent.Book!.Title,
-            RenterId = rent.RenterId!.Value,
-            RenterName = rent.Renter!.Name,
-        };
-
-        return this.View(rentViewModel);
-    }*/
 
     [HttpGet("/rents/return/{rentId}")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
@@ -276,91 +167,17 @@ public class RentController : Controller
             BookTitle = rent.Book!.Title,
             RenterId = rent.RenterId!.Value,
             RenterName = rent.Renter!.Name,
-            // Set default ReturnDateString to current date/time
-            /*ReturnDateString = rent.RentDate.ToString("dd-MM-yyyy HH:mm"),*/
         };
 
         return this.View(rentViewModel);
     }
 
-    /*[HttpPost("/rents/return/{rentId}")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Return(RentViewModel rentViewModel)
-    {
-        if (rentViewModel.ReturnDate == DateTime.MinValue || rentViewModel.ReturnDate < rentViewModel.RentDate)
-        {
-            this.ModelState.AddModelError("ReturnDate", "Return date must be after the rent date.");
-        }
-
-        /*if (this.ModelState.IsValid)
-        {
-            try
-            {
-                var success = await this.rentService.UpdateReturnDateAsync(rentViewModel.RentId, rentViewModel.ReturnDate!.Value);
-                if (success)
-                {
-                    return this.RedirectToAction(nameof(this.Rents));
-                }
-            }
-            catch (InvalidOperationException ex)
-            {
-                this.ModelState.AddModelError("ReturnDate", ex.Message);
-            }
-        }#1#
-
-        if (this.ModelState.IsValid)
-        {
-            var success = await this.rentService.UpdateReturnDateAsync(rentViewModel.RentId, rentViewModel.ReturnDate!.Value);
-            if (success)
-            {
-                return this.RedirectToAction(nameof(this.Rents));
-            }
-        }
-
-        return this.View(rentViewModel);
-    }*/
-
-    /*[HttpPost("/rents/return/{rentId}")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Return(RentViewModel rentViewModel)
-    {
-        if (rentViewModel.ReturnDate == DateTime.MinValue || rentViewModel.ReturnDate < rentViewModel.RentDate)
-        {
-            this.ModelState.AddModelError("ReturnDate", "Return date must be after the rent date.");
-        }
-
-        if (this.ModelState.IsValid)
-        {
-            var success = await this.rentService.UpdateReturnDateAsync(rentViewModel.RentId, rentViewModel.ReturnDate!.Value);
-            if (success)
-            {
-                return this.RedirectToAction(nameof(this.Rents));
-            }
-        }
-
-        return this.View(rentViewModel);
-    }*/
-
     [HttpPost("/rents/return/{rentId}")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Return(RentViewModel rentViewModel)
     {
-        // Parse ReturnDateString
-        /*if (!string.IsNullOrEmpty(rentViewModel.ReturnDate.ToString()))
-        {
-            if (DateTime.TryParseExact(rentViewModel.ReturnDateString, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out DateTime returnDate))
-            {
-                rentViewModel.ReturnDate = returnDate;
-            }
-            else
-            {
-                this.ModelState.AddModelError("ReturnDate", "Invalid date format.");
-            }
-        }*/
-
         if (rentViewModel.ReturnDate == DateTime.MinValue)
         {
-            /*this.ModelState.AddModelError("ReturnDate", "Return date is invalid");*/
             this.ModelState.AddModelError(
                 nameof(rentViewModel.ReturnDate),
                 Common.T.ReturnDateIsInvalidErrorMessage);
@@ -368,7 +185,6 @@ public class RentController : Controller
 
         if (rentViewModel.ReturnDate < rentViewModel.RentDate)
         {
-            /*this.ModelState.AddModelError("ReturnDate", "Return date must be after the rent date.");*/
             this.ModelState.AddModelError(
                 nameof(rentViewModel.ReturnDate),
                 Common.T.ReturnDateMustBeGreaterThanRentDate);

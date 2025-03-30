@@ -168,7 +168,7 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Инфо.
+        ///   Looks up a localized string similar to Информация.
         /// </summary>
         public static string BookInformationText {
             get {
