@@ -31,23 +31,6 @@ public class RentController : Controller
 
     [HttpGet("/rents")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    /*public async Task<IActionResult> Rents()
-    {
-        var rents = await this.rentService.GetAllRentsAsync();
-        var rentViewModels = rents.Select(r => new RentViewModel
-        {
-            RentId = r.RentId,
-            RentDate = r.RentDate,
-            DueDate = r.DueDate,
-            ReturnDate = r.ReturnDate,
-            Status = r.Status,
-            BookId = r.BookId!.Value,
-            BookTitle = r.Book!.Title,
-            RenterId = r.RenterId!.Value,
-            RenterName = r.Renter!.Name,
-        }).ToList();
-        return this.View(rentViewModels);
-    }*/
     public async Task<IActionResult> Rents(string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
@@ -149,7 +132,7 @@ public class RentController : Controller
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public async Task<IActionResult> Return(Guid rentId)
     {
-        var rent = (await this.rentService.GetAllRentsAsync()).FirstOrDefault(r => r.RentId == rentId);
+        var rent = await this.rentService.GetRentById(rentId);
 
         if (rent == null)
         {

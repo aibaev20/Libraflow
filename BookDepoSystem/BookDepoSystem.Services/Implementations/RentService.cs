@@ -38,6 +38,14 @@ public class RentService : IRentService
         return popularBooks;
     }
 
+    public async Task<Rent?> GetRentById(Guid rentId)
+    {
+        return await this.context.Rents
+            .Include(r => r.Book)
+            .Include(r => r.Renter)
+            .FirstOrDefaultAsync(r => r.RentId == rentId);
+    }
+
     public async Task AddRentAsync(Rent rent)
     {
         var book = await this.context.Books.FindAsync(rent.BookId);
@@ -86,7 +94,7 @@ public class RentService : IRentService
 
     public async Task<bool> UpdateReturnDateAsync(Guid rentId, DateTime returnDate)
     {
-        var rent = await this.context.Rents.Include(r => r.Book).FirstOrDefaultAsync(r => r.RentId == rentId);
+        var rent = await this.GetRentById(rentId);
 
         if (rent == null)
         {

@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<RentViewModel>*@
-@model PaginationViewModel<BookDepoSystem.Data.Models.Rent>
+﻿@model PaginationViewModel<BookDepoSystem.Data.Models.Rent>
 
 @{
     ViewData["Title"] = @T.RentTableTitle;
@@ -41,54 +40,65 @@
         </tr>
         </thead>
         <tbody>
-        @foreach (var rent in Model.Items)
-        {
+            @if (!Model.Items.Any())
+            {
             <tr>
-                <td>@(rent.RentDate.ToString("dd-MM-yyyy HH:mm"))</td>
-                <td>@(rent.DueDate.ToString("dd-MM-yyyy HH:mm"))</td>
-                <td>@(rent.ReturnDate == DateTime.MinValue ? "Невърната" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
-                <td>
-                    @if (rent.Status == "Потвърден")
-                    {
-                        <span class="badge bg-secondary" style="font-size: 1rem;">
-                            @rent.Status
-                        </span>
-                    }
-                    else if (rent.Status == "Активен")
-                    {
-                        <span class="badge bg-primary" style="font-size: 1rem;">
-                            @rent.Status
-                        </span>
-                    }
-                    else if (rent.Status == "Просрочен")
-                    {
-                        <span class="badge bg-warning" style="font-size: 1rem;">
-                            @rent.Status
-                        </span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-success" style="font-size: 1rem;">
-                            @rent.Status
-                        </span>
-                    }
-                </td>
-                <td>
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@rent.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" target="_blank" style="color: inherit;">
-                        @rent.Book!.Title
-                    </a>
-                </td>
-                <td>@rent.Renter!.Name</td>
-                <td>
-                    @if (rent.Status != "Completed")
-                    {
-                        <a asp-action="Return" asp-route-rentId="@rent.RentId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Задай дата на връщане"  class="btn btn-sm btn-icon text-primary" >
-                            <i class="bi bi-pencil-square"></i>
-                        </a>
-                    }
+                <td colspan="7">
+                    <span class="d-block w-100 text-center">НЯМА НАМЕРЕНИ НАЕМИ</span>
                 </td>
             </tr>
-        }
+            }
+            else
+            {
+                @foreach (var rent in Model.Items)
+                {
+                    <tr>
+                        <td>@(rent.RentDate.ToString("dd-MM-yyyy HH:mm"))</td>
+                        <td>@(rent.DueDate.ToString("dd-MM-yyyy HH:mm"))</td>
+                        <td>@(rent.ReturnDate == DateTime.MinValue ? "Невърната" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
+                        <td>
+                            @if (rent.Status == "Потвърден")
+                            {
+                                <span class="badge bg-secondary" style="font-size: 1rem;">
+                                    @rent.Status
+                                </span>
+                            }
+                            else if (rent.Status == "Активен")
+                            {
+                                <span class="badge bg-primary" style="font-size: 1rem;">
+                                    @rent.Status
+                                </span>
+                            }
+                            else if (rent.Status == "Просрочен")
+                            {
+                                <span class="badge bg-warning" style="font-size: 1rem;">
+                                    @rent.Status
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success" style="font-size: 1rem;">
+                                    @rent.Status
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@rent.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" target="_blank" style="color: inherit;">
+                                @rent.Book!.Title
+                            </a>
+                        </td>
+                        <td>@rent.Renter!.Name</td>
+                        <td>
+                            @if (rent.Status != "Завършен")
+                            {
+                                <a asp-action="Return" asp-route-rentId="@rent.RentId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Задай дата на връщане" class="btn btn-sm btn-icon text-primary">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>
