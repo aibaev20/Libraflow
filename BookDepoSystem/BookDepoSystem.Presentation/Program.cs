@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Globalization;
 using BookDepoSystem.Data;
 using BookDepoSystem.Presentation;
 using BookDepoSystem.Services;
@@ -7,8 +5,6 @@ using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
 using BookDepoSystem.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,3 +70,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+// ReSharper disable once RedundantTypeDeclarationBody
+#pragma warning disable SA1502
+public partial class Program { }
+#pragma warning restore SA1502
