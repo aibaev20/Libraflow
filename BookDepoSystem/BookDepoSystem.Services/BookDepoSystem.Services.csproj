@@ -11,9 +11,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BookDepoSystem.Data\BookDepoSystem.Data.csproj" />
-        <None Update="xunit.runner.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
     <ItemGroup>

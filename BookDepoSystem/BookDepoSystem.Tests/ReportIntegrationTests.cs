@@ -21,7 +21,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
     }
     
     [Fact]
-    public async Task GetMonthlyRents_WithMultipleRentsInMay_ShouldGroupCorrectly()
+    public async Task GetMonthlyRents_WithMultipleRentsInMayAndJune_ShouldGroupCorrectly()
     {
         // Arrange - Set up the test data
         using (var scope = factory.Services.CreateScope())

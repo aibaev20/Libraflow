@@ -310,7 +310,7 @@
         <value>Нов наем</value>
     </data>
     <data name="ReturnRentTitle" xml:space="preserve">
-        <value>Върни наем</value>
+        <value>Върни книга</value>
     </data>
     <data name="RentDateIsInvalidErrorMessage" xml:space="preserve">
         <value>Началната дата не е валидна</value>

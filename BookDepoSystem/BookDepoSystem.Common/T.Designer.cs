@@ -933,7 +933,7 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Върни наем.
+        ///   Looks up a localized string similar to Върни книга.
         /// </summary>
         public static string ReturnRentTitle {
             get {
