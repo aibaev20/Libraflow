@@ -222,17 +222,14 @@
     <data name="RenterTableTitle" xml:space="preserve">
         <value>Наематели</value>
     </data>
-    <data name="RenterNameText" xml:space="preserve">
-        <value>Име</value>
+    <data name="RenterUserNameText" xml:space="preserve">
+        <value>Потребителско име</value>
     </data>
     <data name="RenterEmailText" xml:space="preserve">
         <value>Имейл</value>
     </data>
     <data name="RenterPhoneNumberText" xml:space="preserve">
         <value>Телефонен номер</value>
-    </data>
-    <data name="CreateRenterTitle" xml:space="preserve">
-        <value>Нов наемател</value>
     </data>
     <data name="RenterManagementNavItem" xml:space="preserve">
         <value>Наематели</value>
@@ -330,7 +327,13 @@
     <data name="ReturnDateMustBeGreaterThanRentDate" xml:space="preserve">
         <value>Датата на връщане трябва да е по-голяма от началната дата</value>
     </data>
-    <data name="EditRenterTitle" xml:space="preserve">
-        <value>Промяна на наемател</value>
+    <data name="UserNameIsRequiredErrorMessage" xml:space="preserve">
+        <value>Потребителското име е задължително поле</value>
+    </data>
+    <data name="UserPhoneNumberIsRequiredErrorMessage" xml:space="preserve">
+        <value>Телефонният номер е задължително поле</value>
+    </data>
+    <data name="RegisterSuccessMessage" xml:space="preserve">
+        <value>Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата.</value>
     </data>
 </root>

@@ -348,15 +348,6 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Нов наемател.
-        /// </summary>
-        public static string CreateRenterTitle {
-            get {
-                return ResourceManager.GetString("CreateRenterTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Нов наем.
         /// </summary>
         public static string CreateRentTitle {
@@ -452,15 +443,6 @@ namespace BookDepoSystem.Common {
         public static string EditButtonText {
             get {
                 return ResourceManager.GetString("EditButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Промяна на наемател.
-        /// </summary>
-        public static string EditRenterTitle {
-            get {
-                return ResourceManager.GetString("EditRenterTitle", resourceCulture);
             }
         }
         
@@ -744,6 +726,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата..
+        /// </summary>
+        public static string RegisterSuccessMessage {
+            get {
+                return ResourceManager.GetString("RegisterSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запомни ме.
         /// </summary>
         public static string RememberMeLabel {
@@ -825,15 +816,6 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Име.
-        /// </summary>
-        public static string RenterNameText {
-            get {
-                return ResourceManager.GetString("RenterNameText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Телефонният номер на наемателят е задължително поле.
         /// </summary>
         public static string RenterPhoneNumberIsRequiredErrorMessage {
@@ -857,6 +839,15 @@ namespace BookDepoSystem.Common {
         public static string RenterTableTitle {
             get {
                 return ResourceManager.GetString("RenterTableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребителско име.
+        /// </summary>
+        public static string RenterUserNameText {
+            get {
+                return ResourceManager.GetString("RenterUserNameText", resourceCulture);
             }
         }
         
@@ -1001,6 +992,24 @@ namespace BookDepoSystem.Common {
         public static string UserLockedOutErrorMessage {
             get {
                 return ResourceManager.GetString("UserLockedOutErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребителското име е задължително поле.
+        /// </summary>
+        public static string UserNameIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("UserNameIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефонният номер е задължително поле.
+        /// </summary>
+        public static string UserPhoneNumberIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("UserPhoneNumberIsRequiredErrorMessage", resourceCulture);
             }
         }
     }

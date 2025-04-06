@@ -31,6 +31,7 @@ public class RenterController : Controller
 
     [HttpGet("/renters")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Renters(string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
@@ -60,86 +61,5 @@ public class RenterController : Controller
         this.ViewData["PageSize"] = pageSize;
 
         return this.View(viewModel);
-    }
-
-    [HttpGet("/renters/create")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public IActionResult Create()
-    {
-        return this.View();
-    }
-
-    [HttpPost("/renters/create")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Create(RenterViewModel model)
-    {
-        if (this.ModelState.IsValid)
-        {
-            string? userId = this.userManager.GetUserId(this.User);
-
-            var newRenter = new Renter
-            {
-                AdminId = Guid.Parse(userId!),
-                RenterId = Guid.NewGuid(),
-                Name = model.Name,
-                Email = model.Email,
-                PhoneNumber = model.PhoneNumber,
-            };
-
-            await this.renterService.AddRenter(newRenter);
-            return this.RedirectToAction(nameof(this.Renters));
-        }
-
-        return this.View(model);
-    }
-
-    [HttpGet("/renters/edit")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Edit(Guid id)
-    {
-        var renter = await this.renterService.GetRenterById(id);
-        if (renter == null)
-        {
-            return this.NotFound();
-        }
-
-        var model = new RenterViewModel()
-        {
-            RenterId = renter.RenterId,
-            Name = renter.Name,
-            Email = renter.Email,
-            PhoneNumber = renter.PhoneNumber,
-        };
-
-        return this.View(model);
-    }
-
-    [HttpPost("/renters/edit")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    public async Task<IActionResult> Edit(RenterViewModel model)
-    {
-        if (!this.ModelState.IsValid)
-        {
-            return this.View(model);
-        }
-
-        var existingRenter = await this.renterService.GetRenterById(model.RenterId);
-
-        if (existingRenter == null)
-        {
-            return this.NotFound();
-        }
-
-        existingRenter.Name = model.Name;
-        existingRenter.Email = model.Email;
-        existingRenter.PhoneNumber = model.PhoneNumber;
-
-        var result = await this.renterService.UpdateRenter(existingRenter);
-        if (!result)
-        {
-            return this.NotFound();
-        }
-
-        return this.RedirectToAction(nameof(this.Renters));
     }
 }

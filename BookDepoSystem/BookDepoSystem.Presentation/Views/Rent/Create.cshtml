@@ -1,33 +1,4 @@
-﻿@*@model RentViewModel
-
-<h2>Create Rent</h2>
-
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label>Book</label>
-        <select asp-for="BookId" asp-items="Model.Books" class="form-control"></select>
-    </div>
-    <div class="form-group">
-        <label>Renter</label>
-        <select asp-for="RenterId" asp-items="Model.Renters" class="form-control"></select>
-    </div>
-    <div class="form-group">
-        <label>Rent Date</label>
-        <input asp-for="RentDate" type="date" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Due Date</label>
-        <input asp-for="DueDate" type="date" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Status</label>
-        <select asp-for="Status" asp-items="Model.StatusOptions" class="form-control"></select>
-    </div>
-    <button type="submit" class="btn btn-success">Save</button>
-</form>*@
-
-
-@model RentViewModel
+﻿@model RentViewModel
 
 @{
     ViewData["Title"] = @T.CreateRentTitle;
@@ -35,39 +6,18 @@
 
 @section Styles {
 
-    @*<!-- Tempus Dominus CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/@@eonasdan/tempus-dominus@6.9.7/dist/css/tempus-dominus.min.css" rel="stylesheet"/>
-
-    <!-- Bootstrap 5 Bundle (JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Tempus Dominus JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@@eonasdan/tempus-dominus@6.9.7/dist/js/tempus-dominus.min.js"></script>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">*@
-
     <style>
-        /*!* Reduce overall scale *!
-        .tempus-dominus-widget {
-            transform: scale(0.8);
-            transform-origin: top right;
-        }*/
-
-        /* Reduce font size */
         .tempus-dominus-widget .picker {
             font-size: 0.8rem !important;
             transform: scale(0.8);
             transform-origin: top right;
         }
 
-        /* Adjust input size */
         #datetimepicker input {
             padding: 5px;
             height: 35px;
         }
 
-        /* Adjust icon size */
         #datetimepicker .input-group-text {
             padding: 5px;
             font-size: 0.85rem;
@@ -81,10 +31,10 @@
     document.addEventListener("DOMContentLoaded", function () {
         new tempusDominus.TempusDominus(document.getElementById("rentDatePicker"), {
             localization: {
-                format: 'dd-MM-yyyy HH:mm', // Customize format
+                format: 'dd-MM-yyyy HH:mm',
             },
             display: {
-                sideBySide: true, // Show date & time picker together
+                sideBySide: true,
                 icons: {
                     time: "bi bi-clock",
                     date: "bi bi-calendar",
@@ -96,10 +46,10 @@
 
         new tempusDominus.TempusDominus(document.getElementById("dueDatePicker"), {
             localization: {
-                format: 'dd-MM-yyyy HH:mm', // Customize format
+                format: 'dd-MM-yyyy HH:mm',
             },
             display: {
-                sideBySide: true, // Show date & time picker together
+                sideBySide: true,
                 icons: {
                     time: "bi bi-clock",
                     date: "bi bi-calendar",
@@ -118,13 +68,6 @@
 <form asp-action="Create" method="post">
     <div class="form-group">
         <label asp-for="RentDate">@T.RentDateText</label>
-        @*<div class="input-group" id="rentDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
-            <input type="text" class="form-control" name="RentDateString" value="@Model.RentDateString" data-td-target="#rentDatePicker"/>
-            <span class="input-group-text" data-td-toggle="datetimepicker">
-            <i class="bi bi-calendar"></i>
-        </span>
-        </div>*@
-        @*<label asp-for="RentDateString">Rent Date</label>*@
         <div class="input-group" id="rentDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
             <input type="text" asp-for="RentDate" class="form-control" data-td-target="#datetimepicker"/>
             <span class="input-group-text" data-td-toggle="datetimepicker">
@@ -133,23 +76,9 @@
         </div>
         <span asp-validation-for="RentDate" class="text-danger"></span>
     </div>
-
     
-    @*<div class="input-group" id="datetimepicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
-        <input type="text" class="form-control" data-td-target="#datetimepicker"/>
-        <span class="input-group-text" data-td-toggle="datetimepicker">
-                <i class="bi bi-calendar"></i>
-            </span>
-    </div>*@
-
     <div class="form-group">
         <label asp-for="DueDate">@T.DueDateText</label>
-        @*<div class="input-group" id="dueDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
-            <input type="text" class="form-control" name="DueDateString" value="@Model.DueDateString" data-td-target="#dueDatePicker"/>
-            <span class="input-group-text" data-td-toggle="datetimepicker">
-            <i class="bi bi-calendar"></i>
-        </span>
-        </div>*@
         <div class="input-group" id="dueDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
             <input type="text" asp-for="DueDate" class="form-control" data-td-target="#dueDatePicker"/>
             <span class="input-group-text" data-td-toggle="datetimepicker">

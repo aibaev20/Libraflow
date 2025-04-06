@@ -9,4 +9,7 @@ public static class ControllerExtensions
 
     public static IActionResult RedirectToDefault(this Controller controller) =>
         controller.RedirectToAction("Index", "Home");
+
+    public static IActionResult RedirectToMyAssignedRents(this Controller controller) =>
+        controller.RedirectToAction("MyAssignedRents", "Rent");
 }

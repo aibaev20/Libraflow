@@ -79,7 +79,6 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             
             var firstRenter = new Renter()
             {
-                AdminId = adminId,
                 RenterId = Guid.NewGuid(),
                 Name = "Милен Нанков",
                 Email = "milen.nankov@example.com",
@@ -88,7 +87,6 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             
             var secondRenter = new Renter()
             {
-                AdminId = adminId,
                 RenterId = Guid.NewGuid(),
                 Name = "Самуил Иванов",
                 Email = "samuil.ivanov@example.com",

@@ -1,14 +1,14 @@
 ﻿@using System.Net.Http
 @using BookDepoSystem.Presentation.Extensions
 
-@model LoginViewModel
+@model RegisterViewModel
 @{
     Layout = "_AuthLayout";
-    ViewData["Title"] = @T.LoginTitle;
+    ViewData["Title"] = "Регистрация";
     var globalError = this.ViewContext.ModelState.GetFirstGlobalError();
 }
 
-<h3 class="card-title text-center">@T.LoginTitle</h3>
+<h3 class="card-title text-center">Регистрация</h3>
 
 @if (!string.IsNullOrWhiteSpace(globalError))
 {
@@ -24,7 +24,7 @@
     </span>
 }
 
-<form class="user" asp-action="Login" method="post">
+<form class="user" asp-action="Register" method="post">
     <!-- Email Input -->
     <div class="form-group">
         <input asp-for="Email"
@@ -32,6 +32,20 @@
                aria-describedby="emailHelp"
                placeholder="@T.EmailPlaceholderText">
         <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <!-- Username Input -->
+    <div class="form-group">
+        <input asp-for="Name"
+               class="form-control"
+               placeholder="Потребителско име">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <!-- Phone number Input -->
+    <div class="form-group">
+        <input asp-for="PhoneNumber"
+               class="form-control"
+               placeholder="Телефонен номер">
+        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
     </div>
     <!-- Password Input -->
     <div class="form-group">
@@ -41,21 +55,20 @@
                placeholder="@T.PasswordPlaceholderText">
         <span class="text-danger" asp-validation-for="Password"></span>
     </div>
-    <!-- Remember Me Checkbox -->
+    <!-- Confirm Password Input -->
     <div class="form-group">
-        <input type="checkbox" class="form-check-input" id="rememberMe">
-        <label class="form-check-label" for="rememberMe">@T.RememberMeLabel</label>
+        <input asp-for="ConfirmPassword"
+               type="password"
+               class="form-control"
+               placeholder="Потвърждаване на парола">
+        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
     </div>
     <!-- Submit Button -->
     <div class="form-group d-grid">
-        <button type="submit" class="btn btn-primary btn-block">@T.LoginButtonText</button>
+        <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
     </div>
     <!-- Forgot Password Link -->
     <div class="form-group text-center">
-        <a href="@Url.Action("ForgotPassword")" class="text-decoration-none">@T.ForgotPasswordLinkText</a>
-    </div>
-    <!-- Register Link -->
-    <div class="form-group text-center">
-        <a href="@Url.Action("Register")" class="text-decoration-none">Регистрация</a>
+        <a href="@Url.Action("Login")" class="text-decoration-none">Вход</a>
     </div>
 </form>

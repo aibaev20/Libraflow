@@ -33,39 +33,51 @@
   <div class="sidebar-wrapper scrollbar scrollbar-inner">
     <div class="sidebar-content">
       <ul class="nav nav-secondary">
-        <li class="nav-item @(controller == "Home" && action == "Index" ? "active" : "")">
-          <a asp-controller="Home" asp-action="Index">
-            <i class="fas fa-home"></i>
-            <p>Начало</p>
-          </a>
-        </li>
-        <li class="nav-section">
-          <span class="sidebar-mini-icon">
-            <i class="fa fa-ellipsis-h"></i>
-          </span>
-          <h4 class="text-section">Компоненти</h4>
-        </li>
+        @if (User.IsInRole("User"))
+        {
+          <li class="nav-item @(controller == "Rent" && action == "MyAssignedRents" ? "active" : "")">
+            <a asp-controller="Rent" asp-action="MyAssignedRents">
+              <i class="fas fa-table"></i>
+              <p>Мои наеми</p>
+            </a>
+          </li>
+        }
+        else
+        {
+          <li class="nav-item @(controller == "Home" && action == "Index" ? "active" : "")">
+            <a asp-controller="Home" asp-action="Index">
+              <i class="fas fa-home"></i>
+              <p>Начало</p>
+            </a>
+          </li>
+          <li class="nav-section">
+            <span class="sidebar-mini-icon">
+              <i class="fa fa-ellipsis-h"></i>
+            </span>
+            <h4 class="text-section">Компоненти</h4>
+          </li>
 
-      <li class="nav-item @(controller == "Book" && action == "Books" ? "active" : "")">
-        <a asp-controller="Book" asp-action="Books">
-          <i class="fas fa-table"></i>
-          <p>@T.BookManagementNavItem</p>
-        </a>
-      </li>
+          <li class="nav-item @(controller == "Book" && action == "Books" ? "active" : "")">
+            <a asp-controller="Book" asp-action="Books">
+              <i class="fas fa-table"></i>
+              <p>@T.BookManagementNavItem</p>
+            </a>
+          </li>
 
-      <li class="nav-item @(controller == "Renter" && action == "Renters" ? "active" : "")">
-        <a asp-controller="Renter" asp-action="Renters">
-          <i class="fas fa-table"></i>
-          <p>@T.RenterManagementNavItem</p>
-        </a>
-      </li>
+          <li class="nav-item @(controller == "Renter" && action == "Renters" ? "active" : "")">
+            <a asp-controller="Renter" asp-action="Renters">
+              <i class="fas fa-table"></i>
+              <p>@T.RenterManagementNavItem</p>
+            </a>
+          </li>
 
-      <li class="nav-item @(controller == "Rent" && action == "Rents" ? "active" : "")">
-        <a asp-controller="Rent" asp-action="Rents">
-          <i class="fas fa-table"></i>
-          <p>Наеми</p>
-        </a>
-      </li>
+          <li class="nav-item @(controller == "Rent" && action == "Rents" ? "active" : "")">
+            <a asp-controller="Rent" asp-action="Rents">
+              <i class="fas fa-table"></i>
+              <p>Наеми</p>
+            </a>
+          </li>
+        }
       </ul>
     </div>
   </div>

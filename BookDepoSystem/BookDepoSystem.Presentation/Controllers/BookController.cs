@@ -34,6 +34,7 @@ public class BookController : Controller
 
     [HttpGet("/books")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Books(string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
@@ -67,6 +68,7 @@ public class BookController : Controller
 
     [HttpGet("/books/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public IActionResult Create()
     {
         return this.View();
@@ -74,6 +76,7 @@ public class BookController : Controller
 
     [HttpPost("/books/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Create(BookViewModel model, IFormFile? coverImageFile)
     {
         if (this.ModelState.IsValid)
@@ -120,6 +123,7 @@ public class BookController : Controller
 
     [HttpGet("/books/edit")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Edit(Guid id)
     {
         var book = await this.bookService.GetBookById(id);
@@ -151,6 +155,7 @@ public class BookController : Controller
 
     [HttpPost("/books/edit")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Edit(BookViewModel model, IFormFile? coverImageFile)
     {
         if (!this.ModelState.IsValid)
@@ -212,6 +217,7 @@ public class BookController : Controller
 
     [HttpGet("/delete")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Delete(Guid id)
     {
         var book = await this.bookService.GetBookById(id);
@@ -243,6 +249,7 @@ public class BookController : Controller
 
     [HttpPost("/delete")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> DeleteConfirmed(BookViewModel model)
     {
         var book = await this.bookService.GetBookById(model.BookId);
@@ -267,6 +274,7 @@ public class BookController : Controller
 
     [HttpGet("/details")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Details(Guid id)
     {
         var book = await this.bookService.GetBookById(id);

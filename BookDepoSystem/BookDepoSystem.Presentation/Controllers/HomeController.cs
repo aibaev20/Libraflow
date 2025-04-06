@@ -45,6 +45,7 @@ public class HomeController : Controller
     }
 
     [HttpGet("/")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Authorize(DefaultPolicies.AdminPolicy)]
     // scheme cookies
     // to see Index first must be logged in
@@ -103,12 +104,21 @@ public class HomeController : Controller
     }
 
     [HttpGet("/ExportMonthlyRentsToPdf")]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> ExportMonthlyRentsToPdf()
     {
         var pdfResult = await this.rentService.ExportMonthlyRentsPdfAsync();
         this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
         this.Response.Headers["Content-Type"] = "application/pdf";
         return File(pdfResult.File!, "application/pdf");
+    }
+
+    [HttpGet("/access-denied")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [AllowAnonymous]
+    public IActionResult AccessDenied()
+    {
+        return this.View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

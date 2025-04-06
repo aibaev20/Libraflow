@@ -38,7 +38,6 @@ public class RentTests
 
         var newRenter = new Renter()
         {
-            AdminId = Guid.NewGuid(),
             RenterId = Guid.NewGuid(),
             Name = "Иван Иванов",
             Email = "ivan.ivanov@example.com",
@@ -107,7 +106,6 @@ public class RentTests
 
         var newRenter = new Renter()
         {
-            AdminId = Guid.NewGuid(),
             RenterId = Guid.NewGuid(),
             Name = "Иван Иванов",
             Email = "ivan.ivanov@example.com",
@@ -179,7 +177,6 @@ public class RentTests
 
         var newRenter = new Renter()
         {
-            AdminId = Guid.NewGuid(),
             RenterId = Guid.NewGuid(),
             Name = "Иван Иванов",
             Email = "ivan.ivanov@example.com",

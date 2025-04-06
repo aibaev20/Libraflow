@@ -17,9 +17,4 @@ public class Renter
     [Phone]
     [MaxLength(20)]
     public string? PhoneNumber { get; set; }
-
-    public Guid? AdminId { get; set; } // The admin who created this book
-
-    [ForeignKey("AdminId")]
-    public ApplicationUser? CreatedByAdmin { get; set; }
 }

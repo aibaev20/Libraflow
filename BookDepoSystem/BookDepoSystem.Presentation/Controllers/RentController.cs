@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookDepoSystem.Presentation.Controllers;
 
@@ -31,6 +32,7 @@ public class RentController : Controller
 
     [HttpGet("/rents")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Rents(string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
@@ -64,6 +66,7 @@ public class RentController : Controller
 
     [HttpGet("/rents/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public IActionResult Create()
     {
         this.ViewBag.Books = new SelectList(this.context.Books, "BookId", "Title");
@@ -74,6 +77,7 @@ public class RentController : Controller
 
     [HttpPost("/rents/create")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Create(RentViewModel rentViewModel)
     {
         if (this.ModelState.IsValid)
@@ -130,6 +134,7 @@ public class RentController : Controller
 
     [HttpGet("/rents/return/{rentId}")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Return(Guid rentId)
     {
         var rent = await this.rentService.GetRentById(rentId);
@@ -157,6 +162,7 @@ public class RentController : Controller
 
     [HttpPost("/rents/return/{rentId}")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
     public async Task<IActionResult> Return(RentViewModel rentViewModel)
     {
         if (rentViewModel.ReturnDate == DateTime.MinValue)
@@ -183,5 +189,21 @@ public class RentController : Controller
         }
 
         return this.View(rentViewModel);
+    }
+
+    [HttpGet("/rents/my-assigned-rents")]
+    [Authorize(DefaultPolicies.UserPolicy)]
+    public async Task<IActionResult> MyAssignedRents()
+    {
+        var userId = this.userManager.GetUserId(this.User);
+
+        var renter = await this.context.Renters.FirstOrDefaultAsync(r => r.RenterId.ToString() == userId);
+
+        var rents = await this.context.Rents
+            .Include(r => r.Book)
+            .Where(r => r.RenterId == renter!.RenterId)
+            .ToListAsync();
+
+        return View(rents);
     }
 }

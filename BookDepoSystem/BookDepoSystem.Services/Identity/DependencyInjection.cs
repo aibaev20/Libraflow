@@ -13,7 +13,6 @@ internal static class DependencyInjection
     {
         services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
-                // these must be true because of the Email API service
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedEmail = false;
             })

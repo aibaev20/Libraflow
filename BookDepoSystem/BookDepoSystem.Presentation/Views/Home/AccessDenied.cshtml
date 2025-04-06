@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Достъпът е отказан";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 rounded-lg shadow-lg overflow-hidden">
+                <div class="card-header bg-danger text-white text-center py-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-shield-lock-fill mb-3" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24c.304-.143.662-.352 1.048-.625a11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 62.5 62.5 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5"/>
+                    </svg>
+                    <h2 class="display-6 mb-0">Достъпът е отказан</h2>
+                </div>
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <p class="lead text-muted">Нямате разрешение за достъп до искания ресурс.</p>
+                    </div>
+                    
+                    <div class="d-grid gap-3 col-md-8 mx-auto mt-5">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                                Връщане към начало
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Rent" asp-action="MyAssignedRents" class="btn btn-primary">
+                                Връщане към моите наеми
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

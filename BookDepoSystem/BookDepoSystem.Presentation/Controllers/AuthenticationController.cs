@@ -3,6 +3,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using BookDepoSystem.Common;
 using BookDepoSystem.Data;
+using BookDepoSystem.Data.Models;
 using BookDepoSystem.Presentation.Extensions;
 using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Constants;
@@ -28,25 +29,26 @@ public class AuthenticationController : Controller
     private readonly IEmailService emailService;
     private readonly UrlEncoder urlEncoder;
     private readonly ILogger<AuthenticationController> logger;
+    private readonly EntityContext context;
 
     public AuthenticationController(
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IEmailService emailService,
         UrlEncoder urlEncoder,
-        ILogger<AuthenticationController> logger)
+        ILogger<AuthenticationController> logger,
+        EntityContext context)
     {
         this.userManager = userManager;
         this.signInManager = signInManager;
         this.emailService = emailService;
         this.urlEncoder = urlEncoder;
         this.logger = logger;
+        this.context = context;
     }
 
     [HttpGet("/login")]
-    // the login functions on /login
     [AllowAnonymous]
-    // who is not logged can enter /login
     public IActionResult Login()
     {
         if (this.IsUserAuthenticated())
@@ -56,12 +58,10 @@ public class AuthenticationController : Controller
 
         var model = new LoginViewModel();
         return this.View(model);
-        // make sure that we have the model in the view
     }
 
-    // overload on the login
     [HttpPost("/login")]
-    [ValidateAntiForgeryToken] // using this to not allow intercepting (bad requests)
+    [ValidateAntiForgeryToken]
     [AllowAnonymous]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
@@ -74,7 +74,6 @@ public class AuthenticationController : Controller
         {
             var user = await this.userManager.FindByEmailAsync(model.Email!);
 
-            // user doesn't exist or user exist but his password does not match
             if (user == null || !(await this.userManager.CheckPasswordAsync(user, model.Password!)))
             {
                 this.ModelState.AddModelError(string.Empty, Common.T.InvalidLoginErrorMessage);
@@ -88,11 +87,77 @@ public class AuthenticationController : Controller
             }
 
             await this.SignInAsync(user, model.RememberMe);
+
+            if (await this.userManager.IsInRoleAsync(user, "User"))
+            {
+                return this.RedirectToMyAssignedRents();
+            }
+
             return this.RedirectToDefault();
         }
 
         return this.View(model);
-        // this way we can submit the form
+    }
+
+    [HttpGet("/register")]
+    [AllowAnonymous]
+    public IActionResult Register()
+    {
+        if (this.IsUserAuthenticated())
+        {
+            return this.RedirectToDefault();
+        }
+
+        var model = new RegisterViewModel();
+        return this.View(model);
+    }
+
+    [HttpPost("/register")]
+    [ValidateAntiForgeryToken]
+    [AllowAnonymous]
+    public async Task<IActionResult> Register(RegisterViewModel model)
+    {
+        if (this.IsUserAuthenticated())
+        {
+            return this.RedirectToDefault();
+        }
+
+        if (this.ModelState.IsValid)
+        {
+            var user = new ApplicationUser
+            {
+                UserName = model.Name,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+            };
+            var result = await this.userManager.CreateAsync(
+                user,
+                model.Password!);
+
+            if (result.Succeeded)
+            {
+                await this.userManager.AddToRoleAsync(user, DefaultRoles.User);
+
+                var renter = new Renter
+                {
+                    RenterId = user.Id,
+                    Name = model.Name,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                };
+
+                this.context.Renters.Add(renter);
+                await this.context.SaveChangesAsync();
+
+                this.TempData["MessageText"] = T.RegisterSuccessMessage;
+                this.TempData["MessageVariant"] = "success";
+                return this.RedirectToAction(nameof(this.Login));
+            }
+
+            this.ModelState.AssignIdentityErrors(result.Errors);
+        }
+
+        return this.View(model);
     }
 
     [HttpGet("/forgot-password")]

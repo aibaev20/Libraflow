@@ -5,7 +5,6 @@ namespace BookDepoSystem.Services.Contracts;
 
 public interface IRentService
 {
-    Task<IEnumerable<Rent>> GetAllRentsAsync();
     Task<Rent?> GetRentById(Guid rentId);
     Task AddRentAsync(Rent rent);
     Task UpdateAllRentStatusesAsync();

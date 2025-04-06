@@ -21,23 +21,6 @@ public class RentService : IRentService
         this.context = context;
     }
 
-    public async Task<IEnumerable<Rent>> GetAllRentsAsync()
-    {
-        var rents = await this.context.Rents
-            .Include(r => r.Book)
-            .Include(r => r.Renter)
-            .OrderByDescending(r => r.RentDate)
-            .ToListAsync();
-
-        var popularBooks = rents
-            .GroupBy(r => r.BookId)
-            .OrderByDescending(g => g.Count())
-            .SelectMany(g => g)
-            .ToList();
-
-        return popularBooks;
-    }
-
     public async Task<Rent?> GetRentById(Guid rentId)
     {
         return await this.context.Rents
