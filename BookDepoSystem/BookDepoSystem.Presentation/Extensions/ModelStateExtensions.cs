@@ -27,7 +27,6 @@ public static class ModelStateExtensions
 
     public static string? GetFirstGlobalError(this ModelStateDictionary modelState)
     {
-        // get first error from error with empty string
         return modelState
             .Where(x => string.IsNullOrEmpty(x.Key))
             .SelectMany(x => x.Value!.Errors)

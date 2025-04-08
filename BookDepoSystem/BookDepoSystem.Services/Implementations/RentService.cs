@@ -116,9 +116,9 @@ public class RentService : IRentService
                 rent => rent.BookId,
                 pop => pop.BookId,
                 (rent, pop) => new { Rent = rent, Popularity = pop.RentCount })
-                .OrderByDescending(r => r.Popularity) // First, sort by book popularity
-                .ThenByDescending(r => r.Rent.RentDate) // Then, sort by Rent Date
-                .Select(r => r.Rent); // Extract Rent entity
+                .OrderByDescending(r => r.Popularity)
+                .ThenByDescending(r => r.Rent.RentDate)
+                .Select(r => r.Rent);
 
         if (!string.IsNullOrEmpty(search))
         {

@@ -1,6 +1,4 @@
 ﻿using BookDepoSystem.Data;
-using BookDepoSystem.Services.Identity.Contracts;
-using BookDepoSystem.Services.Identity.Internals;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,8 +16,6 @@ internal static class DependencyInjection
             })
             .AddEntityFrameworkStores<EntityContext>()
             .AddDefaultTokenProviders();
-
-        services.AddScoped<ICurrentUser, CurrentUser>();
 
         return services;
     }

@@ -174,7 +174,7 @@ public class AuthenticationController : Controller
     }
 
     [HttpPost("/forgot-password")]
-    [ValidateAntiForgeryToken] // using this to not allow intercepting (bad requests)
+    [ValidateAntiForgeryToken]
     [AllowAnonymous]
     public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
     {
@@ -306,6 +306,14 @@ public class AuthenticationController : Controller
         }
 
         return this.View(model);
+    }
+
+    [HttpGet("/access-denied")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [AllowAnonymous]
+    public IActionResult AccessDenied()
+    {
+        return this.View();
     }
 
     [HttpPost("/logout")]

@@ -7,7 +7,6 @@ using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Common.Models;
 using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
-using BookDepoSystem.Services.Identity.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +18,6 @@ namespace BookDepoSystem.Presentation.Controllers;
 public class HomeController : Controller
 {
     private readonly IEmailService emailService;
-    private readonly ICurrentUser currentUser;
     private readonly UserManager<ApplicationUser> userManager;
     private readonly ILogger<HomeController> logger;
     private readonly EntityContext context;
@@ -28,7 +26,6 @@ public class HomeController : Controller
 
     public HomeController(
         IEmailService emailService,
-        ICurrentUser currentUser,
         UserManager<ApplicationUser> userManager,
         ILogger<HomeController> logger,
         EntityContext context,
@@ -36,7 +33,6 @@ public class HomeController : Controller
         IRentService rentService)
     {
         this.emailService = emailService;
-        this.currentUser = currentUser;
         this.userManager = userManager;
         this.logger = logger;
         this.context = context;
@@ -51,7 +47,7 @@ public class HomeController : Controller
     // to see Index first must be logged in
     public async Task<IActionResult> Index()
     {
-        var availableBooksCount = this.context.Books.Where(b => b.QuantityAvailable > 0).Count();
+        var availableBooksCount = this.context.Books.Count(b => b.QuantityAvailable > 0);
         var allBooksCount = this.context.Books.Count();
 
         var popularBooks = this.context.Rents
@@ -77,8 +73,7 @@ public class HomeController : Controller
             .ToList();
 
         var completedRents = this.context.Rents
-            .Where(r => r.Status == "Завършен")
-            .Count();
+            .Count(r => r.Status == "Завършен");
         var allRentsCount = this.context.Rents.Count();
 
         var monthlyRents = this.context.Rents
@@ -111,14 +106,6 @@ public class HomeController : Controller
         this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
         this.Response.Headers["Content-Type"] = "application/pdf";
         return File(pdfResult.File!, "application/pdf");
-    }
-
-    [HttpGet("/access-denied")]
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    [AllowAnonymous]
-    public IActionResult AccessDenied()
-    {
-        return this.View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

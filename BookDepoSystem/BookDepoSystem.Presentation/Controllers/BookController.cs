@@ -5,7 +5,6 @@ using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
-using BookDepoSystem.Services.Identity.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,18 +15,15 @@ namespace BookDepoSystem.Presentation.Controllers;
 public class BookController : Controller
 {
     private readonly IBookService bookService;
-    private readonly ICurrentUser currentUser;
     private readonly UserManager<ApplicationUser> userManager;
     private readonly IWebHostEnvironment webHostEnvironment;
 
     public BookController(
         IBookService bookService,
-        ICurrentUser currentUser,
         UserManager<ApplicationUser> userManager,
         IWebHostEnvironment webHostEnvironment)
     {
         this.bookService = bookService;
-        this.currentUser = currentUser;
         this.userManager = userManager;
         this.webHostEnvironment = webHostEnvironment;
     }
@@ -45,8 +41,6 @@ public class BookController : Controller
         var (books, totalCount) = await this.bookService.GetBooksPaginated(search, page, pageSize);
         int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
-        // Redirect to the last available page if requested page is out of range
-
         if (page > totalPages && totalPages > 0)
         {
             return this.RedirectToAction(nameof(this.Books), new { search, page = totalPages, pageSize });
@@ -60,7 +54,7 @@ public class BookController : Controller
             TotalCount = totalCount,
         };
 
-        this.ViewData["Search"] = search; // Retain search term in the view
+        this.ViewData["Search"] = search;
         this.ViewData["PageSize"] = pageSize;
 
         return this.View(viewModel);
@@ -172,7 +166,6 @@ public class BookController : Controller
 
         if (coverImageFile != null)
         {
-            // Delete old cover image if it exists
             if (existingBook.CoverImage != null)
             {
                 string oldImagePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", existingBook.CoverImage);
@@ -258,7 +251,6 @@ public class BookController : Controller
             return this.NotFound();
         }
 
-        // Delete the associated image
         if (book.CoverImage != null)
         {
             string filePath = Path.Combine(this.webHostEnvironment.WebRootPath, "img", "books", book.CoverImage);

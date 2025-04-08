@@ -5,7 +5,6 @@ using BookDepoSystem.Presentation.Models;
 using BookDepoSystem.Services.Common.Contracts;
 using BookDepoSystem.Services.Contracts;
 using BookDepoSystem.Services.Identity.Constants;
-using BookDepoSystem.Services.Identity.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,17 +15,11 @@ namespace BookDepoSystem.Presentation.Controllers;
 public class RenterController : Controller
 {
     private readonly IRenterService renterService;
-    private readonly ICurrentUser currentUser;
-    private readonly UserManager<ApplicationUser> userManager;
 
     public RenterController(
-        IRenterService renterService,
-        ICurrentUser currentUser,
-        UserManager<ApplicationUser> userManager)
+        IRenterService renterService)
     {
         this.renterService = renterService;
-        this.currentUser = currentUser;
-        this.userManager = userManager;
     }
 
     [HttpGet("/renters")]
@@ -42,8 +35,6 @@ public class RenterController : Controller
         var (renters, totalCount) = await this.renterService.GetRentersPaginated(search, page, pageSize);
         int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
-        // Redirect to the last available page if requested page is out of range
-
         if (page > totalPages && totalPages > 0)
         {
             return this.RedirectToAction(nameof(this.Renters), new { search, page = totalPages, pageSize });
@@ -57,7 +48,7 @@ public class RenterController : Controller
             TotalCount = totalCount,
         };
 
-        this.ViewData["Search"] = search; // Retain search term in the view
+        this.ViewData["Search"] = search;
         this.ViewData["PageSize"] = pageSize;
 
         return this.View(viewModel);

@@ -1,7 +1,5 @@
 ﻿using BookDepoSystem.Data;
 using BookDepoSystem.Services.Contracts;
-using BookDepoSystem.Services.Identity.Contracts;
-using BookDepoSystem.Services.Identity.Internals;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
