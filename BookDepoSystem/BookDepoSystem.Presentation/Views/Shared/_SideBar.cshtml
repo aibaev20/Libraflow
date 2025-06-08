@@ -63,6 +63,20 @@
               <p>@T.BookManagementNavItem</p>
             </a>
           </li>
+          
+          <li class="nav-item @(controller == "Book" && action == "BooksOfGenreBiography" ? "active" : "")" style="margin-left: 1em">
+            <a asp-controller="Book" asp-action="BooksOfGenreBiography">
+              <i class="fas fa-book"></i>
+              <p>Биография</p>
+            </a>
+          </li>
+          
+          <li class="nav-item @(controller == "Book" && action == "BooksOfGenreRomance" ? "active" : "")" style="margin-left: 1em">
+            <a asp-controller="Book" asp-action="BooksOfGenreRomance">
+              <i class="fas fa-book"></i>
+              <p>Романтика</p>
+            </a>
+          </li>
 
           <li class="nav-item @(controller == "Renter" && action == "Renters" ? "active" : "")">
             <a asp-controller="Renter" asp-action="Renters">

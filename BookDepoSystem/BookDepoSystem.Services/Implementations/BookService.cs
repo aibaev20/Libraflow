@@ -46,7 +46,7 @@ public class BookService : IBookService
         return true;
     }
 
-    public async Task<(List<Book> Books, int TotalCount)> GetBooksPaginated(string search, int pageIndex, int pageSize)
+    public async Task<(List<Book> Books, int TotalCount)> GetBooksPaginated(string genre, string ageRange, string sortBy, string search, int pageIndex, int pageSize)
     {
         var query = this.context.Books.AsQueryable();
 
@@ -58,9 +58,44 @@ public class BookService : IBookService
                                      b.Location!.Contains(search));
         }
 
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(b => b.Genre == genre);
+        }
+
+        if (!string.IsNullOrEmpty(ageRange))
+        {
+            query = query.Where(b => b.AgeRange == ageRange);
+        }
+
+        if (!string.IsNullOrEmpty(sortBy))
+        {
+            switch (sortBy)
+            {
+                case "Количество (низходящ ред)":
+                    query = query.OrderByDescending(b => b.QuantityAvailable).ThenBy(b => b.Title);
+                    break;
+                case "Количество (възходящ ред)":
+                    query = query.OrderBy(b => b.QuantityAvailable).ThenBy(b => b.Title);
+                    break;
+                case "Име (низходящ ред)":
+                    query = query.OrderByDescending(b => b.Title);
+                    break;
+                case "Име (възходящ ред)":
+                    query = query.OrderBy(b => b.Title);
+                    break;
+                default:
+                    query = query.OrderBy(b => b.Title);
+                    break;
+            }
+        }
+        else
+        {
+            query = query.OrderBy(b => b.Title);
+        }
+
         int totalCount = await query.CountAsync();
         var books = await query
-            .OrderBy(b => b.Title)
             .Skip((pageIndex - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();

@@ -31,19 +31,19 @@ public class BookController : Controller
     [HttpGet("/books")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Authorize(DefaultPolicies.AdminPolicy)]
-    public async Task<IActionResult> Books(string search = "", int page = 1, int pageSize = 5)
+    public async Task<IActionResult> Books(string genre = "", string ageRange = "", string sortBy = "", string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
         {
             return this.RedirectToAction(nameof(this.Books), new { page = 1, pageSize });
         }
 
-        var (books, totalCount) = await this.bookService.GetBooksPaginated(search, page, pageSize);
+        var (books, totalCount) = await this.bookService.GetBooksPaginated(genre, ageRange, sortBy, search, page, pageSize);
         int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
         if (page > totalPages && totalPages > 0)
         {
-            return this.RedirectToAction(nameof(this.Books), new { search, page = totalPages, pageSize });
+            return this.RedirectToAction(nameof(this.Books), new { genre, ageRange, sortBy, search, page = totalPages, pageSize });
         }
 
         var viewModel = new PaginationViewModel<Book>
@@ -54,6 +54,9 @@ public class BookController : Controller
             TotalCount = totalCount,
         };
 
+        this.ViewData["Genre"] = genre;
+        this.ViewData["AgeRange"] = ageRange;
+        this.ViewData["SortBy"] = sortBy;
         this.ViewData["Search"] = search;
         this.ViewData["PageSize"] = pageSize;
 
@@ -294,5 +297,75 @@ public class BookController : Controller
         };
 
         return this.View(model);
+    }
+
+    [HttpGet("/books/biography")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
+    public async Task<IActionResult> BooksOfGenreBiography(string genre = "Биография", string ageRange = "", string sortBy = "", string search = "", int page = 1, int pageSize = 5)
+    {
+        if (page < 1)
+        {
+            return this.RedirectToAction(nameof(this.Books), new { page = 1, pageSize });
+        }
+
+        var (books, totalCount) = await this.bookService.GetBooksPaginated(genre, ageRange, sortBy, search, page, pageSize);
+        int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+        if (page > totalPages && totalPages > 0)
+        {
+            return this.RedirectToAction(nameof(this.Books), new { genre, ageRange, sortBy, search, page = totalPages, pageSize });
+        }
+
+        var viewModel = new PaginationViewModel<Book>
+        {
+            Items = books,
+            PageIndex = page,
+            TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize),
+            TotalCount = totalCount,
+        };
+
+        this.ViewData["Genre"] = genre;
+        this.ViewData["AgeRange"] = ageRange;
+        this.ViewData["SortBy"] = sortBy;
+        this.ViewData["Search"] = search;
+        this.ViewData["PageSize"] = pageSize;
+
+        return this.View("Books", viewModel);
+    }
+
+    [HttpGet("/books/romance")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.AdminPolicy)]
+    public async Task<IActionResult> BooksOfGenreRomance(string genre = "Романтика", string ageRange = "", string sortBy = "", string search = "", int page = 1, int pageSize = 5)
+    {
+        if (page < 1)
+        {
+            return this.RedirectToAction(nameof(this.Books), new { page = 1, pageSize });
+        }
+
+        var (books, totalCount) = await this.bookService.GetBooksPaginated(genre, ageRange, sortBy, search, page, pageSize);
+        int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+        if (page > totalPages && totalPages > 0)
+        {
+            return this.RedirectToAction(nameof(this.Books), new { genre, ageRange, sortBy, search, page = totalPages, pageSize });
+        }
+
+        var viewModel = new PaginationViewModel<Book>
+        {
+            Items = books,
+            PageIndex = page,
+            TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize),
+            TotalCount = totalCount,
+        };
+
+        this.ViewData["Genre"] = genre;
+        this.ViewData["AgeRange"] = ageRange;
+        this.ViewData["SortBy"] = sortBy;
+        this.ViewData["Search"] = search;
+        this.ViewData["PageSize"] = pageSize;
+
+        return this.View("Books", viewModel);
     }
 }

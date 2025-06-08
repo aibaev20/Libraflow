@@ -2,6 +2,6 @@
 
 public static class InitialAdminCredentials
 {
-    public const string AdminEmail = "alexanderbaev2006@gmail.com";
+    public const string AdminEmail = "admin@bookdeposystem.dev";
     public const string AdminPassword = "Admin123!";
 }

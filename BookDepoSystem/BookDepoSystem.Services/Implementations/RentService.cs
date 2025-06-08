@@ -100,7 +100,7 @@ public class RentService : IRentService
         return true;
     }
 
-    public async Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string search, int pageIndex, int pageSize)
+    public async Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string status, string search, int pageIndex, int pageSize)
     {
         var query = this.context.Rents
             .Include(r => r.Book)
@@ -125,6 +125,11 @@ public class RentService : IRentService
             query = query.Where(b => b.Status!.Contains(search) ||
                                      b.Book!.Title!.Contains(search) ||
                                      b.Renter!.Name!.Contains(search));
+        }
+
+        if (!string.IsNullOrEmpty(status))
+        {
+            query = query.Where(r => r.Status == status);
         }
 
         int totalCount = await query.CountAsync();

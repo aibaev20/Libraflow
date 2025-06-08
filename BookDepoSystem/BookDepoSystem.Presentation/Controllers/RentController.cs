@@ -32,19 +32,19 @@ public class RentController : Controller
     [HttpGet("/rents")]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     [Authorize(DefaultPolicies.AdminPolicy)]
-    public async Task<IActionResult> Rents(string search = "", int page = 1, int pageSize = 5)
+    public async Task<IActionResult> Rents(string status = "", string search = "", int page = 1, int pageSize = 5)
     {
         if (page < 1)
         {
             return this.RedirectToAction(nameof(this.Rents), new { page = 1, pageSize });
         }
 
-        var (books, totalCount) = await this.rentService.GetRentsPaginated(search, page, pageSize);
+        var (books, totalCount) = await this.rentService.GetRentsPaginated(status, search, page, pageSize);
         int totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
 
         if (page > totalPages && totalPages > 0)
         {
-            return this.RedirectToAction(nameof(this.Rents), new { search, page = totalPages, pageSize });
+            return this.RedirectToAction(nameof(this.Rents), new { status, search, page = totalPages, pageSize });
         }
 
         var viewModel = new PaginationViewModel<Rent>
@@ -55,6 +55,7 @@ public class RentController : Controller
             TotalCount = totalCount,
         };
 
+        this.ViewData["Status"] = status;
         this.ViewData["Search"] = search;
         this.ViewData["PageSize"] = pageSize;
 
