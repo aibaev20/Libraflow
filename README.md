@@ -68,7 +68,7 @@
 ### 1. 📥 Изтегляне на проекта
 
 ```bash
-git clone https://github.com/codingburgas/2425-dzi-csharp-aibaev20.git
+git clone https://github.com/aibaev20/Libraflow.git
 ```
 
 ### 2. ⚙️ Настройване на базата данни
