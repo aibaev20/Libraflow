@@ -2,6 +2,8 @@
 
 Уеб приложение за управление на книгохранилище
 
+<img src="Documentation/landing-page.png" alt="Landing Page">
+
 ---
 
 ## 📝 Описание
