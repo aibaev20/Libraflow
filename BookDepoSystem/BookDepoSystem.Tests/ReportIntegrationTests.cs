@@ -29,7 +29,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             var dbContext = scope.ServiceProvider.GetRequiredService<EntityContext>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             
-            // This is a test
+            // This is a better comment
             var adminUser = await userManager.FindByEmailAsync("admin@bookdeposystem.dev");
             adminUser.Should().NotBeNull("Admin user should exist in the database");
             adminId = adminUser!.Id;
