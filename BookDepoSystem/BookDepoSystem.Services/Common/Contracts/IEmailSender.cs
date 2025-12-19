@@ -6,5 +6,6 @@ namespace BookDepoSystem.Services.Common.Contracts;
 
 public interface IEmailSender
 {
+    // test comment
     Task<StandardResult> SendEmailAsync(EmailModel model);
 }
