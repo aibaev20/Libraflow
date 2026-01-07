@@ -108,6 +108,18 @@ public class HomeController : Controller
         return File(pdfResult.File!, "application/pdf");
     }
 
+    [HttpGet("/ExportYearlyReportToPdf")]
+    [Authorize(DefaultPolicies.AdminPolicy)]
+    public async Task<IActionResult> ExportYearlyReportToPdf(int? year)
+    {
+        var selectedYear = year ?? DateTime.Now.Year;
+
+        var pdfResult = await this.rentService.ExportYearlyReportPdfAsync(selectedYear);
+        this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
+        this.Response.Headers["Content-Type"] = "application/pdf";
+        return File(pdfResult.File!, "application/pdf");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

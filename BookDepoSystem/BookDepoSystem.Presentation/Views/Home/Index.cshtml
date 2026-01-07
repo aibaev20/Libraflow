@@ -173,18 +173,42 @@
           <div class="card-head-row">
             <h4 class="card-title">Месечен брой наеми</h4>
             <div class="card-tools">
+              <form asp-action="ExportYearlyReportToPdf"
+                    method="get"
+                    target="_blank"
+                    class="d-flex align-items-center gap-3">
+
+                <select name="year" class="form-select form-select-md">
+                  @{
+                    var currentYear = DateTime.Now.Year;
+                    for (int year = 2025; year <= currentYear; year++)
+                    {
+                      <option value="@year" selected="@(year == currentYear)">
+                        @year
+                      </option>
+                    }
+                  }
+                </select>
+
+                <button type="submit"
+                        class="btn btn-label-primary btn-round btn-md text-nowrap">
+                  Годишен отчет
+                </button>
+              </form>
+            </div>
+            <div class="card-tools">
               <a
                 asp-action="ExportMonthlyRentsToPdf"
                 target="_blank"
                 class="btn btn-label-primary btn-round btn-md">
-                Отчет
+                Месечен отчет
               </a>
             </div>
           </div>
-        </div>
         <div class="card-body">
           <canvas id="monthlyRentsChart" height="100"></canvas>
         </div>
+      </div>
       </div>
     </div>
   </div>

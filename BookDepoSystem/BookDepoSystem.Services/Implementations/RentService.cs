@@ -251,4 +251,180 @@ public class RentService : IRentService
             File = pdfBytes,
         };
     }
+
+    public async Task<RentPdfModel> ExportYearlyReportPdfAsync(int year)
+    {
+        QuestPDF.Settings.License = LicenseType.Community;
+
+        var selectedYear = year;
+
+        var rents = await context.Rents
+            .Include(r => r.Book)
+            .Include(r => r.Renter)
+            .Where(r => r.RentDate.Year == selectedYear)
+            .ToListAsync();
+
+        var booksByMonth = rents
+            .GroupBy(r => new { r.RentDate.Month, r.Book!.Title })
+            .Select(g => new
+            {
+                g.Key.Month,
+                Book = g.Key.Title,
+                Count = g.Count(),
+            })
+            .OrderBy(x => x.Month)
+            .ThenByDescending(x => x.Count)
+            .ToList();
+
+        var topRenters = rents
+            .GroupBy(r => r.Renter!.Name)
+            .Select(g => new
+            {
+                Renter = g.Key,
+                Count = g.Count(),
+            })
+            .OrderByDescending(x => x.Count)
+            .ToList();
+
+        var popularGenres = rents
+            .GroupBy(r => r.Book!.Genre)
+            .Select(g => new
+            {
+                Genre = g.Key,
+                Count = g.Count(),
+            })
+            .OrderByDescending(x => x.Count)
+            .ToList();
+
+        var document = Document.Create(container =>
+        {
+            container.Page(page =>
+            {
+                page.Size(PageSizes.A4);
+                page.Margin(2.5f, Unit.Centimetre);
+                page.Header()
+                    .Text($"Годишен отчет – {selectedYear}")
+                    .AlignCenter()
+                    .Bold()
+                    .FontSize(18);
+
+                page.Content()
+                    .PaddingVertical(20)
+                    .Column(column =>
+                    {
+                        // 1. Най-наемани книги по месеци
+                        column.Item().Text("Най-наемани книги по месеци").FontSize(14).Bold();
+
+                        foreach (var monthGroup in booksByMonth.GroupBy(x => x.Month))
+                        {
+                            column.Item()
+                                .PaddingTop(5)
+                                .Text(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthGroup.Key).ToUpper())
+                                .FontSize(12)
+                                .Bold();
+
+                            column.Item()
+                                .Table(table =>
+                                {
+                                    table.ColumnsDefinition(columns =>
+                                    {
+                                        columns.RelativeColumn();
+                                        columns.RelativeColumn();
+                                    });
+
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Книга");
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой");
+                                    });
+
+                                    foreach (var item in monthGroup)
+                                    {
+                                        table.Cell().BorderBottom(1).Padding(5).Text(item.Book);
+                                        table.Cell().BorderBottom(1).Padding(5).Text(item.Count.ToString());
+                                    }
+                                });
+                        }
+
+                        column.Item().PaddingTop(35);
+
+                        // 2. Най-активни наематели
+                        column.Item().Text("Най-активни наематели").FontSize(14).Bold();
+
+                        column.Item()
+                            .Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                });
+
+                                table.Header(header =>
+                                {
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Наемател");
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой наеми");
+                                });
+
+                                foreach (var renter in topRenters)
+                                {
+                                    table.Cell().BorderBottom(1).Padding(5).Text(renter.Renter);
+                                    table.Cell().BorderBottom(1).Padding(5).Text(renter.Count.ToString());
+                                }
+                            });
+
+                        column.Item().PaddingTop(35);
+
+                        // 3. Най-популярни жанрове
+                        column.Item().Text("Най-популярни жанрове").FontSize(14).Bold();
+
+                        column.Item()
+                            .Table(table =>
+                            {
+                                table.ColumnsDefinition(columns =>
+                                {
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                });
+
+                                table.Header(header =>
+                                {
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Жанр");
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой");
+                                });
+
+                                foreach (var genre in popularGenres)
+                                {
+                                    table.Cell().BorderBottom(1).Padding(5).Text(genre.Genre);
+                                    table.Cell().BorderBottom(1).Padding(5).Text(genre.Count.ToString());
+                                }
+                            });
+                    });
+
+                page.Footer()
+                    .PaddingTop(25)
+                    .AlignCenter()
+                    .Text(x =>
+                    {
+                        x.CurrentPageNumber();
+                        x.Span(" / ");
+                        x.TotalPages();
+                    });
+            });
+        });
+
+        byte[] pdfBytes = document.GeneratePdf();
+        string fileName = $"yearly-report-{DateTime.Now:yyyy-MM-dd-HH-m-s}.pdf";
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "reports", fileName);
+
+        Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+
+        await File.WriteAllBytesAsync(filePath, pdfBytes);
+
+        return new RentPdfModel
+        {
+            FileName = fileName,
+            File = pdfBytes,
+        };
+    }
 }
