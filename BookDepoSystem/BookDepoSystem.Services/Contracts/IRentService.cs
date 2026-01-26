@@ -13,4 +13,7 @@ public interface IRentService
     Task<(List<Rent> Rents, int TotalCount)> GetRentsPaginated(string status, string search, int pageIndex, int pageSize);
 
     Task<RentPdfModel> ExportMonthlyRentsPdfAsync();
+
+    Task<RentPdfModel> ExportYearlyReportPdfAsync(int year);
 }
+
