@@ -15,4 +15,6 @@ public interface IRentService
     Task<RentPdfModel> ExportMonthlyRentsPdfAsync();
 
     Task<RentPdfModel> ExportDailyReportPdfAsync(int year);
+
+    Task<RentPdfModel> ExportYearlyReportPdfAsync(int year);
 }
