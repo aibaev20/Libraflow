@@ -118,6 +118,7 @@ public class RentController : Controller
                     DueDate = rentViewModel.DueDate,
                     BookId = rentViewModel.BookId,
                     RenterId = rentViewModel.RenterId,
+                    Penalty = 0,
                     AdminId = Guid.Parse(userId!),
                 };
                 await this.rentService.AddRentAsync(rent);
@@ -153,6 +154,7 @@ public class RentController : Controller
             BookTitle = rent.Book!.Title,
             RenterId = rent.RenterId!.Value,
             RenterName = rent.Renter!.Name,
+            Penalty = 0,
         };
 
         return this.View(rentViewModel);
@@ -179,7 +181,7 @@ public class RentController : Controller
 
         if (this.ModelState.IsValid)
         {
-            var success = await this.rentService.UpdateReturnDateAsync(rentViewModel.RentId, rentViewModel.ReturnDate);
+            var success = await this.rentService.UpdateReturnDateAsync(rentViewModel.RentId, rentViewModel.ReturnDate, rentViewModel.Penalty);
             if (success)
             {
                 return this.RedirectToAction(nameof(this.Rents));

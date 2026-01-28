@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection.Metadata;
+using BookDepoSystem.Common;
 using BookDepoSystem.Data;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Contracts;
@@ -35,7 +36,7 @@ public class RentService : IRentService
 
         rent.RentId = Guid.NewGuid();
         rent.ReturnDate = DateTime.MinValue;
-        rent.Status = "Потвърден";
+        rent.Status = @T.ConfirmedRent;
         rent.CreatedAt = DateTime.UtcNow;
         rent.UpdatedAt = DateTime.UtcNow;
 
@@ -53,19 +54,19 @@ public class RentService : IRentService
         {
             if (rent.ReturnDate > rent.RentDate)
             {
-                rent.Status = "Завършен";
+                rent.Status = @T.CompletedRent;
             }
             else if (DateTime.Now >= rent.DueDate)
             {
-                rent.Status = "Просрочен";
+                rent.Status = @T.OverdueRent;
             }
             else if (DateTime.Now < rent.RentDate)
             {
-                rent.Status = "Потвърден";
+                rent.Status = @T.ConfirmedRent;
             }
             else
             {
-                rent.Status = "Активен";
+                rent.Status = @T.ActiveRent;
             }
 
             rent.UpdatedAt = DateTime.UtcNow;
@@ -75,7 +76,7 @@ public class RentService : IRentService
         await this.context.SaveChangesAsync();
     }
 
-    public async Task<bool> UpdateReturnDateAsync(Guid rentId, DateTime returnDate)
+    public async Task<bool> UpdateReturnDateAsync(Guid rentId, DateTime returnDate, float? penalty)
     {
         var rent = await this.GetRentById(rentId);
 
@@ -85,8 +86,9 @@ public class RentService : IRentService
         }
 
         rent.ReturnDate = returnDate;
-        rent.Status = "Завършен";
+        rent.Status = @T.CompletedRent;
         rent.UpdatedAt = DateTime.UtcNow;
+        rent.Penalty = penalty;
 
         if (rent.Book != null)
         {
@@ -148,29 +150,64 @@ public class RentService : IRentService
     /// <returns></returns>
     public async Task<RentPdfModel> ExportMonthlyRentsPdfAsync()
     {
+        var document = CreateMonthlyRentsDocument();
+        return await GenerateAndSavePdfAsync(await document, "monthly-rents");
+    }
+
+    public async Task<RentPdfModel> ExportYearlyReportPdfAsync(int year)
+    {
+        var document = CreateYearlyReportDocument(year);
+        return await GenerateAndSavePdfAsync(await document, "yearly-report");
+    }
+
+    public async Task<RentPdfModel> ExportFinancialReportPdfAsync()
+    {
+        var document = CreateFinancialReportDocument();
+        return await GenerateAndSavePdfAsync(await document, "financial-report");
+    }
+
+    private async Task<RentPdfModel> GenerateAndSavePdfAsync(Document document, string reportType)
+    {
+        byte[] pdfBytes = document.GeneratePdf();
+        string fileName = $"{reportType}-{DateTime.Now:yyyy-MM-dd-HH-m-s}.pdf";
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "reports", fileName);
+
+        Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+
+        await File.WriteAllBytesAsync(filePath, pdfBytes);
+
+        return new RentPdfModel
+        {
+            FileName = fileName,
+            File = pdfBytes,
+        };
+    }
+
+    private async Task<Document> CreateMonthlyRentsDocument()
+    {
         QuestPDF.Settings.License = LicenseType.Community;
 
         var rents = await this.context.Rents
-        .Include(r => r.Book)
-        .Include(r => r.Renter)
-        .OrderBy(r => r.RentDate.Year)
-        .ThenBy(r => r.RentDate.Month)
-        .ThenBy(r => r.RentDate)
-        .ToListAsync();
+            .Include(r => r.Book)
+            .Include(r => r.Renter)
+            .OrderBy(r => r.RentDate.Year)
+            .ThenBy(r => r.RentDate.Month)
+            .ThenBy(r => r.RentDate)
+            .ToListAsync();
 
         var monthlyGroups = rents
             .GroupBy(r => new { r.RentDate.Year, r.RentDate.Month })
             .OrderBy(g => g.Key.Year)
             .ThenBy(g => g.Key.Month);
 
-        var document = Document.Create(container =>
+        return Document.Create(container =>
         {
             container.Page(page =>
             {
                 page.Size(PageSizes.A4);
                 page.Margin(2.5f, Unit.Centimetre);
                 page.Header()
-                    .Text("Подробен месечен отчет за наемите")
+                    .Text(@T.AdvancedMonthlyReportText)
                     .AlignCenter()
                     .Bold()
                     .FontSize(18);
@@ -202,19 +239,19 @@ public class RentService : IRentService
 
                                     table.Header(header =>
                                     {
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Начална дата");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Крайна дата");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Дата на връщане");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Статус");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Книга");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Наемател");
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentDateText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.DueDateText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.ReturnDateText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentStatusText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentBookText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentRenterText);
                                     });
 
                                     foreach (var rent in monthGroup)
                                     {
                                         table.Cell().BorderBottom(1).Padding(5).Text(rent.RentDate.ToString("dd-MM-yyyy HH:mm"));
                                         table.Cell().BorderBottom(1).Padding(5).Text(rent.DueDate.ToString("dd-MM-yyyy HH:mm"));
-                                        table.Cell().BorderBottom(1).Padding(5).Text(rent.ReturnDate == DateTime.MinValue ? "Невърната" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"));
+                                        table.Cell().BorderBottom(1).Padding(5).Text(rent.ReturnDate == DateTime.MinValue ? @T.UnreturnedBookText : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"));
                                         table.Cell().BorderBottom(1).Padding(5).Text(rent.Status);
                                         table.Cell().BorderBottom(1).Padding(5).Text(rent.Book?.Title);
                                         table.Cell().BorderBottom(1).Padding(5).Text(rent.Renter?.Name);
@@ -236,23 +273,9 @@ public class RentService : IRentService
                     });
             });
         });
-
-        byte[] pdfBytes = document.GeneratePdf();
-        string fileName = $"monthly-rents-{DateTime.Now:yyyy-MM-dd-HH-m-s}.pdf";
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "reports", fileName);
-
-        Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
-
-        await File.WriteAllBytesAsync(filePath, pdfBytes);
-
-        return new RentPdfModel
-        {
-            FileName = fileName,
-            File = pdfBytes,
-        };
     }
 
-    public async Task<RentPdfModel> ExportYearlyReportPdfAsync(int year)
+    private async Task<Document> CreateYearlyReportDocument(int year)
     {
         QuestPDF.Settings.License = LicenseType.Community;
 
@@ -296,14 +319,14 @@ public class RentService : IRentService
             .OrderByDescending(x => x.Count)
             .ToList();
 
-        var document = Document.Create(container =>
+        return Document.Create(container =>
         {
             container.Page(page =>
             {
                 page.Size(PageSizes.A4);
                 page.Margin(2.5f, Unit.Centimetre);
                 page.Header()
-                    .Text($"Годишен отчет – {selectedYear}")
+                    .Text($"{@T.AdvancedYearlyReportText} – {year}")
                     .AlignCenter()
                     .Bold()
                     .FontSize(18);
@@ -312,8 +335,12 @@ public class RentService : IRentService
                     .PaddingVertical(20)
                     .Column(column =>
                     {
-                        // 1. Най-наемани книги по месеци
-                        column.Item().Text("Най-наемани книги по месеци").FontSize(14).Bold();
+                        column.Item()
+                            .Background(Colors.Grey.Lighten3)
+                            .Padding(6)
+                            .Text(@T.TopRentedBooksByMonthText)
+                            .FontSize(14)
+                            .Bold();
 
                         foreach (var monthGroup in booksByMonth.GroupBy(x => x.Month))
                         {
@@ -334,8 +361,8 @@ public class RentService : IRentService
 
                                     table.Header(header =>
                                     {
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Книга");
-                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой");
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentBookText);
+                                        header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.NumberOfTopRentedBooks);
                                     });
 
                                     foreach (var item in monthGroup)
@@ -348,8 +375,12 @@ public class RentService : IRentService
 
                         column.Item().PaddingTop(35);
 
-                        // 2. Най-активни наематели
-                        column.Item().Text("Най-активни наематели").FontSize(14).Bold();
+                        column.Item()
+                            .Background(Colors.Grey.Lighten3)
+                            .Padding(6)
+                            .Text(@T.TopRentersText)
+                            .FontSize(14)
+                            .Bold();
 
                         column.Item()
                             .Table(table =>
@@ -362,8 +393,8 @@ public class RentService : IRentService
 
                                 table.Header(header =>
                                 {
-                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Наемател");
-                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой наеми");
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentRenterText);
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.NumberOfRentsByRenter);
                                 });
 
                                 foreach (var renter in topRenters)
@@ -375,8 +406,12 @@ public class RentService : IRentService
 
                         column.Item().PaddingTop(35);
 
-                        // 3. Най-популярни жанрове
-                        column.Item().Text("Най-популярни жанрове").FontSize(14).Bold();
+                        column.Item()
+                            .Background(Colors.Grey.Lighten3)
+                            .Padding(6)
+                            .Text(@T.PopularGenresText)
+                            .FontSize(14)
+                            .Bold();
 
                         column.Item()
                             .Table(table =>
@@ -389,8 +424,8 @@ public class RentService : IRentService
 
                                 table.Header(header =>
                                 {
-                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Жанр");
-                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text("Брой");
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.BookGenreText);
+                                    header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.NumberOfTopRentedBooks);
                                 });
 
                                 foreach (var genre in popularGenres)
@@ -412,19 +447,128 @@ public class RentService : IRentService
                     });
             });
         });
+    }
 
-        byte[] pdfBytes = document.GeneratePdf();
-        string fileName = $"yearly-report-{DateTime.Now:yyyy-MM-dd-HH-m-s}.pdf";
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "reports", fileName);
+    private async Task<Document> CreateFinancialReportDocument()
+    {
+        QuestPDF.Settings.License = LicenseType.Community;
 
-        Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+        var rents = await this.context.Rents
+            .Include(r => r.Book)
+            .Include(r => r.Renter)
+            .Where(r => r.Penalty > 0)
+            .OrderByDescending(r => r.Penalty)
+            .ThenBy(r => r.ReturnDate)
+            .ToListAsync();
 
-        await File.WriteAllBytesAsync(filePath, pdfBytes);
+        var yearlyGroups = rents
+            .GroupBy(r => r.RentDate.Year)
+            .OrderBy(g => g.Key);
 
-        return new RentPdfModel
+        return Document.Create(container =>
         {
-            FileName = fileName,
-            File = pdfBytes,
-        };
+            container.Page(page =>
+            {
+                page.Size(PageSizes.A4);
+                page.Margin(2.5f, Unit.Centimetre);
+                page.Header()
+                    .Text(@T.FinancialReportText)
+                    .AlignCenter()
+                    .Bold()
+                    .FontSize(18);
+
+                page.Content()
+                    .PaddingVertical(20)
+                    .Column(column =>
+                    {
+                        foreach (var yearGroup in yearlyGroups)
+                        {
+                            var monthlyGroups = yearGroup
+                                .GroupBy(r => r.RentDate.Month)
+                                .OrderBy(g => g.Key);
+
+                            foreach (var monthGroup in monthlyGroups)
+                            {
+                                column.Item()
+                                    .PaddingBottom(10)
+                                    .Text($"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthGroup.Key).ToUpper()} {yearGroup.Key}")
+                                    .FontSize(14)
+                                    .Bold();
+
+                                column.Item()
+                                    .Table(table =>
+                                    {
+                                        table.ColumnsDefinition(columns =>
+                                        {
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                            columns.RelativeColumn();
+                                        });
+
+                                        table.Header(header =>
+                                        {
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentDateText);
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.DueDateText);
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.ReturnDateText);
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentBookText);
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentRenterText);
+                                            header.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Indigo.Darken4)).Text(@T.RentPenaltyText);
+                                        });
+
+                                        foreach (var rent in monthGroup)
+                                        {
+                                            table.Cell().BorderBottom(1).Padding(5).Text(rent.RentDate.ToString("dd-MM-yyyy HH:mm"));
+                                            table.Cell().BorderBottom(1).Padding(5).Text(rent.DueDate.ToString("dd-MM-yyyy HH:mm"));
+                                            table.Cell().BorderBottom(1).Padding(5).Text(rent.ReturnDate == DateTime.MinValue ? @T.UnreturnedBookText : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"));
+                                            table.Cell().BorderBottom(1).Padding(5).Text(rent.Book?.Title);
+                                            table.Cell().BorderBottom(1).Padding(5).Text(rent.Renter?.Name);
+                                            table.Cell().BorderBottom(1).Padding(5).DefaultTextStyle(x => x.Bold().FontColor(Colors.Red.Darken2)).Text($"{rent.Penalty?.ToString("C", CultureInfo.CreateSpecificCulture("de-DE"))}");
+                                        }
+                                    });
+
+                                column.Item().PaddingBottom(20);
+                            }
+
+                            var yearRents = yearGroup.ToList();
+                            var yearRentCount = yearRents.Count;
+                            var yearTotalPenalty = yearRents.Sum(r => r.Penalty);
+
+                            column.Item()
+                                .ShowOnce()
+                                .PaddingBottom(30)
+                                .Background(Colors.Grey.Lighten3)
+                                .Padding(10)
+                                .Row(row =>
+                                {
+                                    row.RelativeItem()
+                                        .Text($"{@T.RentsPerYearWithPenaltiesText} {yearGroup.Key}: {yearRentCount}")
+                                        .FontSize(13)
+                                        .Bold()
+                                        .FontColor(Colors.Indigo.Darken4);
+
+                                    row.RelativeItem()
+                                        .AlignRight()
+                                        .Text($"{@T.TotalSumRentsWithPenaltiesText}: {yearTotalPenalty?.ToString("C", CultureInfo.CreateSpecificCulture("de-DE"))}")
+                                        .FontSize(13)
+                                        .Bold()
+                                        .FontColor(Colors.Red.Darken3);
+                                });
+                        }
+                    });
+
+                page.Footer()
+                    .PaddingTop(25)
+                    .AlignCenter()
+                    .Text(text =>
+                    {
+                        text.CurrentPageNumber();
+                        text.Span(" / ");
+                        text.TotalPages();
+                    });
+            });
+        });
     }
 }

@@ -22,6 +22,8 @@ public class RentViewModel
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
+    public float? Penalty { get; set; }
+
     public Guid BookId { get; set; }
 
     public string? BookTitle { get; set; }
