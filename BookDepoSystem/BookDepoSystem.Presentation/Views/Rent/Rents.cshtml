@@ -17,13 +17,13 @@
     <form method="get" class="w-100">
         <div class="row g-3 ">
             <div class="col-md-6">
-                <label for="status" class="form-label">Изберете статус</label>
+                <label for="status" class="form-label">@T.SelectRentStatusText</label>
                 <select name="status" id="status" class="form-select" value="@ViewData["Status"]">
-                    <option value="">Всички статуси</option>
-                    <option value="Потвърден" selected="@(ViewData["Status"]?.ToString() == "Потвърден")">Потвърден</option>
-                    <option value="Активен" selected="@(ViewData["Status"]?.ToString() == "Активен")">Активен</option>
-                    <option value="Просрочен" selected="@(ViewData["Status"]?.ToString() == "Просрочен")">Просрочен</option>
-                    <option value="Завършен" selected="@(ViewData["Status"]?.ToString() == "Завършен")">Завършен</option>
+                    <option value="">@T.AllRentStatusesText</option>
+                    <option value="@T.ConfirmedRent" selected="@(ViewData["Status"]?.ToString() == @T.ConfirmedRent)">@T.ConfirmedRent</option>
+                    <option value="@T.ActiveRent" selected="@(ViewData["Status"]?.ToString() == @T.ActiveRent)">@T.ActiveRent</option>
+                    <option value="@T.OverdueRent" selected="@(ViewData["Status"]?.ToString() == @T.OverdueRent)">@T.OverdueRent</option>
+                    <option value="@T.CompletedRent" selected="@(ViewData["Status"]?.ToString() == @T.CompletedRent)">@T.CompletedRent</option>
                 </select>
             </div>
 
@@ -60,7 +60,7 @@
             {
             <tr>
                 <td colspan="7">
-                    <span class="d-block w-100 text-center">НЯМА НАМЕРЕНИ НАЕМИ</span>
+                    <span class="d-block w-100 text-center">@T.NotFoundRents</span>
                 </td>
             </tr>
             }
@@ -71,21 +71,21 @@
                     <tr>
                         <td>@(rent.RentDate.ToString("dd-MM-yyyy HH:mm"))</td>
                         <td>@(rent.DueDate.ToString("dd-MM-yyyy HH:mm"))</td>
-                        <td>@(rent.ReturnDate == DateTime.MinValue ? "Невърната" : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
+                        <td>@(rent.ReturnDate == DateTime.MinValue ? @T.UnreturnedBookText : rent.ReturnDate.ToString("dd-MM-yyyy HH:mm"))</td>
                         <td>
-                            @if (rent.Status == "Потвърден")
+                            @if (rent.Status == @T.ConfirmedRent)
                             {
                                 <span class="badge bg-secondary" style="font-size: 1rem;">
                                     @rent.Status
                                 </span>
                             }
-                            else if (rent.Status == "Активен")
+                            else if (rent.Status == @T.ActiveRent)
                             {
                                 <span class="badge bg-primary" style="font-size: 1rem;">
                                     @rent.Status
                                 </span>
                             }
-                            else if (rent.Status == "Просрочен")
+                            else if (rent.Status == @T.OverdueRent)
                             {
                                 <span class="badge bg-warning" style="font-size: 1rem;">
                                     @rent.Status
@@ -105,9 +105,9 @@
                         </td>
                         <td>@rent.Renter!.Name</td>
                         <td>
-                            @if (rent.Status != "Завършен")
+                            @if (rent.Status != @T.CompletedRent)
                             {
-                                <a asp-action="Return" asp-route-rentId="@rent.RentId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Задай дата на връщане" class="btn btn-sm btn-icon text-primary">
+                                <a asp-action="Return" asp-route-rentId="@rent.RentId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="@T.AssignReturnDate" class="btn btn-sm btn-icon text-primary">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                             }

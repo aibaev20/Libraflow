@@ -1,4 +1,5 @@
-﻿using BookDepoSystem.Data;
+﻿using BookDepoSystem.Common;
+using BookDepoSystem.Data;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -72,16 +73,16 @@ public class BookService : IBookService
         {
             switch (sortBy)
             {
-                case "Количество (низходящ ред)":
+                case var s when s == T.QuantityDescendingOrderText:
                     query = query.OrderByDescending(b => b.QuantityAvailable).ThenBy(b => b.Title);
                     break;
-                case "Количество (възходящ ред)":
+                case var s when s == T.QuantityAscendingOrderText:
                     query = query.OrderBy(b => b.QuantityAvailable).ThenBy(b => b.Title);
                     break;
-                case "Име (низходящ ред)":
+                case var s when s == T.NameDescendingOrderText:
                     query = query.OrderByDescending(b => b.Title);
                     break;
-                case "Име (възходящ ред)":
+                case var s when s == T.NameAscendingOrderText:
                     query = query.OrderBy(b => b.Title);
                     break;
                 default:

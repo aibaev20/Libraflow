@@ -97,10 +97,10 @@
         <value>Вашата заявка беше успешна. Моля проверете имейл адреса си за линк за промяна на парола.</value>
     </data>
     <data name="AccessDeniedTitle" xml:space="preserve">
-        <value>Достъпът отказан</value>
+        <value>Достъпът е отказан</value>
     </data>
     <data name="AccessDeniedMessage" xml:space="preserve">
-        <value>Изглежда, че нямате права за достъп до страницата</value>
+        <value>Нямате разрешение за достъп до искания ресурс.</value>
     </data>
     <data name="BackToIndex" xml:space="preserve">
         <value>Назад към началната страница</value>
@@ -335,5 +335,326 @@
     </data>
     <data name="RegisterSuccessMessage" xml:space="preserve">
         <value>Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата.</value>
+    </data>
+    <data name="ConfirmedRent" xml:space="preserve">
+        <value>Потвърден</value>
+    </data>
+    <data name="ActiveRent" xml:space="preserve">
+        <value>Активен</value>
+    </data>
+    <data name="OverdueRent" xml:space="preserve">
+        <value>Просрочен</value>
+    </data>
+    <data name="CompletedRent" xml:space="preserve">
+        <value>Завършен</value>
+    </data>
+    <data name="AdvancedMonthlyReportText" xml:space="preserve">
+        <value>Подробен месечен отчет за наемите</value>
+    </data>
+    <data name="UnreturnedBookText" xml:space="preserve">
+        <value>Невърната</value>
+    </data>
+    <data name="AdvancedYearlyReportText" xml:space="preserve">
+        <value>Годишен отчет</value>
+    </data>
+    <data name="TopRentedBooksByMonthText" xml:space="preserve">
+        <value>Най-наемани книги по месеци</value>
+    </data>
+    <data name="NumberOfTopRentedBooks" xml:space="preserve">
+        <value>Брой</value>
+    </data>
+    <data name="TopRentersText" xml:space="preserve">
+        <value>Най-активни наематели</value>
+    </data>
+    <data name="NumberOfRentsByRenter" xml:space="preserve">
+        <value>Брой наеми</value>
+    </data>
+    <data name="PopularGenresText" xml:space="preserve">
+        <value>Най-популярни жанрове</value>
+    </data>
+    <data name="BackToMyAssignedRents" xml:space="preserve">
+        <value>Назад към моите наеми</value>
+    </data>
+    <data name="RegistrationText" xml:space="preserve">
+        <value>Регистрация</value>
+    </data>
+    <data name="NamePlaceholderText" xml:space="preserve">
+        <value>Потребителско име</value>
+    </data>
+    <data name="PhoneNumberPlaceholderText" xml:space="preserve">
+        <value>Телефонен номер</value>
+    </data>
+    <data name="SelectGenreText" xml:space="preserve">
+        <value>Изберете жанр</value>
+    </data>
+    <data name="AllGenresText" xml:space="preserve">
+        <value>Всички жанрове</value>
+    </data>
+    <data name="DystopiaGenreText" xml:space="preserve">
+        <value>Антиутопия</value>
+    </data>
+    <data name="BiographyGenreText" xml:space="preserve">
+        <value>Биография</value>
+    </data>
+    <data name="GothicFictionGenreText" xml:space="preserve">
+        <value>Готическа фантастика</value>
+    </data>
+    <data name="DramaGenreText" xml:space="preserve">
+        <value>Драма</value>
+    </data>
+    <data name="EpicGenreText" xml:space="preserve">
+        <value>Епос</value>
+    </data>
+    <data name="HistoricalGenreText" xml:space="preserve">
+        <value>Исторически</value>
+    </data>
+    <data name="HistoricalFictionGenreText" xml:space="preserve">
+        <value>Историческа фантастика</value>
+    </data>
+    <data name="ClassicalGenreText" xml:space="preserve">
+        <value>Класически</value>
+    </data>
+    <data name="ComicsGenreText" xml:space="preserve">
+        <value>Комикси</value>
+    </data>
+    <data name="MagicRealismGenreText" xml:space="preserve">
+        <value>Магически реализъм</value>
+    </data>
+    <data name="MysteryGenreText" xml:space="preserve">
+        <value>Мистерия</value>
+    </data>
+    <data name="NonFictionGenreText" xml:space="preserve">
+        <value>Научна литература</value>
+    </data>
+    <data name="ScienceFictionGenreText" xml:space="preserve">
+        <value>Научна фантастика</value>
+    </data>
+    <data name="PoetryGenreText" xml:space="preserve">
+        <value>Поезия</value>
+    </data>
+    <data name="AdventureGenreText" xml:space="preserve">
+        <value>Приключенски</value>
+    </data>
+    <data name="RomanceGenreText" xml:space="preserve">
+        <value>Романтика</value>
+    </data>
+    <data name="SelfImprovementGenreText" xml:space="preserve">
+        <value>Самоусъвършенстване</value>
+    </data>
+    <data name="ThrillerGenreText" xml:space="preserve">
+        <value>Трилър</value>
+    </data>
+    <data name="PhilosophyGenreText" xml:space="preserve">
+        <value>Философия</value>
+    </data>
+    <data name="PhilosophicalFictionGenreText" xml:space="preserve">
+        <value>Философска фантастика</value>
+    </data>
+    <data name="FantasyGenreText" xml:space="preserve">
+        <value>Фентъзи</value>
+    </data>
+    <data name="HorrorGenreText" xml:space="preserve">
+        <value>Хорър</value>
+    </data>
+    <data name="FictionGenreText" xml:space="preserve">
+        <value>Художествена литература</value>
+    </data>
+    <data name="SelectAgeRangeText" xml:space="preserve">
+        <value>Изберете възраст</value>
+    </data>
+    <data name="AllAgeRangesText" xml:space="preserve">
+        <value>Всички възрасти</value>
+    </data>
+    <data name="KidsAgeRangeText" xml:space="preserve">
+        <value>Деца</value>
+    </data>
+    <data name="TeenAgeRangeText" xml:space="preserve">
+        <value>Тийнейджъри</value>
+    </data>
+    <data name="AdultAgeRangeText" xml:space="preserve">
+        <value>Възрастни</value>
+    </data>
+    <data name="SortText" xml:space="preserve">
+        <value>Сортиране</value>
+    </data>
+    <data name="SortByText" xml:space="preserve">
+        <value>Сортиране по</value>
+    </data>
+    <data name="QuantityDescendingOrderText" xml:space="preserve">
+        <value>Количество (низходящ ред)</value>
+    </data>
+    <data name="QuantityAscendingOrderText" xml:space="preserve">
+        <value>Количество (възходящ ред)</value>
+    </data>
+    <data name="NameDescendingOrderText" xml:space="preserve">
+        <value>Име (низходящ ред)</value>
+    </data>
+    <data name="NameAscendingOrderText" xml:space="preserve">
+        <value>Име (възходящ ред)</value>
+    </data>
+    <data name="NotFoundBooks" xml:space="preserve">
+        <value>НЯМА НАМЕРЕНИ КНИГИ</value>
+    </data>
+    <data name="SelectCoverTypeText" xml:space="preserve">
+        <value>Изберете вид корица</value>
+    </data>
+    <data name="HardCoverTypeText" xml:space="preserve">
+        <value>Твърда</value>
+    </data>
+    <data name="SoftCoverTypeText" xml:space="preserve">
+        <value>Мека</value>
+    </data>
+    <data name="NotFoundBookCover" xml:space="preserve">
+        <value>Няма налична корица</value>
+    </data>
+    <data name="BookPublishedDatePlaceholderText" xml:space="preserve">
+        <value>ДД.ММ.ГГГГ</value>
+    </data>
+    <data name="ChangeBookText" xml:space="preserve">
+        <value>Промени</value>
+    </data>
+    <data name="DeleteBookText" xml:space="preserve">
+        <value>Изтрий</value>
+    </data>
+    <data name="DetailsBookText" xml:space="preserve">
+        <value>Детайли</value>
+    </data>
+    <data name="StartText" xml:space="preserve">
+        <value>Начало</value>
+    </data>
+    <data name="JanuaryText" xml:space="preserve">
+        <value>Януари</value>
+    </data>
+    <data name="FebruaryText" xml:space="preserve">
+        <value>Февруари</value>
+    </data>
+    <data name="MarchText" xml:space="preserve">
+        <value>Март</value>
+    </data>
+    <data name="AprilText" xml:space="preserve">
+        <value>Април</value>
+    </data>
+    <data name="MayText" xml:space="preserve">
+        <value>Май</value>
+    </data>
+    <data name="JuneText" xml:space="preserve">
+        <value>Юни</value>
+    </data>
+    <data name="JulyText" xml:space="preserve">
+        <value>Юли</value>
+    </data>
+    <data name="AugustText" xml:space="preserve">
+        <value>Август</value>
+    </data>
+    <data name="SeptemberText" xml:space="preserve">
+        <value>Септември</value>
+    </data>
+    <data name="OctoberText" xml:space="preserve">
+        <value>Октомври</value>
+    </data>
+    <data name="NovemberText" xml:space="preserve">
+        <value>Ноември</value>
+    </data>
+    <data name="DecemberText" xml:space="preserve">
+        <value>Декември</value>
+    </data>
+    <data name="MonthText" xml:space="preserve">
+        <value>Месец</value>
+    </data>
+    <data name="AvailableBooks" xml:space="preserve">
+        <value>Налични книги</value>
+    </data>
+    <data name="CompletedRentsText" xml:space="preserve">
+        <value>Завършени наеми</value>
+    </data>
+    <data name="MostPopularBooksText" xml:space="preserve">
+        <value>Най-популярни книги</value>
+    </data>
+    <data name="Top3Text" xml:space="preserve">
+        <value>Топ 3</value>
+    </data>
+    <data name="MonthlyCountRentsText" xml:space="preserve">
+        <value>Месечен брой наеми</value>
+    </data>
+    <data name="MonthlyReportText" xml:space="preserve">
+        <value>Месечен отчет</value>
+    </data>
+    <data name="NotFoundRents" xml:space="preserve">
+        <value>НЯМА НАМЕРЕНИ НАЕМИ</value>
+    </data>
+    <data name="AssignedRentsText" xml:space="preserve">
+        <value>Мои наеми</value>
+    </data>
+    <data name="RentPenaltyText" xml:space="preserve">
+        <value>Глоба</value>
+    </data>
+    <data name="SelectRentStatusText" xml:space="preserve">
+        <value>Изберете статус</value>
+    </data>
+    <data name="AllRentStatusesText" xml:space="preserve">
+        <value>Всички статуси</value>
+    </data>
+    <data name="AssignReturnDate" xml:space="preserve">
+        <value>Задай дата на връщане</value>
+    </data>
+    <data name="NotFoundRenters" xml:space="preserve">
+        <value>НЯМА НАМЕРЕНИ НАЕМАТЕЛИ</value>
+    </data>
+    <data name="TotalSumRentsWithPenaltiesText" xml:space="preserve">
+        <value>Обща сума</value>
+    </data>
+    <data name="RentsPerYearWithPenaltiesText" xml:space="preserve">
+        <value>Наеми с глоби за година</value>
+    </data>
+    <data name="FinancialReportText" xml:space="preserve">
+        <value>Финансов отчет</value>
+    </data>
+    <data name="MadeByText" xml:space="preserve">
+        <value>изработено от</value>
+    </data>
+    <data name="AlexanderBaevText" xml:space="preserve">
+        <value>Александър Баев</value>
+    </data>
+    <data name="HelloText" xml:space="preserve">
+        <value>Здравей</value>
+    </data>
+    <data name="SideBarComponentsText" xml:space="preserve">
+        <value>Компоненти</value>
+    </data>
+    <data name="BookTestTitle" xml:space="preserve">
+        <value>Димитър Бербатов - По моя начин</value>
+    </data>
+    <data name="BookTestAuthor" xml:space="preserve">
+        <value>Димитър Бербатов</value>
+    </data>
+    <data name="BooKTestInformation" xml:space="preserve">
+        <value>С предговор от Сър Алекс Фъргюсън</value>
+    </data>
+    <data name="IntegTestBook1Title" xml:space="preserve">
+        <value>Изкуството да бъдеш спокоен</value>
+    </data>
+    <data name="IntegTestBook1Author" xml:space="preserve">
+        <value>Райън Холидей</value>
+    </data>
+    <data name="IntegTestBook1Information" xml:space="preserve">
+        <value>Спокойствието е ключ към по-щастлив и смислен живот</value>
+    </data>
+    <data name="IntegTestBook2Title" xml:space="preserve">
+        <value>Истории от ръчния багаж</value>
+    </data>
+    <data name="IntegTestBook2Author" xml:space="preserve">
+        <value>Георги Милков</value>
+    </data>
+    <data name="IntegTestBook2Information" xml:space="preserve">
+        <value>Само човек, който стои на педя от лицето на Кадафи</value>
+    </data>
+    <data name="IntegTestRenter1Name" xml:space="preserve">
+        <value>Милен Нанков</value>
+    </data>
+    <data name="IntegTestRenter2Name" xml:space="preserve">
+        <value>Самуил Иванов</value>
+    </data>
+    <data name="RentTestNewRenterName" xml:space="preserve">
+        <value>Иван Иванов</value>
     </data>
 </root>

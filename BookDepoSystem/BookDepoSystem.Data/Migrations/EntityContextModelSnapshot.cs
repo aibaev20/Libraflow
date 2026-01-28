@@ -200,6 +200,9 @@ namespace BookDepoSystem.Data.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<float?>("Penalty")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("RentDate")
                         .HasColumnType("datetime2");
 

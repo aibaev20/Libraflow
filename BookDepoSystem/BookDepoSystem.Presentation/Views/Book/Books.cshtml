@@ -17,53 +17,53 @@
     <form method="get" class="w-100">
         <div class="row g-3 ">
             <div class="col-md-3">
-                <label for="genre" class="form-label">Изберете жанр</label>
+                <label for="genre" class="form-label">@T.SelectGenreText</label>
                 <select name="genre" id="genre" class="form-select">
-                    <option value="">Всички жанрове</option>
-                    <option value="Антиутопия" selected="@(ViewData["Genre"]?.ToString() == "Антиутопия")">Антиутопия</option>
-                    <option value="Биография" selected="@(ViewData["Genre"]?.ToString() == "Биография")">Биография</option>
-                    <option value="Готическа фантастика" selected="@(ViewData["Genre"]?.ToString() == "Готическа фантастика")">Готическа фантастика</option>
-                    <option value="Драма" selected="@(ViewData["Genre"]?.ToString() == "Драма")">Драма</option>
-                    <option value="Епос" selected="@(ViewData["Genre"]?.ToString() == "Епос")">Епос</option>
-                    <option value="Исторически" selected="@(ViewData["Genre"]?.ToString() == "Исторически")">Исторически</option>
-                    <option value="Историческа фантастика" selected="@(ViewData["Genre"]?.ToString() == "Историческа фантастика")">Историческа фантастика</option>
-                    <option value="Класически" selected="@(ViewData["Genre"]?.ToString() == "Класически")">Класически</option>
-                    <option value="Комикси" selected="@(ViewData["Genre"]?.ToString() == "Комикси")">Комикси</option>
-                    <option value="Магически реализъм" selected="@(ViewData["Genre"]?.ToString() == "Магически реализъм")">Магически реализъм</option>
-                    <option value="Мистерия" selected="@(ViewData["Genre"]?.ToString() == "Мистерия")">Мистерия</option>
-                    <option value="Научна литература" selected="@(ViewData["Genre"]?.ToString() == "Научна литература")">Научна литература</option>
-                    <option value="Научна фантастика" selected="@(ViewData["Genre"]?.ToString() == "Научна фантастика")">Научна фантастика</option>
-                    <option value="Поезия" selected="@(ViewData["Genre"]?.ToString() == "Поезия")">Поезия</option>
-                    <option value="Приключенски" selected="@(ViewData["Genre"]?.ToString() == "Приключенски")">Приключенски</option>
-                    <option value="Романтика" selected="@(ViewData["Genre"]?.ToString() == "Романтика")">Романтика</option>
-                    <option value="Самоусъвършенстване" selected="@(ViewData["Genre"]?.ToString() == "Самоусъвършенстване")">Самоусъвършенстване</option>
-                    <option value="Трилър" selected="@(ViewData["Genre"]?.ToString() == "Трилър")">Трилър</option>
-                    <option value="Философия" selected="@(ViewData["Genre"]?.ToString() == "Философия")">Философия</option>
-                    <option value="Философска фантастика" selected="@(ViewData["Genre"]?.ToString() == "Философска фантастика")">Философска фантастика</option>
-                    <option value="Фентъзи" selected="@(ViewData["Genre"]?.ToString() == "Фентъзи")">Фентъзи</option>
-                    <option value="Хорър" selected="@(ViewData["Genre"]?.ToString() == "Хорър")">Хорър</option>
-                    <option value="Художествена литература" selected="@(ViewData["Genre"]?.ToString() == "Художествена литература")">Художествена литература</option>
+                    <option value="">@T.AllGenresText</option>
+                    <option value="@T.DystopiaGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.DystopiaGenreText)">@T.DystopiaGenreText</option>
+                    <option value="@T.BiographyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.BiographyGenreText)">@T.BiographyGenreText</option>
+                    <option value="@T.GothicFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.GothicFictionGenreText)">@T.GothicFictionGenreText</option>
+                    <option value="@T.DramaGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.DramaGenreText)">@T.DramaGenreText</option>
+                    <option value="@T.EpicGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.EpicGenreText)">@T.EpicGenreText</option>
+                    <option value="@T.HistoricalGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HistoricalGenreText)">@T.HistoricalGenreText</option>
+                    <option value="@T.HistoricalFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HistoricalFictionGenreText)">@T.HistoricalFictionGenreText</option>
+                    <option value="@T.ClassicalGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ClassicalGenreText)">@T.ClassicalGenreText</option>
+                    <option value="@T.ComicsGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ComicsGenreText)">@T.ComicsGenreText</option>
+                    <option value="@T.MagicRealismGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.MagicRealismGenreText)">@T.MagicRealismGenreText</option>
+                    <option value="@T.MysteryGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.MysteryGenreText)">@T.MysteryGenreText</option>
+                    <option value="@T.NonFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.NonFictionGenreText)">@T.NonFictionGenreText</option>
+                    <option value="@T.ScienceFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ScienceFictionGenreText)">@T.ScienceFictionGenreText</option>
+                    <option value="@T.PoetryGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PoetryGenreText)">@T.PoetryGenreText</option>
+                    <option value="@T.AdventureGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.AdventureGenreText)">@T.AdventureGenreText</option>
+                    <option value="@T.RomanceGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.RomanceGenreText)">@T.RomanceGenreText</option>
+                    <option value="@T.SelfImprovementGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.SelfImprovementGenreText)">@T.SelfImprovementGenreText</option>
+                    <option value="@T.ThrillerGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ThrillerGenreText)">@T.ThrillerGenreText</option>
+                    <option value="@T.PhilosophyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PhilosophyGenreText)">@T.PhilosophyGenreText</option>
+                    <option value="@T.PhilosophicalFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PhilosophicalFictionGenreText)">@T.PhilosophicalFictionGenreText</option>
+                    <option value="@T.FantasyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.FantasyGenreText)">@T.FantasyGenreText</option>
+                    <option value="@T.HorrorGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HorrorGenreText)">@T.HorrorGenreText</option>
+                    <option value="@T.FictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.FictionGenreText)">@T.FictionGenreText</option>
                 </select>
             </div>
 
             <div class="col-md-2">
-                <label for="ageRange" class="form-label">Изберете възраст</label>
+                <label for="ageRange" class="form-label">@T.SelectAgeRangeText</label>
                 <select name="ageRange" id="ageRange" class="form-select" value="@ViewData["AgeRange"]">
-                    <option value="">Всички възрасти</option>
-                    <option value="Деца" selected="@(ViewData["AgeRange"]?.ToString() == "Деца")">Деца</option>
-                    <option value="Тийнейджъри" selected="@(ViewData["AgeRange"]?.ToString() == "Тийнейджъри")">Тийнейджъри</option>
-                    <option value="Възрастни" selected="@(ViewData["AgeRange"]?.ToString() == "Възрастни")">Възрастни</option>
+                    <option value="">@T.AllGenresText</option>
+                    <option value="@T.KidsAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.KidsAgeRangeText)">@T.KidsAgeRangeText</option>
+                    <option value="@T.TeenAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.TeenAgeRangeText)">@T.TeenAgeRangeText</option>
+                    <option value="@T.AdultAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.AdultAgeRangeText)">@T.AdultAgeRangeText</option>
                 </select>
             </div>
 
             <div class="col-md-3">
-                <label for="sortBy" class="form-label">Сортиране</label>
+                <label for="sortBy" class="form-label">@T.SortText</label>
                 <select name="sortBy" id="sortBy" class="form-select" value="@ViewData["SortBy"]">
-                    <option value="">Сортиране по</option>
-                    <option value="Количество (низходящ ред)" selected="@(ViewData["SortBy"]?.ToString() == "Количество (низходящ ред)")">Количество (низходящ ред)</option>
-                    <option value="Количество (възходящ ред)" selected="@(ViewData["SortBy"]?.ToString() == "Количество (възходящ ред)")">Количество (възходящ ред)</option>
-                    <option value="Име (низходящ ред)" selected="@(ViewData["SortBy"]?.ToString() == "Име (низходящ ред)")">Име (низходящ ред)</option>
-                    <option value="Име (възходящ ред)" selected="@(ViewData["SortBy"]?.ToString() == "Име (възходящ ред)")">Име (възходящ ред)</option>
+                    <option value="">@T.SortByText</option>
+                    <option value="@T.QuantityDescendingOrderText" selected="@(ViewData["SortBy"]?.ToString() == @T.QuantityDescendingOrderText)">@T.QuantityDescendingOrderText</option>
+                    <option value="@T.QuantityAscendingOrderText" selected="@(ViewData["SortBy"]?.ToString() == @T.QuantityAscendingOrderText)">@T.QuantityAscendingOrderText</option>
+                    <option value="@T.NameDescendingOrderText" selected="@(ViewData["SortBy"]?.ToString() == @T.NameDescendingOrderText)">@T.NameDescendingOrderText</option>
+                    <option value="@T.NameAscendingOrderText" selected="@(ViewData["SortBy"]?.ToString() == @T.NameAscendingOrderText)">@T.NameAscendingOrderText</option>
                 </select>
             </div>
 
@@ -101,7 +101,7 @@
         {
             <tr>
                 <td colspan="7">
-                    <span class="d-block w-100 text-center">НЯМА НАМЕРЕНИ КНИГИ</span>
+                    <span class="d-block w-100 text-center">@T.NotFoundBooks</span>
                 </td>
             </tr>
         }
@@ -119,13 +119,13 @@
 
                     <td>
                         <div class="d-flex gap-2">
-                            <a asp-action="Edit" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Промени"  class="btn btn-sm btn-icon text-primary" >
+                            <a asp-action="Edit" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="@T.ChangeBookText"  class="btn btn-sm btn-icon text-primary" >
                                 <i class="bi bi-pencil-square"></i>
                             </a>
-                            <a asp-action="Delete" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Изтрий" class="btn btn-sm btn-icon text-danger" >
+                            <a asp-action="Delete" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="@T.DeleteBookText" class="btn btn-sm btn-icon text-danger" >
                                 <i class="bi bi-trash"></i>
                             </a>
-                            <a asp-action="Details" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="Детайли" class="btn btn-sm btn-icon text-dark">
+                            <a asp-action="Details" asp-route-id="@book.BookId" asp-route-search="@ViewData["Search"]" asp-route-pageSize="@ViewData["PageSize"]" data-bs-toggle="tooltip" title="@T.DetailsBookText" class="btn btn-sm btn-icon text-dark">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </div>

@@ -1,4 +1,5 @@
-﻿using BookDepoSystem.Data.Models;
+﻿using BookDepoSystem.Common;
+using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Implementations;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -17,18 +18,18 @@ public class BookTests
         var newBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
         };
 
         await service.AddBook(newBook);
@@ -38,8 +39,8 @@ public class BookTests
         
         retrievedBook.Should().NotBeNull();
         retrievedBook.BookId.Should().Be(newBook.BookId);
-        retrievedBook.Title.Should().Be("Димитър Бербатов - По моя начин");
-        retrievedBook.Genre.Should().Be("Биография");
+        retrievedBook.Title.Should().Be(@T.BookTestTitle);
+        retrievedBook.Genre.Should().Be(@T.BiographyGenreText);
 
         await dbContext.DisposeAsync();
     }
@@ -53,18 +54,18 @@ public class BookTests
         var newBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
         };
 
         await service.AddBook(newBook);
@@ -90,25 +91,25 @@ public class BookTests
         var existingBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
         };
 
         await service.AddBook(existingBook);
         await dbContext.SaveChangesAsync();
 
         existingBook.Location = "E02-A2";
-        existingBook.CoverType = "Твърда";
+        existingBook.CoverType = @T.HardCoverTypeText;
         existingBook.Pages = 300;
         
         await service.UpdateBook(existingBook);
@@ -118,7 +119,7 @@ public class BookTests
 
         updatedBook.Should().NotBeNull();
         updatedBook.Location.Should().Be("E02-A2");
-        updatedBook.CoverType.Should().Be("Твърда");
+        updatedBook.CoverType.Should().Be(@T.HardCoverTypeText);
         updatedBook.Pages.Should().Be(300);
 
         await dbContext.DisposeAsync();
@@ -133,18 +134,18 @@ public class BookTests
         var existingBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
         };
 
         await service.AddBook(existingBook);

@@ -1,4 +1,5 @@
-﻿using BookDepoSystem.Data;
+﻿using BookDepoSystem.Common;
+using BookDepoSystem.Data;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Contracts;
 using FluentAssertions;
@@ -23,13 +24,11 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
     [Fact]
     public async Task GetMonthlyRents_WithMultipleRentsInMayAndJune_ShouldGroupCorrectly()
     {
-        // Arrange - Set up the test data
         using (var scope = factory.Services.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<EntityContext>();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             
-            // This is a better comment
             var adminUser = await userManager.FindByEmailAsync("admin@bookdeposystem.dev");
             adminUser.Should().NotBeNull("Admin user should exist in the database");
             adminId = adminUser!.Id;
@@ -42,36 +41,36 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             var firstBook = new Book()
             {
                 BookId = Guid.NewGuid(),
-                Title = "Изкуството да бъдеш спокоен",
-                Author = "Райън Холидей",
-                Genre = "Философия",
-                Information = "Спокойствието е ключ към по-щастлив и смислен живот ",
+                Title = @T.IntegTestBook1Title,
+                Author = @T.IntegTestBook1Author,
+                Genre = @T.PhilosophyGenreText,
+                Information = @T.IntegTestBook1Information,
                 Location = "F01-A1",
                 PublishedDate = new DateTime(2020, 1, 15),
                 QuantityAvailable = 10,
-                CoverType = "Твърда",
+                CoverType = @T.HardCoverTypeText,
                 Isbn = "9789542832485",
                 Sku = "111111111111",
                 Pages = 276,
-                AgeRange = "Възрастни",
+                AgeRange = @T.AdultAgeRangeText,
                 AdminId = adminId,
             };
             
             var secondBook = new Book()
             {
                 BookId = Guid.NewGuid(),
-                Title = "Истории от ръчния багаж",
-                Author = "Георги Милков",
-                Genre = "Самоусъвършенстване",
-                Information = "Само човек, който стои на педя от лицето на Кадафи",
+                Title = @T.IntegTestBook2Title,
+                Author = @T.IntegTestBook2Author,
+                Genre = @T.SelfImprovementGenreText,
+                Information = @T.IntegTestBook2Information,
                 Location = "F01-A2",
                 PublishedDate = new DateTime(2023, 5, 20),
                 QuantityAvailable = 15,
-                CoverType = "Мека",
+                CoverType = @T.SoftCoverTypeText,
                 Isbn = "9786191953493",
                 Sku = "222222222222",
                 Pages = 520,
-                AgeRange = "Възрастни",
+                AgeRange = @T.AdultAgeRangeText,
                 AdminId = adminId,
             };
             
@@ -81,7 +80,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             var firstRenter = new Renter()
             {
                 RenterId = Guid.NewGuid(),
-                Name = "Милен Нанков",
+                Name = @T.IntegTestRenter1Name,
                 Email = "milen.nankov@example.com",
                 PhoneNumber = "0878787878",
             };
@@ -89,7 +88,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
             var secondRenter = new Renter()
             {
                 RenterId = Guid.NewGuid(),
-                Name = "Самуил Иванов",
+                Name = @T.IntegTestRenter2Name,
                 Email = "samuil.ivanov@example.com",
                 PhoneNumber = "0898989898",
             };
@@ -103,7 +102,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
                 RentDate = new DateTime(2025, 5, 5),
                 DueDate = new DateTime(2025, 5, 20),
                 ReturnDate = DateTime.MinValue,
-                Status = "Потвърден",
+                Status = @T.ConfirmedRent,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 BookId = firstBook.BookId,
@@ -117,7 +116,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
                 RentDate = new DateTime(2025, 5, 15),
                 DueDate = new DateTime(2025, 5, 30),
                 ReturnDate = DateTime.MinValue,
-                Status = "Потвърден",
+                Status = @T.ConfirmedRent,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 BookId = secondBook.BookId,
@@ -131,7 +130,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
                 RentDate = new DateTime(2025, 6, 10),
                 DueDate = new DateTime(2025, 6, 25),
                 ReturnDate = DateTime.MinValue,
-                Status = "Потвърден",
+                Status = @T.ConfirmedRent,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 BookId = firstBook.BookId,
@@ -166,7 +165,7 @@ public class ReportIntegrationTests: IClassFixture<CustomWebApplicationFactory>
         
             var mayRents = monthlyRents.FirstOrDefault(g => g.Year == 2025 && g.Month == 5);
             mayRents.Should().NotBeNull();
-            mayRents.RentCount.Should().Be(2); // Two rents in May
+            mayRents.RentCount.Should().Be(2);
         
             var juneRents = monthlyRents.FirstOrDefault(g => g.Year == 2025 && g.Month == 6);
             juneRents.Should().NotBeNull();

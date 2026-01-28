@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Начало";
+    ViewData["Title"] = @T.StartText;
 }
 
 @section Scripts {
@@ -10,8 +10,10 @@
 
       var labels = monthlyRentData.map(item => {
         var monthNames = [
-          'Януари', 'Февруари', 'Март', 'Април', 'Май', 'Юни',
-          'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември'
+          '@Html.Raw(T.JanuaryText)', '@Html.Raw(T.FebruaryText)', '@Html.Raw(T.MarchText)',
+          '@Html.Raw(T.AprilText)', '@Html.Raw(T.MayText)', '@Html.Raw(T.JuneText)',
+          '@Html.Raw(T.JulyText)', '@Html.Raw(T.AugustText)', '@Html.Raw(T.SeptemberText)',
+          '@Html.Raw(T.OctoberText)', '@Html.Raw(T.NovemberText)', '@Html.Raw(T.DecemberText)'
         ];
         return monthNames[item.month - 1];
       });
@@ -23,7 +25,7 @@
         data: {
           labels: labels,
           datasets: [{
-            label: 'Брой наеми',
+            label: '@Html.Raw(T.NumberOfRentsByRenter)',
             data: data,
             backgroundColor: 'rgba(54, 162, 235, 0.6)',
             borderColor: 'rgba(54, 162, 235, 1)',
@@ -37,13 +39,13 @@
               beginAtZero: true,
               title: {
                 display: true,
-                text: 'Брой наеми'
+                label: '@Html.Raw(T.NumberOfRentsByRenter)',
               }
             },
             x: {
               title: {
                 display: true,
-                text: 'Месец'
+                text: '@Html.Raw(T.MonthText)'
               }
             }
           }
@@ -74,7 +76,7 @@
             </div>
             <div class="col col-stats ms-3 ms-sm-0">
               <div class="numbers">
-                <p class="card-category">Налични книги</p>
+                <p class="card-category">@T.AvailableBooks</p>
                 <h4 class="card-title">@ViewBag.AvailableBooksCount / @ViewBag.AllBooksCount</h4>
               </div>
             </div>
@@ -94,7 +96,7 @@
             </div>
             <div class="col col-stats ms-3 ms-sm-0">
               <div class="numbers">
-                <p class="card-category">Завършени наеми</p>
+                <p class="card-category">@T.CompletedRentsText</p>
                 <h4 class="card-title">@ViewBag.CompletedRents / @ViewBag.AllRentsCount</h4>
               </div>
             </div>
@@ -114,8 +116,8 @@
             </div>
             <div class="col col-stats ms-3 ms-sm-0">
               <div class="numbers">
-                <p class="card-category">Най-популярни книги</p>
-                <h4 class="card-title">Топ 3</h4>
+                <p class="card-category">@T.MostPopularBooksText</p>
+                <h4 class="card-title">@T.Top3Text</h4>
               </div>
             </div>
           </div>
@@ -145,8 +147,8 @@
             </div>
             <div class="col col-stats ms-3 ms-sm-0">
               <div class="numbers">
-                <p class="card-category">Най-активни наематели</p>
-                <h4 class="card-title">Топ 3</h4>
+                <p class="card-category">@T.TopRentersText</p>
+                <h4 class="card-title">@T.Top3Text</h4>
               </div>
             </div>
           </div>
@@ -171,7 +173,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-head-row">
-            <h4 class="card-title">Месечен брой наеми</h4>
+            <h4 class="card-title">@T.MonthlyCountRentsText</h4>
             <div class="card-tools">
               <form asp-action="ExportYearlyReportToPdf"
                     method="get"
@@ -192,7 +194,7 @@
 
                 <button type="submit"
                         class="btn btn-label-primary btn-round btn-md text-nowrap">
-                  Годишен отчет
+                  @T.AdvancedYearlyReportText
                 </button>
               </form>
             </div>
@@ -201,7 +203,15 @@
                 asp-action="ExportMonthlyRentsToPdf"
                 target="_blank"
                 class="btn btn-label-primary btn-round btn-md">
-                Месечен отчет
+                @T.MonthlyReportText
+              </a>
+            </div>
+            <div class="card-tools">
+              <a
+                asp-action="ExportFinancialReportPdf"
+                target="_blank"
+                class="btn btn-label-primary btn-round btn-md">
+                @T.FinancialReportText
               </a>
             </div>
           </div>

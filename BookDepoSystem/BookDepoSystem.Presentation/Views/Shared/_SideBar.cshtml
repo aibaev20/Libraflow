@@ -38,7 +38,7 @@
           <li class="nav-item @(controller == "Rent" && action == "MyAssignedRents" ? "active" : "")">
             <a asp-controller="Rent" asp-action="MyAssignedRents">
               <i class="fas fa-table"></i>
-              <p>Мои наеми</p>
+              <p>@T.AssignedRentsText</p>
             </a>
           </li>
         }
@@ -47,14 +47,14 @@
           <li class="nav-item @(controller == "Home" && action == "Index" ? "active" : "")">
             <a asp-controller="Home" asp-action="Index">
               <i class="fas fa-home"></i>
-              <p>Начало</p>
+              <p>@T.StartText</p>
             </a>
           </li>
           <li class="nav-section">
             <span class="sidebar-mini-icon">
               <i class="fa fa-ellipsis-h"></i>
             </span>
-            <h4 class="text-section">Компоненти</h4>
+            <h4 class="text-section">@T.SideBarComponentsText</h4>
           </li>
 
           <li class="nav-item @(controller == "Book" && action == "Books" ? "active" : "")">
@@ -74,7 +74,7 @@
           <li class="nav-item @(controller == "Rent" && action == "Rents" ? "active" : "")">
             <a asp-controller="Rent" asp-action="Rents">
               <i class="fas fa-table"></i>
-              <p>Наеми</p>
+              <p>@T.RentTableTitle</p>
             </a>
           </li>
         }

@@ -22,6 +22,58 @@
                 },
             });
         });
+
+        function calculatePenalty() {
+            const returnDateInput = document.getElementById('returnDateInput');
+            const dueDateStr = '@Model.DueDate.ToString("yyyy-MM-ddTHH:mm")';
+            const penaltyPerDay = 0.5;
+
+            // Parse the return date from dd-MM-yyyy HH:mm format
+            const returnDateValue = returnDateInput.value;
+
+            // Convert dd-MM-yyyy HH:mm to a format JavaScript can parse
+            const parts = returnDateValue.split(' ');
+            const dateParts = parts[0].split('-');
+            const timeParts = parts[1].split(':');
+
+            // Create date as: yyyy-MM-ddTHH:mm
+            const returnDate = new Date(
+                parseInt(dateParts[2]), // year
+                parseInt(dateParts[1]) - 1, // month (0-indexed)
+                parseInt(dateParts[0]), // day
+                parseInt(timeParts[0]), // hours
+                parseInt(timeParts[1]) // minutes
+            );
+
+            const dueDate = new Date(dueDateStr);
+
+            console.log('Return Date:', returnDate);
+            console.log('Due Date:', dueDate);
+
+            // Calculate difference in days
+            const diffTime = returnDate.getTime() - dueDate.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            console.log('Diff Time (ms):', diffTime);
+            console.log('Diff Days:', diffDays);
+
+            let penalty = 0;
+            if (diffDays > 0) {
+                penalty = diffDays * penaltyPerDay;
+            }
+
+            console.log('Penalty:', penalty);
+
+            // Update display
+            document.getElementById('penaltyDisplay').value = penalty.toFixed(2) + ' €.';
+            document.getElementById('penaltyValue').value = penalty.toFixed(2);
+        }
+
+        // Calculate on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a small delay to ensure TempusDominus has initialized
+            setTimeout(calculatePenalty, 100);
+        });
     </script>
 }
 
@@ -47,7 +99,10 @@
     <div class="form-group">
         <label asp-for="ReturnDate">@T.ReturnDateText</label>
         <div class="input-group" id="returnDatePicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
-            <input type="text" class="form-control" asp-for="ReturnDate" data-td-target="#returnDatePicker"/>
+            <input type="text" class="form-control" asp-for="ReturnDate"
+                   id="returnDateInput"
+                   data-td-target="#returnDatePicker"
+                   onchange="calculatePenalty()" />
             <span class="input-group-text" data-td-toggle="datetimepicker">
                 <i class="bi bi-calendar"></i>
             </span>
@@ -62,9 +117,14 @@
 
     <div class="form-group">
         <label>@T.DueDateText</label>
-        <input class="form-control" value="@Model.DueDate.ToString("dd-MM-yyyy HH:mm")" disabled />
+        <input class="form-control" id="dueDateValue" value="@Model.DueDate.ToString("dd-MM-yyyy HH:mm")" disabled />
     </div>
 
+    <div class="form-group">
+        <label>@T.RentPenaltyText</label>
+        <input class="form-control" id="penaltyDisplay" disabled />
+        <input type="hidden" asp-for="Penalty" id="penaltyValue" />
+    </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">@T.SaveText</button>
