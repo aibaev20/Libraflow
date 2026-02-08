@@ -21,6 +21,8 @@ public class Rent
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 
+    public float? Penalty { get; set; }
+
     [Required]
     public Guid? BookId { get; set; }
     [ForeignKey("BookId")]

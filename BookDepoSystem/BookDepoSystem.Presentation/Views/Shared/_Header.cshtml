@@ -44,7 +44,7 @@
             />
           
           <span class="profile-username">
-            <span class="op-7">Здравей,</span>
+            <span class="op-7">@T.HelloText,</span>
             <span class="fw-bold">@User.Identity?.Name</span>
           </span>
         </a>
@@ -64,7 +64,7 @@
             </li>
             <li>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Authentication">Смяна на парола</a>
+              <a class="dropdown-item" asp-action="ChangePassword" asp-controller="Authentication">@T.ResetPasswordTitle</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item">
                 <form asp-action="Logout" asp-controller="Authentication">

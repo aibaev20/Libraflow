@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using BookDepoSystem.Common;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Implementations;
 using FluentAssertions;
@@ -18,18 +19,18 @@ public class RentTests
         var newBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
             AdminId = Guid.NewGuid(),
         };
 
@@ -39,7 +40,7 @@ public class RentTests
         var newRenter = new Renter()
         {
             RenterId = Guid.NewGuid(),
-            Name = "Иван Иванов",
+            Name = @T.RentTestNewRenterName,
             Email = "ivan.ivanov@example.com",
             PhoneNumber = "0888888888",
         };
@@ -53,7 +54,7 @@ public class RentTests
             RentDate = new DateTime(2025, 3, 30),
             DueDate = new DateTime(2025, 3, 31),
             ReturnDate = DateTime.MinValue,
-            Status = "Потвърден",
+            Status = @T.ConfirmedRent,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             BookId = newBook.BookId,
@@ -68,7 +69,7 @@ public class RentTests
         
         retrievedRent.Should().NotBeNull();
         retrievedRent.BookId.Should().Be(newRent.BookId);
-        retrievedRent.Status.Should().Be("Потвърден");
+        retrievedRent.Status.Should().Be(@T.ConfirmedRent);
         retrievedRent.RentDate.Should().Be(new DateTime(2025, 3, 30));
         retrievedRent.DueDate.Should().Be(new DateTime(2025, 3, 31));
 
@@ -86,18 +87,18 @@ public class RentTests
         var newBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
             AdminId = Guid.NewGuid(),
         };
 
@@ -107,7 +108,7 @@ public class RentTests
         var newRenter = new Renter()
         {
             RenterId = Guid.NewGuid(),
-            Name = "Иван Иванов",
+            Name = @T.RentTestNewRenterName,
             Email = "ivan.ivanov@example.com",
             PhoneNumber = "0888888888",
         };
@@ -121,7 +122,7 @@ public class RentTests
             RentDate = new DateTime(2025, 3, 30),
             DueDate = new DateTime(2025, 3, 31),
             ReturnDate = DateTime.MinValue,
-            Status = "Потвърден",
+            Status = @T.ConfirmedRent,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             BookId = newBook.BookId,
@@ -137,7 +138,7 @@ public class RentTests
         
         createdRent.Should().NotBeNull();
         createdRent.BookId.Should().Be(newRent.BookId);
-        createdRent.Status.Should().Be("Потвърден");
+        createdRent.Status.Should().Be(@T.ConfirmedRent);
         createdRent.RentDate.Should().Be(new DateTime(2025, 3, 30));
         createdRent.DueDate.Should().Be(new DateTime(2025, 3, 31));
         createdRent.RenterId.Should().Be(newRenter.RenterId);
@@ -157,18 +158,18 @@ public class RentTests
         var newBook = new Book()
         {
             BookId = Guid.NewGuid(),
-            Title = "Димитър Бербатов - По моя начин",
-            Author = "Димитър Бербатов",
-            Genre = "Биография",
-            Information = "С предговор от Сър Алекс Фъргюсън",
+            Title = @T.BookTestTitle,
+            Author = @T.BookTestAuthor,
+            Genre = @T.BiographyGenreText,
+            Information = @T.BooKTestInformation,
             Location = "E01-A1",
             PublishedDate = new DateTime(2025, 3, 19),
             QuantityAvailable = 10,
-            CoverType = "Мека",
+            CoverType = @T.SoftCoverTypeText,
             Isbn = "1111111111111",
             Sku = "111111111111",
             Pages = 200,
-            AgeRange = "Възрастни",
+            AgeRange = @T.AdultAgeRangeText,
             AdminId = Guid.NewGuid(),
         };
 
@@ -178,7 +179,7 @@ public class RentTests
         var newRenter = new Renter()
         {
             RenterId = Guid.NewGuid(),
-            Name = "Иван Иванов",
+            Name = @T.RentTestNewRenterName,
             Email = "ivan.ivanov@example.com",
             PhoneNumber = "0888888888",
         };
@@ -192,7 +193,7 @@ public class RentTests
             RentDate = new DateTime(2025, 3, 30),
             DueDate = new DateTime(2025, 3, 31),
             ReturnDate = DateTime.MinValue,
-            Status = "Потвърден",
+            Status = @T.ConfirmedRent,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             BookId = newBook.BookId,
@@ -205,7 +206,7 @@ public class RentTests
         
         newRent.ReturnDate = new DateTime(2025, 4, 1);
 
-        await rentService.UpdateReturnDateAsync(newRent.RentId, newRent.ReturnDate);
+        await rentService.UpdateReturnDateAsync(newRent.RentId, newRent.ReturnDate, newRent.Penalty);
         await dbContext.SaveChangesAsync();
         
         var returnedRent = await rentService.GetRentById(newRent.RentId);
@@ -213,7 +214,7 @@ public class RentTests
         
         returnedRent.Should().NotBeNull();
         returnedRent.BookId.Should().Be(newRent.BookId);
-        returnedRent.Status.Should().Be("Завършен");
+        returnedRent.Status.Should().Be(@T.CompletedRent);
         returnedRent.RentDate.Should().Be(new DateTime(2025, 3, 30));
         returnedRent.DueDate.Should().Be(new DateTime(2025, 3, 31));
         returnedRent.ReturnDate.Should().Be(new DateTime(2025, 4, 1));

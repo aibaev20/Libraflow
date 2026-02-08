@@ -4,11 +4,11 @@
 @model RegisterViewModel
 @{
     Layout = "_AuthLayout";
-    ViewData["Title"] = "Регистрация";
+    ViewData["Title"] = @T.RegistrationText;
     var globalError = this.ViewContext.ModelState.GetFirstGlobalError();
 }
 
-<h3 class="card-title text-center">Регистрация</h3>
+<h3 class="card-title text-center">@T.RegistrationText</h3>
 
 @if (!string.IsNullOrWhiteSpace(globalError))
 {
@@ -37,14 +37,14 @@
     <div class="form-group">
         <input asp-for="Name"
                class="form-control"
-               placeholder="Потребителско име">
+               placeholder=@T.NamePlaceholderText>
         <span class="text-danger" asp-validation-for="Name"></span>
     </div>
     <!-- Phone number Input -->
     <div class="form-group">
         <input asp-for="PhoneNumber"
                class="form-control"
-               placeholder="Телефонен номер">
+               placeholder=@T.PhoneNumberPlaceholderText>
         <span class="text-danger" asp-validation-for="PhoneNumber"></span>
     </div>
     <!-- Password Input -->
@@ -60,15 +60,15 @@
         <input asp-for="ConfirmPassword"
                type="password"
                class="form-control"
-               placeholder="Потвърждаване на парола">
+               placeholder=@T.ConfirmPasswordPlaceholderText>
         <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
     </div>
     <!-- Submit Button -->
     <div class="form-group d-grid">
-        <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+        <button type="submit" class="btn btn-primary btn-block">@T.RegistrationText</button>
     </div>
     <!-- Forgot Password Link -->
     <div class="form-group text-center">
-        <a href="@Url.Action("Login")" class="text-decoration-none">Вход</a>
+        <a href="@Url.Action("Login")" class="text-decoration-none">@T.LoginButtonText</a>
     </div>
 </form>

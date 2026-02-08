@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Globalization;
+using BookDepoSystem.Common;
 using BookDepoSystem.Data;
 using BookDepoSystem.Presentation.Extensions;
 using BookDepoSystem.Presentation.Models;
@@ -73,7 +74,7 @@ public class HomeController : Controller
             .ToList();
 
         var completedRents = this.context.Rents
-            .Count(r => r.Status == "Завършен");
+            .Count(r => r.Status == @T.CompletedRent);
         var allRentsCount = this.context.Rents.Count();
 
         var monthlyRents = this.context.Rents
@@ -103,6 +104,28 @@ public class HomeController : Controller
     public async Task<IActionResult> ExportMonthlyRentsToPdf()
     {
         var pdfResult = await this.rentService.ExportMonthlyRentsPdfAsync();
+        this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
+        this.Response.Headers["Content-Type"] = "application/pdf";
+        return File(pdfResult.File!, "application/pdf");
+    }
+
+    [HttpGet("/ExportYearlyReportToPdf")]
+    [Authorize(DefaultPolicies.AdminPolicy)]
+    public async Task<IActionResult> ExportYearlyReportToPdf(int? year)
+    {
+        var selectedYear = year ?? DateTime.Now.Year;
+
+        var pdfResult = await this.rentService.ExportYearlyReportPdfAsync(selectedYear);
+        this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
+        this.Response.Headers["Content-Type"] = "application/pdf";
+        return File(pdfResult.File!, "application/pdf");
+    }
+
+    [HttpGet("/ExportFinancialReportToPdf")]
+    [Authorize(DefaultPolicies.AdminPolicy)]
+    public async Task<IActionResult> ExportFinancialReportPdfAsync()
+    {
+        var pdfResult = await this.rentService.ExportFinancialReportPdfAsync();
         this.Response.Headers["Content-Disposition"] = $"inline; filename={pdfResult.FileName}";
         this.Response.Headers["Content-Type"] = "application/pdf";
         return File(pdfResult.File!, "application/pdf");

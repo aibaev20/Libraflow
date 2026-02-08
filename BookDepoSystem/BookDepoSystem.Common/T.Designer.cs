@@ -60,7 +60,7 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Изглежда, че нямате права за достъп до страницата.
+        ///   Looks up a localized string similar to Нямате разрешение за достъп до искания ресурс..
         /// </summary>
         public static string AccessDeniedMessage {
             get {
@@ -69,11 +69,56 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Достъпът отказан.
+        ///   Looks up a localized string similar to Достъпът е отказан.
         /// </summary>
         public static string AccessDeniedTitle {
             get {
                 return ResourceManager.GetString("AccessDeniedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Активен.
+        /// </summary>
+        public static string ActiveRent {
+            get {
+                return ResourceManager.GetString("ActiveRent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възрастни.
+        /// </summary>
+        public static string AdultAgeRangeText {
+            get {
+                return ResourceManager.GetString("AdultAgeRangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подробен месечен отчет за наемите.
+        /// </summary>
+        public static string AdvancedMonthlyReportText {
+            get {
+                return ResourceManager.GetString("AdvancedMonthlyReportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Годишен отчет.
+        /// </summary>
+        public static string AdvancedYearlyReportText {
+            get {
+                return ResourceManager.GetString("AdvancedYearlyReportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Приключенски.
+        /// </summary>
+        public static string AdventureGenreText {
+            get {
+                return ResourceManager.GetString("AdventureGenreText", resourceCulture);
             }
         }
         
@@ -87,11 +132,92 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Александър Баев.
+        /// </summary>
+        public static string AlexanderBaevText {
+            get {
+                return ResourceManager.GetString("AlexanderBaevText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всички възрасти.
+        /// </summary>
+        public static string AllAgeRangesText {
+            get {
+                return ResourceManager.GetString("AllAgeRangesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всички жанрове.
+        /// </summary>
+        public static string AllGenresText {
+            get {
+                return ResourceManager.GetString("AllGenresText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всички статуси.
+        /// </summary>
+        public static string AllRentStatusesText {
+            get {
+                return ResourceManager.GetString("AllRentStatusesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Април.
+        /// </summary>
+        public static string AprilText {
+            get {
+                return ResourceManager.GetString("AprilText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мои наеми.
+        /// </summary>
+        public static string AssignedRentsText {
+            get {
+                return ResourceManager.GetString("AssignedRentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Задай дата на връщане.
+        /// </summary>
+        public static string AssignReturnDate {
+            get {
+                return ResourceManager.GetString("AssignReturnDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Август.
+        /// </summary>
+        public static string AugustText {
+            get {
+                return ResourceManager.GetString("AugustText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Авторът е задължително поле.
         /// </summary>
         public static string AuthorIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("AuthorIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Налични книги.
+        /// </summary>
+        public static string AvailableBooks {
+            get {
+                return ResourceManager.GetString("AvailableBooks", resourceCulture);
             }
         }
         
@@ -110,6 +236,24 @@ namespace BookDepoSystem.Common {
         public static string BackToIndex {
             get {
                 return ResourceManager.GetString("BackToIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Назад към моите наеми.
+        /// </summary>
+        public static string BackToMyAssignedRents {
+            get {
+                return ResourceManager.GetString("BackToMyAssignedRents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Биография.
+        /// </summary>
+        public static string BiographyGenreText {
+            get {
+                return ResourceManager.GetString("BiographyGenreText", resourceCulture);
             }
         }
         
@@ -222,6 +366,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ДД.ММ.ГГГГ.
+        /// </summary>
+        public static string BookPublishedDatePlaceholderText {
+            get {
+                return ResourceManager.GetString("BookPublishedDatePlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата на публикуване.
         /// </summary>
         public static string BookPublishedDateText {
@@ -258,6 +411,33 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Димитър Бербатов.
+        /// </summary>
+        public static string BookTestAuthor {
+            get {
+                return ResourceManager.GetString("BookTestAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to С предговор от Сър Алекс Фъргюсън.
+        /// </summary>
+        public static string BooKTestInformation {
+            get {
+                return ResourceManager.GetString("BooKTestInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Димитър Бербатов - По моя начин.
+        /// </summary>
+        public static string BookTestTitle {
+            get {
+                return ResourceManager.GetString("BookTestTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заглавието на книгата е задължително поле.
         /// </summary>
         public static string BookTitleIsRequiredErrorMessage {
@@ -285,6 +465,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Промени.
+        /// </summary>
+        public static string ChangeBookText {
+            get {
+                return ResourceManager.GetString("ChangeBookText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Настоящата парола е невярна.
         /// </summary>
         public static string ChangePasswordErrorMessage {
@@ -299,6 +488,51 @@ namespace BookDepoSystem.Common {
         public static string ChangePasswordSuccessMessage {
             get {
                 return ResourceManager.GetString("ChangePasswordSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Класически.
+        /// </summary>
+        public static string ClassicalGenreText {
+            get {
+                return ResourceManager.GetString("ClassicalGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Комикси.
+        /// </summary>
+        public static string ComicsGenreText {
+            get {
+                return ResourceManager.GetString("ComicsGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завършен.
+        /// </summary>
+        public static string CompletedRent {
+            get {
+                return ResourceManager.GetString("CompletedRent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завършени наеми.
+        /// </summary>
+        public static string CompletedRentsText {
+            get {
+                return ResourceManager.GetString("CompletedRentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърден.
+        /// </summary>
+        public static string ConfirmedRent {
+            get {
+                return ResourceManager.GetString("ConfirmedRent", resourceCulture);
             }
         }
         
@@ -375,6 +609,24 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декември.
+        /// </summary>
+        public static string DecemberText {
+            get {
+                return ResourceManager.GetString("DecemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтрий.
+        /// </summary>
+        public static string DeleteBookText {
+            get {
+                return ResourceManager.GetString("DeleteBookText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изтриване на книга.
         /// </summary>
         public static string DeleteBookTitle {
@@ -393,11 +645,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Детайли.
+        /// </summary>
+        public static string DetailsBookText {
+            get {
+                return ResourceManager.GetString("DetailsBookText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Детайли на книга.
         /// </summary>
         public static string DetailsBookTitle {
             get {
                 return ResourceManager.GetString("DetailsBookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Драма.
+        /// </summary>
+        public static string DramaGenreText {
+            get {
+                return ResourceManager.GetString("DramaGenreText", resourceCulture);
             }
         }
         
@@ -425,6 +695,15 @@ namespace BookDepoSystem.Common {
         public static string DueDateText {
             get {
                 return ResourceManager.GetString("DueDateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Антиутопия.
+        /// </summary>
+        public static string DystopiaGenreText {
+            get {
+                return ResourceManager.GetString("DystopiaGenreText", resourceCulture);
             }
         }
         
@@ -474,6 +753,51 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Епос.
+        /// </summary>
+        public static string EpicGenreText {
+            get {
+                return ResourceManager.GetString("EpicGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фентъзи.
+        /// </summary>
+        public static string FantasyGenreText {
+            get {
+                return ResourceManager.GetString("FantasyGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Февруари.
+        /// </summary>
+        public static string FebruaryText {
+            get {
+                return ResourceManager.GetString("FebruaryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Художествена литература.
+        /// </summary>
+        public static string FictionGenreText {
+            get {
+                return ResourceManager.GetString("FictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Финансов отчет.
+        /// </summary>
+        public static string FinancialReportText {
+            get {
+                return ResourceManager.GetString("FinancialReportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Забравена парола?.
         /// </summary>
         public static string ForgotPasswordLinkText {
@@ -510,11 +834,137 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Готическа фантастика.
+        /// </summary>
+        public static string GothicFictionGenreText {
+            get {
+                return ResourceManager.GetString("GothicFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Твърда.
+        /// </summary>
+        public static string HardCoverTypeText {
+            get {
+                return ResourceManager.GetString("HardCoverTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Здравей.
+        /// </summary>
+        public static string HelloText {
+            get {
+                return ResourceManager.GetString("HelloText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Историческа фантастика.
+        /// </summary>
+        public static string HistoricalFictionGenreText {
+            get {
+                return ResourceManager.GetString("HistoricalFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Исторически.
+        /// </summary>
+        public static string HistoricalGenreText {
+            get {
+                return ResourceManager.GetString("HistoricalGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Хорър.
+        /// </summary>
+        public static string HorrorGenreText {
+            get {
+                return ResourceManager.GetString("HorrorGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Информацията е задължително поле.
         /// </summary>
         public static string InformationIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("InformationIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Райън Холидей.
+        /// </summary>
+        public static string IntegTestBook1Author {
+            get {
+                return ResourceManager.GetString("IntegTestBook1Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Спокойствието е ключ към по-щастлив и смислен живот.
+        /// </summary>
+        public static string IntegTestBook1Information {
+            get {
+                return ResourceManager.GetString("IntegTestBook1Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изкуството да бъдеш спокоен.
+        /// </summary>
+        public static string IntegTestBook1Title {
+            get {
+                return ResourceManager.GetString("IntegTestBook1Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Георги Милков.
+        /// </summary>
+        public static string IntegTestBook2Author {
+            get {
+                return ResourceManager.GetString("IntegTestBook2Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Само човек, който стои на педя от лицето на Кадафи.
+        /// </summary>
+        public static string IntegTestBook2Information {
+            get {
+                return ResourceManager.GetString("IntegTestBook2Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Истории от ръчния багаж.
+        /// </summary>
+        public static string IntegTestBook2Title {
+            get {
+                return ResourceManager.GetString("IntegTestBook2Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Милен Нанков.
+        /// </summary>
+        public static string IntegTestRenter1Name {
+            get {
+                return ResourceManager.GetString("IntegTestRenter1Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Самуил Иванов.
+        /// </summary>
+        public static string IntegTestRenter2Name {
+            get {
+                return ResourceManager.GetString("IntegTestRenter2Name", resourceCulture);
             }
         }
         
@@ -542,6 +992,42 @@ namespace BookDepoSystem.Common {
         public static string IsbnIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("IsbnIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Януари.
+        /// </summary>
+        public static string JanuaryText {
+            get {
+                return ResourceManager.GetString("JanuaryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Юли.
+        /// </summary>
+        public static string JulyText {
+            get {
+                return ResourceManager.GetString("JulyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Юни.
+        /// </summary>
+        public static string JuneText {
+            get {
+                return ResourceManager.GetString("JuneText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Деца.
+        /// </summary>
+        public static string KidsAgeRangeText {
+            get {
+                return ResourceManager.GetString("KidsAgeRangeText", resourceCulture);
             }
         }
         
@@ -600,6 +1086,114 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to изработено от.
+        /// </summary>
+        public static string MadeByText {
+            get {
+                return ResourceManager.GetString("MadeByText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Магически реализъм.
+        /// </summary>
+        public static string MagicRealismGenreText {
+            get {
+                return ResourceManager.GetString("MagicRealismGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Март.
+        /// </summary>
+        public static string MarchText {
+            get {
+                return ResourceManager.GetString("MarchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Май.
+        /// </summary>
+        public static string MayText {
+            get {
+                return ResourceManager.GetString("MayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Месечен брой наеми.
+        /// </summary>
+        public static string MonthlyCountRentsText {
+            get {
+                return ResourceManager.GetString("MonthlyCountRentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Месечен отчет.
+        /// </summary>
+        public static string MonthlyReportText {
+            get {
+                return ResourceManager.GetString("MonthlyReportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Месец.
+        /// </summary>
+        public static string MonthText {
+            get {
+                return ResourceManager.GetString("MonthText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Най-популярни книги.
+        /// </summary>
+        public static string MostPopularBooksText {
+            get {
+                return ResourceManager.GetString("MostPopularBooksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мистерия.
+        /// </summary>
+        public static string MysteryGenreText {
+            get {
+                return ResourceManager.GetString("MysteryGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име (възходящ ред).
+        /// </summary>
+        public static string NameAscendingOrderText {
+            get {
+                return ResourceManager.GetString("NameAscendingOrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име (низходящ ред).
+        /// </summary>
+        public static string NameDescendingOrderText {
+            get {
+                return ResourceManager.GetString("NameDescendingOrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребителско име.
+        /// </summary>
+        public static string NamePlaceholderText {
+            get {
+                return ResourceManager.GetString("NamePlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нова парола.
         /// </summary>
         public static string NewPasswordPlaceholderText {
@@ -618,11 +1212,101 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Научна литература.
+        /// </summary>
+        public static string NonFictionGenreText {
+            get {
+                return ResourceManager.GetString("NonFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма налична корица.
+        /// </summary>
+        public static string NotFoundBookCover {
+            get {
+                return ResourceManager.GetString("NotFoundBookCover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to НЯМА НАМЕРЕНИ КНИГИ.
+        /// </summary>
+        public static string NotFoundBooks {
+            get {
+                return ResourceManager.GetString("NotFoundBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to НЯМА НАМЕРЕНИ НАЕМАТЕЛИ.
+        /// </summary>
+        public static string NotFoundRenters {
+            get {
+                return ResourceManager.GetString("NotFoundRenters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to НЯМА НАМЕРЕНИ НАЕМИ.
+        /// </summary>
+        public static string NotFoundRents {
+            get {
+                return ResourceManager.GetString("NotFoundRents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ноември.
+        /// </summary>
+        public static string NovemberText {
+            get {
+                return ResourceManager.GetString("NovemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой наеми.
+        /// </summary>
+        public static string NumberOfRentsByRenter {
+            get {
+                return ResourceManager.GetString("NumberOfRentsByRenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string NumberOfTopRentedBooks {
+            get {
+                return ResourceManager.GetString("NumberOfTopRentedBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Октомври.
+        /// </summary>
+        public static string OctoberText {
+            get {
+                return ResourceManager.GetString("OctoberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Операции.
         /// </summary>
         public static string OperationsText {
             get {
                 return ResourceManager.GetString("OperationsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Просрочен.
+        /// </summary>
+        public static string OverdueRent {
+            get {
+                return ResourceManager.GetString("OverdueRent", resourceCulture);
             }
         }
         
@@ -699,6 +1383,51 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Философска фантастика.
+        /// </summary>
+        public static string PhilosophicalFictionGenreText {
+            get {
+                return ResourceManager.GetString("PhilosophicalFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Философия.
+        /// </summary>
+        public static string PhilosophyGenreText {
+            get {
+                return ResourceManager.GetString("PhilosophyGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефонен номер.
+        /// </summary>
+        public static string PhoneNumberPlaceholderText {
+            get {
+                return ResourceManager.GetString("PhoneNumberPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поезия.
+        /// </summary>
+        public static string PoetryGenreText {
+            get {
+                return ResourceManager.GetString("PoetryGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Най-популярни жанрове.
+        /// </summary>
+        public static string PopularGenresText {
+            get {
+                return ResourceManager.GetString("PopularGenresText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Предишна.
         /// </summary>
         public static string PreviousPageText {
@@ -717,6 +1446,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество (възходящ ред).
+        /// </summary>
+        public static string QuantityAscendingOrderText {
+            get {
+                return ResourceManager.GetString("QuantityAscendingOrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Количеството трябва да е положително число.
         /// </summary>
         public static string QuantityAvailableIsRequiredErrorMessage {
@@ -726,11 +1464,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Количество (низходящ ред).
+        /// </summary>
+        public static string QuantityDescendingOrderText {
+            get {
+                return ResourceManager.GetString("QuantityDescendingOrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вашата регистрация беше успешна. Използвайте данните си за да влезете в системата..
         /// </summary>
         public static string RegisterSuccessMessage {
             get {
                 return ResourceManager.GetString("RegisterSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
+        /// </summary>
+        public static string RegistrationText {
+            get {
+                return ResourceManager.GetString("RegistrationText", resourceCulture);
             }
         }
         
@@ -852,11 +1608,29 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Глоба.
+        /// </summary>
+        public static string RentPenaltyText {
+            get {
+                return ResourceManager.GetString("RentPenaltyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Наемател.
         /// </summary>
         public static string RentRenterText {
             get {
                 return ResourceManager.GetString("RentRenterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наеми с глоби за година.
+        /// </summary>
+        public static string RentsPerYearWithPenaltiesText {
+            get {
+                return ResourceManager.GetString("RentsPerYearWithPenaltiesText", resourceCulture);
             }
         }
         
@@ -875,6 +1649,15 @@ namespace BookDepoSystem.Common {
         public static string RentTableTitle {
             get {
                 return ResourceManager.GetString("RentTableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Иван Иванов.
+        /// </summary>
+        public static string RentTestNewRenterName {
+            get {
+                return ResourceManager.GetString("RentTestNewRenterName", resourceCulture);
             }
         }
         
@@ -933,11 +1716,47 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Романтика.
+        /// </summary>
+        public static string RomanceGenreText {
+            get {
+                return ResourceManager.GetString("RomanceGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Запази.
         /// </summary>
         public static string SaveText {
             get {
                 return ResourceManager.GetString("SaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Научна фантастика.
+        /// </summary>
+        public static string ScienceFictionGenreText {
+            get {
+                return ResourceManager.GetString("ScienceFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изберете възраст.
+        /// </summary>
+        public static string SelectAgeRangeText {
+            get {
+                return ResourceManager.GetString("SelectAgeRangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изберете вид корица.
+        /// </summary>
+        public static string SelectCoverTypeText {
+            get {
+                return ResourceManager.GetString("SelectCoverTypeText", resourceCulture);
             }
         }
         
@@ -951,11 +1770,56 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изберете жанр.
+        /// </summary>
+        public static string SelectGenreText {
+            get {
+                return ResourceManager.GetString("SelectGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изберете статус.
+        /// </summary>
+        public static string SelectRentStatusText {
+            get {
+                return ResourceManager.GetString("SelectRentStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Самоусъвършенстване.
+        /// </summary>
+        public static string SelfImprovementGenreText {
+            get {
+                return ResourceManager.GetString("SelfImprovementGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпрати заявка за промяна на парола.
         /// </summary>
         public static string SendResetRequestButtonText {
             get {
                 return ResourceManager.GetString("SendResetRequestButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Септември.
+        /// </summary>
+        public static string SeptemberText {
+            get {
+                return ResourceManager.GetString("SeptemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Компоненти.
+        /// </summary>
+        public static string SideBarComponentsText {
+            get {
+                return ResourceManager.GetString("SideBarComponentsText", resourceCulture);
             }
         }
         
@@ -969,6 +1833,42 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Мека.
+        /// </summary>
+        public static string SoftCoverTypeText {
+            get {
+                return ResourceManager.GetString("SoftCoverTypeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сортиране по.
+        /// </summary>
+        public static string SortByText {
+            get {
+                return ResourceManager.GetString("SortByText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сортиране.
+        /// </summary>
+        public static string SortText {
+            get {
+                return ResourceManager.GetString("SortText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начало.
+        /// </summary>
+        public static string StartText {
+            get {
+                return ResourceManager.GetString("StartText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Статусът е задължително поле.
         /// </summary>
         public static string StatusIsRequiredErrorMessage {
@@ -978,11 +1878,74 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Тийнейджъри.
+        /// </summary>
+        public static string TeenAgeRangeText {
+            get {
+                return ResourceManager.GetString("TeenAgeRangeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Трилър.
+        /// </summary>
+        public static string ThrillerGenreText {
+            get {
+                return ResourceManager.GetString("ThrillerGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заглавието е задължително поле.
         /// </summary>
         public static string TitleIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("TitleIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Топ 3.
+        /// </summary>
+        public static string Top3Text {
+            get {
+                return ResourceManager.GetString("Top3Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Най-наемани книги по месеци.
+        /// </summary>
+        public static string TopRentedBooksByMonthText {
+            get {
+                return ResourceManager.GetString("TopRentedBooksByMonthText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Най-активни наематели.
+        /// </summary>
+        public static string TopRentersText {
+            get {
+                return ResourceManager.GetString("TopRentersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обща сума.
+        /// </summary>
+        public static string TotalSumRentsWithPenaltiesText {
+            get {
+                return ResourceManager.GetString("TotalSumRentsWithPenaltiesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невърната.
+        /// </summary>
+        public static string UnreturnedBookText {
+            get {
+                return ResourceManager.GetString("UnreturnedBookText", resourceCulture);
             }
         }
         

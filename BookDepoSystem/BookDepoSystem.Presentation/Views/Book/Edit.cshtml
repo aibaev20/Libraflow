@@ -41,30 +41,30 @@
                 <div class="form-group">
                     <label asp-for="Genre" class="control-label">@T.BookGenreText</label>
                     <select asp-for="Genre" class="form-control">
-                        <option value="">Избери жанр</option>
-                        <option value="Антиутопия">Антиутопия</option>
-                        <option value="Биография">Биография</option>
-                        <option value="Готическа фантастика">Готическа фантастика</option>
-                        <option value="Драма">Драма</option>
-                        <option value="Епос">Епос</option>
-                        <option value="Исторически">Исторически</option>
-                        <option value="Историческа фантастика">Историческа фантастика</option>
-                        <option value="Класически">Класически</option>
-                        <option value="Комикси">Комикси</option>
-                        <option value="Магически реализъм">Магически реализъм</option>
-                        <option value="Мистерия">Мистерия</option>
-                        <option value="Научна литература">Научна литература</option>
-                        <option value="Научна фантастика">Научна фантастика</option>
-                        <option value="Поезия">Поезия</option>
-                        <option value="Приключенски">Приключенски</option>
-                        <option value="Романтика">Романтика</option>
-                        <option value="Самоусъвършенстване">Самоусъвършенстване</option>
-                        <option value="Трилър">Трилър</option>
-                        <option value="Философия">Философия</option>
-                        <option value="Философска фантастика">Философска фантастика</option>
-                        <option value="Фентъзи">Фентъзи</option>
-                        <option value="Хорър">Хорър</option>
-                        <option value="Художествена литература">Художествена литература</option>
+                        <option value="">@T.SelectGenreText</option>
+                        <option value="@T.DystopiaGenreText">@T.DystopiaGenreText</option>
+                        <option value="@T.BiographyGenreText">@T.BiographyGenreText</option>
+                        <option value="@T.GothicFictionGenreText">@T.GothicFictionGenreText</option>
+                        <option value="@T.DramaGenreText">@T.DramaGenreText</option>
+                        <option value="@T.EpicGenreText">@T.EpicGenreText</option>
+                        <option value="@T.HistoricalGenreText">@T.HistoricalGenreText</option>
+                        <option value="@T.HistoricalFictionGenreText">@T.HistoricalFictionGenreText</option>
+                        <option value="@T.ClassicalGenreText">@T.ClassicalGenreText</option>
+                        <option value="@T.ComicsGenreText">@T.ComicsGenreText</option>
+                        <option value="@T.MagicRealismGenreText">@T.MagicRealismGenreText</option>
+                        <option value="@T.MysteryGenreText">@T.MysteryGenreText</option>
+                        <option value="@T.NonFictionGenreText">@T.NonFictionGenreText</option>
+                        <option value="@T.ScienceFictionGenreText">@T.ScienceFictionGenreText</option>
+                        <option value="@T.PoetryGenreText">@T.PoetryGenreText</option>
+                        <option value="@T.AdventureGenreText">@T.AdventureGenreText</option>
+                        <option value="@T.RomanceGenreText">@T.RomanceGenreText</option>
+                        <option value="@T.SelfImprovementGenreText">@T.SelfImprovementGenreText</option>
+                        <option value="@T.ThrillerGenreText">@T.ThrillerGenreText</option>
+                        <option value="@T.PhilosophyGenreText">@T.PhilosophyGenreText</option>
+                        <option value="@T.PhilosophicalFictionGenreText">@T.PhilosophicalFictionGenreText</option>
+                        <option value="@T.FantasyGenreText">@T.FantasyGenreText</option>
+                        <option value="@T.HorrorGenreText">@T.HorrorGenreText</option>
+                        <option value="@T.FictionGenreText">@T.FictionGenreText</option>
                     </select>
                     <span asp-validation-for="Genre" class="text-danger"></span>
                 </div>
@@ -85,7 +85,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="PublishedDate" class="control-label">@T.BookPublishedDateText</label>
-                    <input asp-for="PublishedDate" type="date" class="form-control" placeholder="ДД.ММ.ГГГГ" />
+                    <input asp-for="PublishedDate" type="date" class="form-control" placeholder="@T.BookPublishedDatePlaceholderText" />
                     <span asp-validation-for="PublishedDate" class="text-danger"></span>
                 </div>
 
@@ -116,10 +116,10 @@
                 <div class="form-group">
                     <label asp-for="AgeRange" class="control-label">@T.BookAgeRangeText</label>
                     <select asp-for="AgeRange" class="form-control">
-                        <option value="">Избери възрастов диапазон</option>
-                        <option value="Деца">Деца</option>
-                        <option value="Тийнейджъри">Тийнейджъри</option>
-                        <option value="Възрастни">Възрастни</option>
+                        <option value="">@T.SelectAgeRangeText</option>
+                        <option value="@T.KidsAgeRangeText">@T.KidsAgeRangeText</option>
+                        <option value="@T.TeenAgeRangeText">@T.TeenAgeRangeText</option>
+                        <option value="@T.AdultAgeRangeText">@T.AdultAgeRangeText</option>
                     </select>
                     <span asp-validation-for="AgeRange" class="text-danger"></span>
                 </div>
@@ -127,9 +127,9 @@
                 <div class="form-group">
                     <label asp-for="CoverType" class="control-label">@T.BookCoverTypeText</label>
                     <select asp-for="CoverType" class="form-control">
-                        <option value="">Избери вид корица</option>
-                        <option value="Твърда">Твърда</option>
-                        <option value="Мека">Мека</option>
+                        <option value="">@T.SelectCoverTypeText</option>
+                        <option value="@T.HardCoverTypeText">@T.HardCoverTypeText</option>
+                        <option value="@T.SoftCoverTypeText">@T.SoftCoverTypeText</option>
                     </select>
                     <span asp-validation-for="CoverType" class="text-danger"></span>
                 </div>
