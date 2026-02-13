@@ -12,4 +12,6 @@ public interface IBookService
     public Task<bool> UpdateBook(Book updatedBook);
 
     public Task<(List<Book> Books, int TotalCount)> GetBooksPaginated(string genre, string ageRange, string sortBy, string search, int pageIndex, int pageSize);
+
+    public Task<List<Book>> GetAllBooks(string genre, string ageRange, string search);
 }

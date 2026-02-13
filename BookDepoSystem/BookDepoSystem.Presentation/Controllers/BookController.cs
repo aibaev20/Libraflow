@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using BookDepoSystem.Common;
 using BookDepoSystem.Data;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Presentation.Models;
@@ -15,15 +16,18 @@ namespace BookDepoSystem.Presentation.Controllers;
 public class BookController : Controller
 {
     private readonly IBookService bookService;
+    private readonly IWishlistService wishlistService;
     private readonly UserManager<ApplicationUser> userManager;
     private readonly IWebHostEnvironment webHostEnvironment;
 
     public BookController(
         IBookService bookService,
+        IWishlistService wishlistService,
         UserManager<ApplicationUser> userManager,
         IWebHostEnvironment webHostEnvironment)
     {
         this.bookService = bookService;
+        this.wishlistService = wishlistService;
         this.userManager = userManager;
         this.webHostEnvironment = webHostEnvironment;
     }
@@ -61,6 +65,22 @@ public class BookController : Controller
         this.ViewData["PageSize"] = pageSize;
 
         return this.View(viewModel);
+    }
+
+    [HttpGet("/catalog")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.UserPolicy)]
+    public async Task<IActionResult> BookCatalog(string genre = "", string ageRange = "", string search = "")
+    {
+        var books = await this.bookService.GetAllBooks(genre, ageRange, search);
+        var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
+
+        this.ViewData["CurrentRenterId"] = renterId;
+        this.ViewData["Genre"] = genre;
+        this.ViewData["AgeRange"] = ageRange;
+        this.ViewData["Search"] = search;
+
+        return this.View(books);
     }
 
     [HttpGet("/books/create")]
@@ -297,5 +317,44 @@ public class BookController : Controller
         };
 
         return this.View(model);
+    }
+
+    [HttpPost("/catalog/add-to-wishlist")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.UserPolicy)]
+    public async Task<IActionResult> AddToWishlist(Guid id)
+    {
+        var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
+        var result = await this.wishlistService.AddToWishlist(renterId, id);
+
+        this.TempData["AddSuccessMessage"] = @T.AddToWishlistSuccessMessage;
+
+        return this.RedirectToAction(nameof(this.BookCatalog));
+    }
+
+    [HttpPost("/catalog/remove-from-wishlist")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.UserPolicy)]
+    public async Task<IActionResult> RemoveFromWishlist(Guid id)
+    {
+        var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
+        var result = await this.wishlistService.RemoveFromWishlist(renterId, id);
+
+        this.TempData["RemoveSuccessMessage"] = @T.RemovedFromWishlistSuccessMessage;
+
+        return this.RedirectToAction(nameof(this.BookCatalog));
+    }
+
+    [HttpGet("/wishlist")]
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize(DefaultPolicies.UserPolicy)]
+    public async Task<IActionResult> Wishlist()
+    {
+        var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
+        var books = await this.wishlistService.GetUserWishlist(renterId);
+        var wishlistCount = await this.wishlistService.GetWishlistCount(renterId);
+
+        ViewData["WishlistCount"] = wishlistCount;
+        return this.View(books);
     }
 }

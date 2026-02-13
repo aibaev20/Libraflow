@@ -1,0 +1,134 @@
+@using BookDepoSystem.Data
+@using Microsoft.AspNetCore.Identity
+@model List<BookDepoSystem.Data.Models.Book>
+@inject BookDepoSystem.Services.Contracts.IWishlistService wishlistService
+@{
+    ViewData["Title"] = @T.BookCatalogTitle;
+    var renterId = Guid.Parse(ViewData["CurrentRenterId"]?.ToString() ?? Guid.Empty.ToString());
+}
+
+@if (TempData["AddSuccessMessage"] != null)
+{
+    <div class="success-alert" role="alert">
+        @TempData["AddSuccessMessage"]
+    </div>
+}
+
+@if (TempData["RemoveSuccessMessage"] != null)
+{
+    <div class="danger-alert" role="alert">
+        @TempData["RemoveSuccessMessage"]
+    </div>
+}
+
+<h2 class="m-3">@T.BookCatalogTitle</h2>
+
+<div class="d-flex justify-content-around align-items-end m-3">
+
+    <form method="get" class="w-100">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label for="genre" class="form-label">@T.SelectGenreText</label>
+                <select name="genre" id="genre" class="form-select">
+                    <option value="">@T.AllGenresText</option>
+                    <option value="@T.DystopiaGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.DystopiaGenreText)">@T.DystopiaGenreText</option>
+                    <option value="@T.BiographyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.BiographyGenreText)">@T.BiographyGenreText</option>
+                    <option value="@T.GothicFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.GothicFictionGenreText)">@T.GothicFictionGenreText</option>
+                    <option value="@T.DramaGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.DramaGenreText)">@T.DramaGenreText</option>
+                    <option value="@T.EpicGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.EpicGenreText)">@T.EpicGenreText</option>
+                    <option value="@T.HistoricalGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HistoricalGenreText)">@T.HistoricalGenreText</option>
+                    <option value="@T.HistoricalFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HistoricalFictionGenreText)">@T.HistoricalFictionGenreText</option>
+                    <option value="@T.ClassicalGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ClassicalGenreText)">@T.ClassicalGenreText</option>
+                    <option value="@T.ComicsGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ComicsGenreText)">@T.ComicsGenreText</option>
+                    <option value="@T.MagicRealismGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.MagicRealismGenreText)">@T.MagicRealismGenreText</option>
+                    <option value="@T.MysteryGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.MysteryGenreText)">@T.MysteryGenreText</option>
+                    <option value="@T.NonFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.NonFictionGenreText)">@T.NonFictionGenreText</option>
+                    <option value="@T.ScienceFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ScienceFictionGenreText)">@T.ScienceFictionGenreText</option>
+                    <option value="@T.PoetryGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PoetryGenreText)">@T.PoetryGenreText</option>
+                    <option value="@T.AdventureGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.AdventureGenreText)">@T.AdventureGenreText</option>
+                    <option value="@T.RomanceGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.RomanceGenreText)">@T.RomanceGenreText</option>
+                    <option value="@T.SelfImprovementGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.SelfImprovementGenreText)">@T.SelfImprovementGenreText</option>
+                    <option value="@T.ThrillerGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.ThrillerGenreText)">@T.ThrillerGenreText</option>
+                    <option value="@T.PhilosophyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PhilosophyGenreText)">@T.PhilosophyGenreText</option>
+                    <option value="@T.PhilosophicalFictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.PhilosophicalFictionGenreText)">@T.PhilosophicalFictionGenreText</option>
+                    <option value="@T.FantasyGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.FantasyGenreText)">@T.FantasyGenreText</option>
+                    <option value="@T.HorrorGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.HorrorGenreText)">@T.HorrorGenreText</option>
+                    <option value="@T.FictionGenreText" selected="@(ViewData["Genre"]?.ToString() == @T.FictionGenreText)">@T.FictionGenreText</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label for="ageRange" class="form-label">@T.SelectAgeRangeText</label>
+                <select name="ageRange" id="ageRange" class="form-select" value="@ViewData["AgeRange"]">
+                    <option value="">@T.AllGenresText</option>
+                    <option value="@T.KidsAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.KidsAgeRangeText)">@T.KidsAgeRangeText</option>
+                    <option value="@T.TeenAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.TeenAgeRangeText)">@T.TeenAgeRangeText</option>
+                    <option value="@T.AdultAgeRangeText" selected="@(ViewData["AgeRange"]?.ToString() == @T.AdultAgeRangeText)">@T.AdultAgeRangeText</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 d-flex align-items-end gap-2">
+                <input type="text" name="search" class="form-control" placeholder="..." value="@ViewData["Search"]"/>
+                <input type="hidden" name="pageSize" value="@ViewData["PageSize"]"/>
+                <button type="submit" class="btn btn-primary ms-2">
+                    <i class="bi bi-search"></i>
+                </button>
+                <a asp-action="BookCatalog" class="btn btn-secondary ms-2">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="container-fluid mb-3 ms-1">
+    @if (!Model.Any())
+    {
+        <div class="info-alert" role="alert">
+            <span class="fw-bold">@T.NotFoundBooks</span>
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+            @foreach (var book in Model)
+            {
+                var isInWishlist = await wishlistService.IsBookInWishlist(renterId, book.BookId);
+                
+                <div class="col-sm-4 col-md-3">
+                    <div class="custom-card">
+                        <div class="card-body d-flex flex-column justify-content-between p-2 p-sm-3">
+                            <div>
+                                <p class="card-title fw-semibold mb-1 lh-sm" style="font-size: 1rem; min-height: 1rem;">
+                                    @book.Title
+                                </p>
+                                <p class="card-text text-muted small mb-2">
+                                    @book.Author
+                                </p>
+                            </div>
+                            <div class="mt-2 text-end">
+                                @if (!isInWishlist)
+                                {
+                                    <form asp-action="AddToWishlist" asp-route-id="@book.BookId" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm px-2 py-1" title=@T.AddToWishlistText>
+                                            <i class="bi bi-heart fs-6"></i>
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="RemoveFromWishlist" asp-route-id="@book.BookId" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-danger btn-sm px-2 py-1" title=@T.RemoveFromWishlistText>
+                                            <i class="bi bi-heart-fill fs-6"></i>
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

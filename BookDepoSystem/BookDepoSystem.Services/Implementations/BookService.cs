@@ -103,4 +103,31 @@ public class BookService : IBookService
 
         return (books, totalCount);
     }
+
+    public async Task<List<Book>> GetAllBooks(string genre, string ageRange, string search)
+    {
+        var query = this.context.Books.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(b => b.Title!.Contains(search) ||
+                                     b.Author!.Contains(search) ||
+                                     b.Genre!.Contains(search) ||
+                                     b.Location!.Contains(search));
+        }
+
+        if (!string.IsNullOrEmpty(genre))
+        {
+            query = query.Where(b => b.Genre == genre);
+        }
+
+        if (!string.IsNullOrEmpty(ageRange))
+        {
+            query = query.Where(b => b.AgeRange == ageRange);
+        }
+
+        query = query.OrderBy(b => b.Title);
+
+        return await query.ToListAsync();
+    }
 }
