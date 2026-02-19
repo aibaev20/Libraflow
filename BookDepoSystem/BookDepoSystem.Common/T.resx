@@ -462,9 +462,6 @@
     <data name="SelectAgeRangeText" xml:space="preserve">
         <value>Изберете възраст</value>
     </data>
-    <data name="AllAgeRangesText" xml:space="preserve">
-        <value>Всички възрасти</value>
-    </data>
     <data name="KidsAgeRangeText" xml:space="preserve">
         <value>Деца</value>
     </data>
@@ -686,5 +683,8 @@
     </data>
     <data name="MultipleQuantityText" xml:space="preserve">
         <value>броя</value>
+    </data>
+    <data name="BookNotExist" xml:space="preserve">
+        <value>Книгата не съществува.</value>
     </data>
 </root>

@@ -159,15 +159,6 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Всички възрасти.
-        /// </summary>
-        public static string AllAgeRangesText {
-            get {
-                return ResourceManager.GetString("AllAgeRangesText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Всички жанрове.
         /// </summary>
         public static string AllGenresText {
@@ -380,6 +371,15 @@ namespace BookDepoSystem.Common {
         public static string BookNewCoverImageText {
             get {
                 return ResourceManager.GetString("BookNewCoverImageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книгата не съществува..
+        /// </summary>
+        public static string BookNotExist {
+            get {
+                return ResourceManager.GetString("BookNotExist", resourceCulture);
             }
         }
         

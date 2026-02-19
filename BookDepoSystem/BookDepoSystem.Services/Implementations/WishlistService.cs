@@ -1,4 +1,5 @@
-﻿using BookDepoSystem.Data;
+﻿using BookDepoSystem.Common;
+using BookDepoSystem.Data;
 using BookDepoSystem.Data.Models;
 using BookDepoSystem.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -14,56 +15,28 @@ public class WishlistService : IWishlistService
         this.context = context;
     }
 
-    public async Task<bool> AddToWishlist(Guid renterId, Guid bookId)
+    public async Task AddToWishlist(Guid renterId, Guid bookId)
     {
-        Console.WriteLine($"DEBUG: AddToWishlist called with renterId={renterId}, bookId={bookId}");
+        await EnsureBookExists(bookId);
 
-        // Check if book exists
-        var bookExists = await this.context.Books.AnyAsync(b => b.BookId == bookId);
-        Console.WriteLine($"DEBUG: Book exists = {bookExists}");
-
-        if (!bookExists)
+        if (await IsAlreadyInWishlist(renterId, bookId))
         {
-            return false;
+            return;
         }
 
-        // Check if already in wishlist
-        var alreadyExists = await this.context.Wishlist
-            .AnyAsync(w => w.RenterId == renterId && w.BookId == bookId);
-
-        Console.WriteLine($"DEBUG: Already in wishlist = {alreadyExists}");
-        if (alreadyExists)
-        {
-            return true;
-        }
-
-        var wishlistItem = new Wishlist
-        {
-            WishlistId = Guid.NewGuid(),
-            RenterId = renterId,
-            BookId = bookId,
-            AddedOn = DateTime.UtcNow,
-        };
-
-        await this.context.Wishlist.AddAsync(wishlistItem);
-        var saveResult = await this.context.SaveChangesAsync();
-        Console.WriteLine($"DEBUG: Save changes result = {saveResult}");
-        return true;
+        await CreateWishlistItem(renterId, bookId);
     }
 
-    public async Task<bool> RemoveFromWishlist(Guid renterId, Guid bookId)
+    public async Task RemoveFromWishlist(Guid renterId, Guid bookId)
     {
-        var wishlistItem = await this.context.Wishlist
-            .FirstOrDefaultAsync(w => w.RenterId == renterId && w.BookId == bookId);
+        var wishlistItem = await GetWishlistItem(renterId, bookId);
 
         if (wishlistItem == null)
         {
-            return false;
+            return;
         }
 
-        this.context.Wishlist.Remove(wishlistItem);
-        await this.context.SaveChangesAsync();
-        return true;
+        await DeleteWishlistItem(wishlistItem);
     }
 
     public async Task<bool> IsBookInWishlist(Guid renterId, Guid bookId)
@@ -87,5 +60,48 @@ public class WishlistService : IWishlistService
         return await this.context.Wishlist
             .Where(w => w.RenterId == renterId)
             .CountAsync();
+    }
+
+    private async Task EnsureBookExists(Guid bookId)
+    {
+        var exists = await this.context.Books
+            .AnyAsync(b => b.BookId == bookId);
+
+        if (!exists)
+        {
+            throw new ArgumentException(@T.BookNotExist);
+        }
+    }
+
+    private async Task<bool> IsAlreadyInWishlist(Guid renterId, Guid bookId)
+    {
+        return await this.context.Wishlist
+            .AnyAsync(w => w.RenterId == renterId && w.BookId == bookId);
+    }
+
+    private async Task CreateWishlistItem(Guid renterId, Guid bookId)
+    {
+        var wishlistItem = new Wishlist
+        {
+            WishlistId = Guid.NewGuid(),
+            RenterId = renterId,
+            BookId = bookId,
+            AddedOn = DateTime.UtcNow,
+        };
+
+        await this.context.Wishlist.AddAsync(wishlistItem);
+        await this.context.SaveChangesAsync();
+    }
+
+    private async Task<Wishlist?> GetWishlistItem(Guid renterId, Guid bookId)
+    {
+        return await this.context.Wishlist
+            .FirstOrDefaultAsync(w => w.RenterId == renterId && w.BookId == bookId);
+    }
+
+    private async Task DeleteWishlistItem(Wishlist wishlistItem)
+    {
+        this.context.Wishlist.Remove(wishlistItem);
+        await this.context.SaveChangesAsync();
     }
 }

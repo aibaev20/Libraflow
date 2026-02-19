@@ -325,7 +325,7 @@ public class BookController : Controller
     public async Task<IActionResult> AddToWishlist(Guid id)
     {
         var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
-        var result = await this.wishlistService.AddToWishlist(renterId, id);
+        await this.wishlistService.AddToWishlist(renterId, id);
 
         this.TempData["AddSuccessMessage"] = @T.AddToWishlistSuccessMessage;
 
@@ -338,7 +338,7 @@ public class BookController : Controller
     public async Task<IActionResult> RemoveFromWishlist(Guid id)
     {
         var renterId = Guid.Parse(this.userManager.GetUserId(this.User)!);
-        var result = await this.wishlistService.RemoveFromWishlist(renterId, id);
+        await this.wishlistService.RemoveFromWishlist(renterId, id);
 
         this.TempData["RemoveSuccessMessage"] = @T.RemovedFromWishlistSuccessMessage;
 
