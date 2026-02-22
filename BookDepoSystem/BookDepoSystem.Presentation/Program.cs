@@ -41,6 +41,7 @@ builder.Services.AddData(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
 
 builder.Services.AddScoped<IRentService, RentService>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
 builder.Services.AddHostedService<RentStatusBackgroundService>();
 
 builder.Services.AddMvc();

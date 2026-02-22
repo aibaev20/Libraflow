@@ -462,9 +462,6 @@
     <data name="SelectAgeRangeText" xml:space="preserve">
         <value>Изберете възраст</value>
     </data>
-    <data name="AllAgeRangesText" xml:space="preserve">
-        <value>Всички възрасти</value>
-    </data>
     <data name="KidsAgeRangeText" xml:space="preserve">
         <value>Деца</value>
     </data>
@@ -656,5 +653,38 @@
     </data>
     <data name="RentTestNewRenterName" xml:space="preserve">
         <value>Иван Иванов</value>
+    </data>
+    <data name="AddToWishlistSuccessMessage" xml:space="preserve">
+        <value>Книгата е добавена към списъка с желания.</value>
+    </data>
+    <data name="RemovedFromWishlistSuccessMessage" xml:space="preserve">
+        <value>Книгата е премахната от списъка с желания.</value>
+    </data>
+    <data name="BookCatalogTitle" xml:space="preserve">
+        <value>Каталог</value>
+    </data>
+    <data name="AddToWishlistText" xml:space="preserve">
+        <value>Добави</value>
+    </data>
+    <data name="RemoveFromWishlistText" xml:space="preserve">
+        <value>Премахни</value>
+    </data>
+    <data name="EmptyWishlistText" xml:space="preserve">
+        <value>Вашият списък с желания е празен.</value>
+    </data>
+    <data name="BrowseAndAddToWishlistText" xml:space="preserve">
+        <value>Разгледайте книгите и ги добавете към списъка си с желания!</value>
+    </data>
+    <data name="BookWishlistTitle" xml:space="preserve">
+        <value>Списък с желания</value>
+    </data>
+    <data name="SingleQuantityText" xml:space="preserve">
+        <value>брой</value>
+    </data>
+    <data name="MultipleQuantityText" xml:space="preserve">
+        <value>броя</value>
+    </data>
+    <data name="BookNotExist" xml:space="preserve">
+        <value>Книгата не съществува.</value>
     </data>
 </root>

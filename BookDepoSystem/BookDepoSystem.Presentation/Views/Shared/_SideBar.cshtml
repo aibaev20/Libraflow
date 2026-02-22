@@ -41,6 +41,18 @@
               <p>@T.AssignedRentsText</p>
             </a>
           </li>
+          <li class="nav-item @(controller == "Book" && action == "BookCatalog" ? "active" : "")">
+            <a asp-controller="Book" asp-action="BookCatalog">
+              <i class="fas fa-table"></i>
+              <p>@T.BookCatalogTitle</p>
+            </a>
+          </li>
+          <li class="nav-item @(controller == "Book" && action == "Wishlist" ? "active" : "")">
+            <a asp-controller="Book" asp-action="Wishlist">
+              <i class="fas fa-table"></i>
+              <p>@T.BookWishlistTitle</p>
+            </a>
+          </li>
         }
         else
         {

@@ -87,6 +87,24 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Книгата е добавена към списъка с желания..
+        /// </summary>
+        public static string AddToWishlistSuccessMessage {
+            get {
+                return ResourceManager.GetString("AddToWishlistSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добави.
+        /// </summary>
+        public static string AddToWishlistText {
+            get {
+                return ResourceManager.GetString("AddToWishlistText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Възрастни.
         /// </summary>
         public static string AdultAgeRangeText {
@@ -137,15 +155,6 @@ namespace BookDepoSystem.Common {
         public static string AlexanderBaevText {
             get {
                 return ResourceManager.GetString("AlexanderBaevText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Всички възрасти.
-        /// </summary>
-        public static string AllAgeRangesText {
-            get {
-                return ResourceManager.GetString("AllAgeRangesText", resourceCulture);
             }
         }
         
@@ -276,6 +285,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Каталог.
+        /// </summary>
+        public static string BookCatalogTitle {
+            get {
+                return ResourceManager.GetString("BookCatalogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Корица.
         /// </summary>
         public static string BookCoverImageText {
@@ -353,6 +371,15 @@ namespace BookDepoSystem.Common {
         public static string BookNewCoverImageText {
             get {
                 return ResourceManager.GetString("BookNewCoverImageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Книгата не съществува..
+        /// </summary>
+        public static string BookNotExist {
+            get {
+                return ResourceManager.GetString("BookNotExist", resourceCulture);
             }
         }
         
@@ -452,6 +479,24 @@ namespace BookDepoSystem.Common {
         public static string BookTitleText {
             get {
                 return ResourceManager.GetString("BookTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Списък с желания.
+        /// </summary>
+        public static string BookWishlistTitle {
+            get {
+                return ResourceManager.GetString("BookWishlistTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Разгледайте книгите и ги добавете към списъка си с желания!.
+        /// </summary>
+        public static string BrowseAndAddToWishlistText {
+            get {
+                return ResourceManager.GetString("BrowseAndAddToWishlistText", resourceCulture);
             }
         }
         
@@ -749,6 +794,15 @@ namespace BookDepoSystem.Common {
         public static string EmailPlaceholderText {
             get {
                 return ResourceManager.GetString("EmailPlaceholderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашият списък с желания е празен..
+        /// </summary>
+        public static string EmptyWishlistText {
+            get {
+                return ResourceManager.GetString("EmptyWishlistText", resourceCulture);
             }
         }
         
@@ -1158,6 +1212,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to броя.
+        /// </summary>
+        public static string MultipleQuantityText {
+            get {
+                return ResourceManager.GetString("MultipleQuantityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Мистерия.
         /// </summary>
         public static string MysteryGenreText {
@@ -1500,6 +1563,24 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Книгата е премахната от списъка с желания..
+        /// </summary>
+        public static string RemovedFromWishlistSuccessMessage {
+            get {
+                return ResourceManager.GetString("RemovedFromWishlistSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Премахни.
+        /// </summary>
+        public static string RemoveFromWishlistText {
+            get {
+                return ResourceManager.GetString("RemoveFromWishlistText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Книга.
         /// </summary>
         public static string RentBookText {
@@ -1820,6 +1901,15 @@ namespace BookDepoSystem.Common {
         public static string SideBarComponentsText {
             get {
                 return ResourceManager.GetString("SideBarComponentsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to брой.
+        /// </summary>
+        public static string SingleQuantityText {
+            get {
+                return ResourceManager.GetString("SingleQuantityText", resourceCulture);
             }
         }
         

@@ -1,0 +1,36 @@
+﻿.info-alert {
+    background-color: #e6f7ff;  /* primary-100 */
+    border: 1px solid #b3e0ff;   /* primary-200 */
+    color: #0059b3;              /* primary-800 */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.success-alert {
+    background-color: #f0f9f0;  /* green-100 */
+    border: 1px solid #c6e0c6;   /* green-200 */
+    color: #2c6e2c;              /* green-800 */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    margin: 1rem;
+}
+
+.danger-alert {
+    background-color: #fff0f0;  /* red-100 */
+    border: 1px solid #ffc6c6;   /* red-200 */
+    color: #b33c3c;             /* red-800 */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: relative;
+    margin: 1rem;
+}
+
+.custom-card {
+    height:100%;
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+}
