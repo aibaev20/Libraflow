@@ -11,6 +11,7 @@ public class EntityContext : IdentityDbContext<ApplicationUser, ApplicationRole,
     public DbSet<Book> Books { get; set; }
     public DbSet<Rent> Rents { get; set; }
     public DbSet<Wishlist> Wishlist { get; set; }
+    public DbSet<Feedback> Feedback { get; set; }
     public EntityContext(DbContextOptions<EntityContext> options)
         : base(options)
     {

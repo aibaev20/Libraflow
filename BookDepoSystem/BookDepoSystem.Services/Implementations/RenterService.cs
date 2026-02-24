@@ -40,4 +40,9 @@ public class RenterService : IRenterService
 
         return (renters, totalCount);
     }
+
+    public async Task<Renter?> GetRenterById(Guid renterId)
+    {
+        return await this.context.Renters.FirstOrDefaultAsync(r => r.RenterId == renterId);
+    }
 }

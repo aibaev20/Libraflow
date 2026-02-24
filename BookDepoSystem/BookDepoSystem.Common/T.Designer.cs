@@ -834,6 +834,51 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Подадена.
+        /// </summary>
+        public static string FeedbackAlreadySubmitted {
+            get {
+                return ResourceManager.GetString("FeedbackAlreadySubmitted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашето съобщение.
+        /// </summary>
+        public static string FeedbackMessageText {
+            get {
+                return ResourceManager.GetString("FeedbackMessageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оценка.
+        /// </summary>
+        public static string FeedbackRateText {
+            get {
+                return ResourceManager.GetString("FeedbackRateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Наета книга.
+        /// </summary>
+        public static string FeedbackRentedBookText {
+            get {
+                return ResourceManager.GetString("FeedbackRentedBookText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Обратна връзка.
+        /// </summary>
+        public static string FeedbackText {
+            get {
+                return ResourceManager.GetString("FeedbackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Художествена литература.
         /// </summary>
         public static string FictionGenreText {
@@ -1086,6 +1131,24 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Напишете.
+        /// </summary>
+        public static string LeaveFeedbackButton {
+            get {
+                return ResourceManager.GetString("LeaveFeedbackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оставете обратна връзка.
+        /// </summary>
+        public static string LeaveFeedbackText {
+            get {
+                return ResourceManager.GetString("LeaveFeedbackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Мястото на книгата е задължително поле.
         /// </summary>
         public static string LocationIsRequiredErrorMessage {
@@ -1172,6 +1235,15 @@ namespace BookDepoSystem.Common {
         public static string MayText {
             get {
                 return ResourceManager.GetString("MayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Съобщението е задължително поле.
+        /// </summary>
+        public static string MessageIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("MessageIsRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -1532,6 +1604,15 @@ namespace BookDepoSystem.Common {
         public static string QuantityDescendingOrderText {
             get {
                 return ResourceManager.GetString("QuantityDescendingOrderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оценката е задължително поле.
+        /// </summary>
+        public static string RateIsRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("RateIsRequiredErrorMessage", resourceCulture);
             }
         }
         
@@ -1964,6 +2045,15 @@ namespace BookDepoSystem.Common {
         public static string StatusIsRequiredErrorMessage {
             get {
                 return ResourceManager.GetString("StatusIsRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпратете.
+        /// </summary>
+        public static string SubmitFeedbackText {
+            get {
+                return ResourceManager.GetString("SubmitFeedbackText", resourceCulture);
             }
         }
         

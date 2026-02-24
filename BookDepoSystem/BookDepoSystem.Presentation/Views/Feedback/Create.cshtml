@@ -1,0 +1,60 @@
+﻿@model BookDepoSystem.Presentation.Models.FeedbackViewModel
+
+@{
+    ViewData["Title"] = @T.LeaveFeedbackText;
+}
+
+<h2 class="form-group">@T.LeaveFeedbackText</h2>
+
+<form asp-action="Create" asp-controller="Feedback" method="post" asp-route-bookId="@Model.BookId" asp-route-renterId="@Model.RenterId">
+    
+    <input type="hidden" asp-for="BookId" />
+    <input type="hidden" asp-for="RenterId" />
+    <input type="hidden" asp-for="BookTitle" />
+
+    <div class="form-group">
+        <label class="form-label">@T.FeedbackRentedBookText</label>
+        <input class="form-control" value="@Model.BookTitle" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rate" for="rate-range" class="form-label">@T.FeedbackRateText</label>
+        <input asp-for="Rate"
+               type="range"
+               class="form-range"
+               min="1"
+               max="5"
+               step="0.5"
+               id="rate-range">
+        <output for="rate-range" id="rangeValue" aria-hidden="true"></output>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Message" class="form-label">@T.FeedbackMessageText</label>
+        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            @T.SubmitFeedbackText
+        </button>
+
+        <a asp-action="MyAssignedRents"
+           asp-controller="Rent"
+           class="btn btn-secondary">
+            @T.CancelText
+        </a>
+    </div>
+</form>
+
+<script>
+    const rangeInput = document.getElementById('rate-range');
+    const rangeOutput = document.getElementById('rangeValue');
+
+    rangeOutput.textContent = rangeInput.value;
+
+    rangeInput.addEventListener('input', function() {
+        rangeOutput.textContent = this.value;
+    });
+</script>
