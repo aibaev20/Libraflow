@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using BookDepoSystem.Common;
+using BookDepoSystem.Services.Models;
 
 namespace BookDepoSystem.Presentation.Models;
 
@@ -75,4 +76,7 @@ public class BookViewModel
         ErrorMessageResourceType = typeof(Common.T),
         ErrorMessageResourceName = "AgeRangeIsRequiredErrorMessage")]
     public string? AgeRange { get; set; } = string.Empty;
+
+    public List<FeedbackDisplayModel> Feedbacks { get; set; } = new();
+    public float? AverageRate => Feedbacks.Count > 0 ? Feedbacks.Average(f => f.Rate) : 0;
 }

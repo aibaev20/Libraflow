@@ -231,6 +231,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Средна оценка.
+        /// </summary>
+        public static string AverageRateText {
+            get {
+                return ResourceManager.GetString("AverageRateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Назад.
         /// </summary>
         public static string BackButtonText {
@@ -870,6 +879,15 @@ namespace BookDepoSystem.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отзиви.
+        /// </summary>
+        public static string FeedbacksText {
+            get {
+                return ResourceManager.GetString("FeedbacksText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Обратна връзка.
         /// </summary>
         public static string FeedbackText {
@@ -1352,6 +1370,15 @@ namespace BookDepoSystem.Common {
         public static string NonFictionGenreText {
             get {
                 return ResourceManager.GetString("NonFictionGenreText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За момента няма отзиви.
+        /// </summary>
+        public static string NotFeedbacksYet {
+            get {
+                return ResourceManager.GetString("NotFeedbacksYet", resourceCulture);
             }
         }
         

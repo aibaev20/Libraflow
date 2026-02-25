@@ -17,17 +17,20 @@ public class BookController : Controller
 {
     private readonly IBookService bookService;
     private readonly IWishlistService wishlistService;
+    private readonly IFeedbackService feedbackService;
     private readonly UserManager<ApplicationUser> userManager;
     private readonly IWebHostEnvironment webHostEnvironment;
 
     public BookController(
         IBookService bookService,
         IWishlistService wishlistService,
+        IFeedbackService feedbackService,
         UserManager<ApplicationUser> userManager,
         IWebHostEnvironment webHostEnvironment)
     {
         this.bookService = bookService;
         this.wishlistService = wishlistService;
+        this.feedbackService = feedbackService;
         this.userManager = userManager;
         this.webHostEnvironment = webHostEnvironment;
     }
@@ -316,6 +319,7 @@ public class BookController : Controller
             CoverType = book.CoverType,
         };
 
+        model.Feedbacks = await this.feedbackService.GetFeedbacksForBook(id);
         return this.View(model);
     }
 

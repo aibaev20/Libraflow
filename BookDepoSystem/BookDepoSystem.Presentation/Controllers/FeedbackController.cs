@@ -39,8 +39,6 @@ public class FeedbackController : Controller
     [Authorize(DefaultPolicies.UserPolicy)]
     public async Task<IActionResult> Create(Guid bookId, Guid renterId)
     {
-        //var book = await this.context.Books.FindAsync(bookId);
-        //var renter = await this.context.Renters.FindAsync(renterId);
         var book = await this.bookService.GetBookById(bookId);
         var renter = await this.renterService.GetRenterById(renterId);
 
@@ -81,6 +79,5 @@ public class FeedbackController : Controller
 
         await this.feedbackService.AddFeedback(newFeedback);
         return this.RedirectToMyAssignedRents();
-        //return this.RedirectToAction("MyAssignedRents", "Rent");
     }
 }

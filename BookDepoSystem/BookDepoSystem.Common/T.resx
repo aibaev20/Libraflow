@@ -717,4 +717,13 @@
     <data name="LeaveFeedbackButton" xml:space="preserve">
         <value>Напишете</value>
     </data>
+    <data name="FeedbacksText" xml:space="preserve">
+        <value>Отзиви</value>
+    </data>
+    <data name="AverageRateText" xml:space="preserve">
+        <value>Средна оценка</value>
+    </data>
+    <data name="NotFeedbacksYet" xml:space="preserve">
+        <value>За момента няма отзиви</value>
+    </data>
 </root>
