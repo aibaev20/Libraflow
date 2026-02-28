@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddScoped<IRenterService, RenterService>();
         services.AddScoped<IRentService, RentService>();
         services.AddScoped<IWishlistService, WishlistService>();
+        services.AddScoped<IFeedbackService, FeedbackService>();
 
         return services;
     }

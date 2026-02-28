@@ -687,4 +687,43 @@
     <data name="BookNotExist" xml:space="preserve">
         <value>Книгата не съществува.</value>
     </data>
+    <data name="LeaveFeedbackText" xml:space="preserve">
+        <value>Оставете обратна връзка</value>
+    </data>
+    <data name="FeedbackRateText" xml:space="preserve">
+        <value>Оценка</value>
+    </data>
+    <data name="FeedbackMessageText" xml:space="preserve">
+        <value>Вашето съобщение</value>
+    </data>
+    <data name="SubmitFeedbackText" xml:space="preserve">
+        <value>Изпратете</value>
+    </data>
+    <data name="FeedbackRentedBookText" xml:space="preserve">
+        <value>Наета книга</value>
+    </data>
+    <data name="FeedbackText" xml:space="preserve">
+        <value>Обратна връзка</value>
+    </data>
+    <data name="FeedbackAlreadySubmitted" xml:space="preserve">
+        <value>Подадена</value>
+    </data>
+    <data name="RateIsRequiredErrorMessage" xml:space="preserve">
+        <value>Оценката е задължително поле</value>
+    </data>
+    <data name="MessageIsRequiredErrorMessage" xml:space="preserve">
+        <value>Съобщението е задължително поле</value>
+    </data>
+    <data name="LeaveFeedbackButton" xml:space="preserve">
+        <value>Напишете</value>
+    </data>
+    <data name="FeedbacksText" xml:space="preserve">
+        <value>Отзиви</value>
+    </data>
+    <data name="AverageRateText" xml:space="preserve">
+        <value>Средна оценка</value>
+    </data>
+    <data name="NotFeedbacksYet" xml:space="preserve">
+        <value>За момента няма отзиви</value>
+    </data>
 </root>

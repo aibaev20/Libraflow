@@ -4,93 +4,167 @@
     ViewData["Title"] = @T.DetailsBookTitle;
 }
 
-<h2 class="form-group">@T.DetailsBookTitle</h2>
+<h2 class="m-3">@T.DetailsBookTitle</h2>
 
-<div class="container-fluid p-0">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookCoverImageText:</h6>
-                @if (!string.IsNullOrEmpty(Model.CoverImage))
-                {
-                    <img src="~/img/books/@Model.CoverImage" alt="Book Cover" class="img-fluid rounded" style="max-width: 150px"/>
-                }
-                else
-                {
-                    <div class="text-muted">@T.NotFoundBookCover</div>
-                }
-            </div>
+<div class="container-fluid">
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column gap-3">
 
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookTitleText:</h6>
-                <p>@Model.Title</p>
-            </div>
+                    @if (!string.IsNullOrEmpty(Model.CoverImage))
+                    {
+                        <img src="~/img/books/@Model.CoverImage" alt="Book Cover" class="img-fluid rounded" />
+                    }
+                    else
+                    {
+                        <div class="bg-secondary-subtle text-black text-center rounded p-5">@T.NotFoundBookCover</div>
+                    }
 
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookAuthorText:</h6>
-                <p>@Model.Author</p>
-            </div>
+                    <hr class="my-1" />
 
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookGenreText:</h6>
-                <p>@Model.Genre</p>
-            </div>
+                    <div>
+                        <p class="text-uppercase text-secondary fw-semibold mb-0" style="font-size:0.8em; letter-spacing:0.1em">@T.BookGenreText</p>
+                        <p class="mb-0">@Model.Genre</p>
+                    </div>
+                    <div>
+                        <p class="text-uppercase text-secondary fw-semibold mb-0" style="font-size:0.8em; letter-spacing:0.1em">@T.BookAgeRangeText</p>
+                        <p class="mb-0">@Model.AgeRange</p>
+                    </div>
+                    <div>
+                        <p class="text-uppercase text-secondary fw-semibold mb-0" style="font-size:0.8em; letter-spacing:0.1em">@T.BookCoverTypeText</p>
+                        <p class="mb-0">@Model.CoverType</p>
+                    </div>
+                    <div>
+                        <p class="text-uppercase text-secondary fw-semibold mb-0" style="font-size:0.8em; letter-spacing:0.1em">@T.BookLocationText</p>
+                        <p class="mb-0">@Model.Location</p>
+                    </div>
+                    <div>
+                        <p class="text-uppercase text-secondary fw-semibold mb-0" style="font-size:0.8em; letter-spacing:0.1em">@T.BookPublishedDateText</p>
+                        <p class="mb-0">@Model.PublishedDate!.Value.ToString("dd.MM.yyyy")</p>
+                    </div>
 
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookLocationText:</h6>
-                <p>@Model.Location</p>
-            </div>
-
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookInformationText:</h6>
-                <p>@Model.Information</p>
-            </div>
-
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookPublishedDateText:</h6>
-                <p>@Model.PublishedDate!.Value.ToShortDateString()</p>
+                </div>
             </div>
         </div>
-        
-        <div class="col-md-6">
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookQuantityAvailableText:</h6>
-                <p>@Model.QuantityAvailable!.Value</p>
+
+        <div class="col-md-9">
+
+            <h3 class="fw-bold mb-0">@Model.Title</h3>
+            <p class="text-muted mb-4">@Model.Author</p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-sm-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body py-3">
+                            <p class="text-uppercase text-secondary fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.1em">@T.BookQuantityAvailableText</p>
+                            @{
+                                var quantity = Model.QuantityAvailable!.Value;
+                                var badgeClass = quantity > 5 ? "success" : "warning";
+                            }
+                            <span class="badge bg-@badgeClass fs-6">@quantity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body py-3">
+                            <p class="text-uppercase text-secondary fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.1em">@T.BookPagesText</p>
+                            <p class="fw-bold mb-0">@Model.Pages!.Value</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body py-3">
+                            <p class="text-uppercase text-secondary fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.1em">@T.BookISBNText</p>
+                            <p class="fw-semibold mb-0 text-break">@Model.Isbn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body py-3">
+                            <p class="text-uppercase text-secondary fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.1em">@T.BookSKUText</p>
+                            <p class="fw-semibold mb-0 text-break">@Model.Sku</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card card-body">
+                <p class="text-uppercase text-secondary fw-semibold mb-1" style="font-size:0.8em; letter-spacing:0.1em">@T.BookInformationText</p>
+                <p class="mb-0">@Model.Information</p>
             </div>
 
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookISBNText:</h6>
-                <p>@Model.Isbn</p>
-            </div>
+            <hr />
+            <input type="hidden" asp-for="BookId" />
+            <a asp-action="Books" class="btn btn-secondary">
+                @T.BackButtonText
+            </a>
 
-            <div class="form-group">
-                <h6  class="fw-bold">@T.BookSKUText:</h6>
-                <p>@Model.Sku</p>
-            </div>
-
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookPagesText:</h6>
-                <p>@Model.Pages!.Value</p>
-            </div>
-
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookAgeRangeText:</h6>
-                <p>@Model.AgeRange</p>
-            </div>
-
-            <div class="form-group">
-                <h6 class="fw-bold">@T.BookCoverTypeText:</h6>
-                <p>@Model.CoverType</p>
-            </div>
         </div>
     </div>
     
     <div class="row mt-4">
         <div class="col-12">
-                <input type="hidden" asp-for="BookId" />
-                <div class="form-group">
-                    <a asp-action="Books" class="btn btn-secondary">@T.CancelText</a>
-                </div>
+            <h4 class="ms-2">
+                @T.FeedbacksText
+                @if (Model.Feedbacks.Any())
+                {
+                    <small class="text-muted fs-6">
+                        — @T.AverageRateText: @Model.AverageRate.ToString() / 5
+                    </small>
+                }
+            </h4>
+
+            @if (!Model.Feedbacks.Any())
+            {
+                <p class="text-muted ms-2">@T.NotFeedbacksYet</p>
+            }
+            else
+            {
+                foreach (var feedback in Model.Feedbacks)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong>@feedback.RenterName</strong>
+                                <small class="text-muted">@feedback.CreatedOn.ToString("dd.MM.yyyy")</small>
+                            </div>
+                            <div class="mb-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    string icon;
+                                    string color;
+
+                                    if (feedback.Rate >= i)
+                                    {
+                                        icon = "bi-star-fill";
+                                        color = "#ffc107";
+                                    }
+                                    else if (feedback.Rate >= i - 0.5)
+                                    {
+                                        icon = "bi-star-half";
+                                        color = "#ffc107";
+                                    }
+                                    else
+                                    {
+                                        icon = "bi-star";
+                                        color = "#e4e5e9";
+                                    }
+
+                                    <span style="color: @color; font-size: 1.2em;">
+                                        <i class="bi @icon"></i>
+                                    </span>
+                                }
+                                <small class="text-muted ms-1">@feedback.Rate / 5</small>
+                            </div>
+                            <p class="mb-0">@feedback.Message</p>
+                        </div>
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>
